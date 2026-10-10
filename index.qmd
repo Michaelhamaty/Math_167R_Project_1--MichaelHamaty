@@ -5,6 +5,14 @@ description: "A Monte Carlo investigation of when sample means become approximat
 page-layout: full
 ---
 
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+source("R/plots.R")
+diagnostics <- read.csv("results/diagnostics.csv")
+```
+
 ::: {.hero}
 # How Fast Does Normal Happen?
 
@@ -27,10 +35,34 @@ At every sample size
 Fully reproducible
 :::
 ::: {.metric}
-**1 exception**
-Cauchy defeats the ordinary CLT
+**30 to 300**
+Empirical finite-case thresholds
 :::
 :::
+
+## Answer first
+
+The parent distribution matters enormously. Standard Normal needs no waiting: $n=1$ is exact. A symmetric die is useful by $n=30$. The skewed small Binomial needs about $n=200$, and Exponential needs about $n=300$. Standard Cauchy never reaches an ordinary-CLT threshold because its sample mean remains Cauchy at every $n$.
+
+```{r}
+#| label: fig-synthesis-thresholds
+#| fig-cap: "Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy is excluded because no ordinary-CLT threshold exists."
+#| fig-alt: "A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, and Exponential at 300."
+thresholds <- data.frame(
+  population = factor(c("Standard Normal", "Six-sided die", "Small Binomial", "Exponential"), levels = rev(c("Standard Normal", "Six-sided die", "Small Binomial", "Exponential"))),
+  n = c(1, 30, 200, 300),
+  color = c("#0d6973", "#3a7697", "#8b4f79", "#bd5b32")
+)
+ggplot(thresholds, aes(n, population)) +
+  geom_vline(xintercept = 30, color = "#d8a23c", linetype = "22", linewidth = 0.8) +
+  geom_segment(aes(x = 1, xend = n, yend = population, color = color), linewidth = 1.1, show.legend = FALSE) +
+  geom_point(aes(color = color), size = 4.2, show.legend = FALSE) +
+  geom_text(aes(label = paste0("n = ", n)), nudge_y = 0.22, fontface = "bold", color = "#173f47") +
+  scale_color_identity() +
+  scale_x_log10(breaks = c(1, 10, 30, 100, 300), limits = c(1, 400)) +
+  labs(x = "Smallest defensible sample size, log scale", y = NULL) +
+  analysis_theme(base_size = 13)
+```
 
 ## The five investigations
 
@@ -40,10 +72,37 @@ Cauchy defeats the ordinary CLT
 - [Small Binomial](analyses/binomial.qmd): discrete, zero-heavy, and right-skewed.
 - [Standard Cauchy](analyses/cauchy.qmd): a stress test with no finite mean or variance.
 
+## Synthesis table
+
+| Population | CLT eligible? | Parent challenge | Smallest defensible n | Main disagreement |
+|---|---:|---|---:|---|
+| Standard Normal | Yes, exact | None after standardization | 1 | Simulation metrics fluctuate around exact theory |
+| Six-sided die | Yes | Discrete lattice | 30 | Q-Q RMSE detects steps after global shape settles |
+| Exponential | Yes | Long right tail | 300 | Center and SE settle far earlier than shape |
+| Small Binomial | Yes | Zeros, skewness, lattice | 200 | Q-Q steps persist after skewness enters its band |
+| Standard Cauchy | No | Undefined mean and variance | None | Robust spread stays constant under averaging |
+
+The convergence ordering is Normal, die, small Binomial, then Exponential. Cauchy is not merely slower: it is ineligible.
+
+## What each diagnostic contributed
+
+- **Center:** all finite-variance cases centered correctly well before their shapes were convincing.
+- **Standard error:** the theoretical $\sigma/\sqrt{n}$ relationship worked early and did not by itself certify Normality.
+- **Skewness:** this separated the symmetric die from the two asymmetric parents.
+- **Excess kurtosis:** this exposed tail and peak differences that skewness could miss.
+- **Q-Q RMSE:** this was the strictest diagnostic, especially for discrete lattices.
+- **Plots:** these determined whether the remaining numerical departure would materially mislead a Normal approximation.
+
 ## Evidence standard
 
 The final decision does not come from a single score. Center, standard error, skewness, excess kurtosis, a Q-Q discrepancy, and the plots each answer a different question. Numerical bands are calibrated against the finite simulation noise in the Normal case. A conclusion must also persist for the next two larger evaluated sample sizes.
 
-::: {.callout-note title="Reading the results"}
-The Normal case has a theoretical answer of $n=1$. The Cauchy case has no ordinary-CLT threshold. The other three thresholds are empirical and will be reported from the completed simulation rather than assumed in advance.
+::: {.callout-note title="Why n = 30 is not a law"}
+At $n=30$, the die is defensible, Exponential still shows substantial right-tail curvature, and the small Binomial remains skewed and visibly discrete. Sample size cannot be judged apart from the parent shape and the intended use of the approximation.
 :::
+
+## Reproducibility and limits
+
+All final results use seed 631 and 10,000 repetitions per sample size. The borderline small-Binomial conclusion was repeated with seed 1631 and remained in the same transition region. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.
+
+See the [methodology decisions](docs/methodology_decisions.md) and [curated AI interaction log](docs/ai_interaction_log.md) for the full decision trail.

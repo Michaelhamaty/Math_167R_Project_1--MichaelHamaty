@@ -3,9 +3,9 @@
 ## Session: 2026-10-10
 
 ### Current status
-- **Phase:** 5 - Reproducibility and synthesis
+- **Phase:** 6 - Editorial and visual quality
 - **Started:** 2026-10-10
-- **Next action:** Verify and commit the landing-page synthesis and second-seed conclusion.
+- **Next action:** Inspect every page at desktop and narrow viewport sizes and fix presentation defects.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -31,6 +31,7 @@
 - Verified the Exponential transition at n = 300 with persistence at 500 and 750.
 - Verified the small-Binomial transition at n = 200 and its seed-1631 sensitivity comparison.
 - Verified the Cauchy stress test with undefined moments, persistent robust spread, and explicitly disclosed plot limits.
+- Completed the landing-page answer, convergence ordering, synthesis table, n = 30 comparison, and second-seed interpretation.
 
 ### Tests and results
 | Test | Result | Notes |

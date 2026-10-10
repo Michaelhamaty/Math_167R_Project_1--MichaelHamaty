@@ -28,6 +28,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -166,8 +201,12 @@ window.Quarto = {
    
   <ul>
   <li><a href="#how-fast-does-normal-happen" id="toc-how-fast-does-normal-happen" class="nav-link active" data-scroll-target="#how-fast-does-normal-happen">How Fast Does Normal Happen?</a></li>
+  <li><a href="#answer-first" id="toc-answer-first" class="nav-link" data-scroll-target="#answer-first">Answer first</a></li>
   <li><a href="#the-five-investigations" id="toc-the-five-investigations" class="nav-link" data-scroll-target="#the-five-investigations">The five investigations</a></li>
+  <li><a href="#synthesis-table" id="toc-synthesis-table" class="nav-link" data-scroll-target="#synthesis-table">Synthesis table</a></li>
+  <li><a href="#what-each-diagnostic-contributed" id="toc-what-each-diagnostic-contributed" class="nav-link" data-scroll-target="#what-each-diagnostic-contributed">What each diagnostic contributed</a></li>
   <li><a href="#evidence-standard" id="toc-evidence-standard" class="nav-link" data-scroll-target="#evidence-standard">Evidence standard</a></li>
+  <li><a href="#reproducibility-and-limits" id="toc-reproducibility-and-limits" class="nav-link" data-scroll-target="#reproducibility-and-limits">Reproducibility and limits</a></li>
   </ul>
 </nav>
     </div>
@@ -220,9 +259,44 @@ window.Quarto = {
 <p><strong>Seed 631</strong> Fully reproducible</p>
 </div>
 <div class="metric">
-<p><strong>1 exception</strong> Cauchy defeats the ordinary CLT</p>
+<p><strong>30 to 300</strong> Empirical finite-case thresholds</p>
 </div>
 </div>
+<section id="answer-first" class="level2">
+<h2 class="anchored" data-anchor-id="answer-first">Answer first</h2>
+<p>The parent distribution matters enormously. Standard Normal needs no waiting: <span class="math inline">\(n=1\)</span> is exact. A symmetric die is useful by <span class="math inline">\(n=30\)</span>. The skewed small Binomial needs about <span class="math inline">\(n=200\)</span>, and Exponential needs about <span class="math inline">\(n=300\)</span>. Standard Cauchy never reaches an ordinary-CLT threshold because its sample mean remains Cauchy at every <span class="math inline">\(n\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">population =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Standard Normal"</span>, <span class="st">"Six-sided die"</span>, <span class="st">"Small Binomial"</span>, <span class="st">"Exponential"</span>), <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"Standard Normal"</span>, <span class="st">"Six-sided die"</span>, <span class="st">"Small Binomial"</span>, <span class="st">"Exponential"</span>))),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"#0d6973"</span>, <span class="st">"#3a7697"</span>, <span class="st">"#8b4f79"</span>, <span class="st">"#bd5b32"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(thresholds, <span class="fu">aes</span>(n, population)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">30</span>, <span class="at">color =</span> <span class="st">"#d8a23c"</span>, <span class="at">linetype =</span> <span class="st">"22"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">xend =</span> n, <span class="at">yend =</span> population, <span class="at">color =</span> color), <span class="at">linewidth =</span> <span class="fl">1.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> color), <span class="at">size =</span> <span class="fl">4.2</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, n)), <span class="at">nudge_y =</span> <span class="fl">0.22</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#173f47"</span>) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">300</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">400</span>)) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Smallest defensible sample size, log scale"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">analysis_theme</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-synthesis-thresholds" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, and Exponential at 300.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-synthesis-thresholds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-synthesis-thresholds-1.png" class="img-fluid figure-img" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, and Exponential at 300." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-synthesis-thresholds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy is excluded because no ordinary-CLT threshold exists.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="the-five-investigations" class="level2">
 <h2 class="anchored" data-anchor-id="the-five-investigations">The five investigations</h2>
 <ul>
@@ -233,22 +307,97 @@ window.Quarto = {
 <li><a href="./analyses/cauchy.html">Standard Cauchy</a>: a stress test with no finite mean or variance.</li>
 </ul>
 </section>
+<section id="synthesis-table" class="level2">
+<h2 class="anchored" data-anchor-id="synthesis-table">Synthesis table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Population</th>
+<th style="text-align: right;">CLT eligible?</th>
+<th>Parent challenge</th>
+<th style="text-align: right;">Smallest defensible n</th>
+<th>Main disagreement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard Normal</td>
+<td style="text-align: right;">Yes, exact</td>
+<td>None after standardization</td>
+<td style="text-align: right;">1</td>
+<td>Simulation metrics fluctuate around exact theory</td>
+</tr>
+<tr class="even">
+<td>Six-sided die</td>
+<td style="text-align: right;">Yes</td>
+<td>Discrete lattice</td>
+<td style="text-align: right;">30</td>
+<td>Q-Q RMSE detects steps after global shape settles</td>
+</tr>
+<tr class="odd">
+<td>Exponential</td>
+<td style="text-align: right;">Yes</td>
+<td>Long right tail</td>
+<td style="text-align: right;">300</td>
+<td>Center and SE settle far earlier than shape</td>
+</tr>
+<tr class="even">
+<td>Small Binomial</td>
+<td style="text-align: right;">Yes</td>
+<td>Zeros, skewness, lattice</td>
+<td style="text-align: right;">200</td>
+<td>Q-Q steps persist after skewness enters its band</td>
+</tr>
+<tr class="odd">
+<td>Standard Cauchy</td>
+<td style="text-align: right;">No</td>
+<td>Undefined mean and variance</td>
+<td style="text-align: right;">None</td>
+<td>Robust spread stays constant under averaging</td>
+</tr>
+</tbody>
+</table>
+<p>The convergence ordering is Normal, die, small Binomial, then Exponential. Cauchy is not merely slower: it is ineligible.</p>
+</section>
+<section id="what-each-diagnostic-contributed" class="level2">
+<h2 class="anchored" data-anchor-id="what-each-diagnostic-contributed">What each diagnostic contributed</h2>
+<ul>
+<li><strong>Center:</strong> all finite-variance cases centered correctly well before their shapes were convincing.</li>
+<li><strong>Standard error:</strong> the theoretical <span class="math inline">\(\sigma/\sqrt{n}\)</span> relationship worked early and did not by itself certify Normality.</li>
+<li><strong>Skewness:</strong> this separated the symmetric die from the two asymmetric parents.</li>
+<li><strong>Excess kurtosis:</strong> this exposed tail and peak differences that skewness could miss.</li>
+<li><strong>Q-Q RMSE:</strong> this was the strictest diagnostic, especially for discrete lattices.</li>
+<li><strong>Plots:</strong> these determined whether the remaining numerical departure would materially mislead a Normal approximation.</li>
+</ul>
+</section>
 <section id="evidence-standard" class="level2">
 <h2 class="anchored" data-anchor-id="evidence-standard">Evidence standard</h2>
 <p>The final decision does not come from a single score. Center, standard error, skewness, excess kurtosis, a Q-Q discrepancy, and the plots each answer a different question. Numerical bands are calibrated against the finite simulation noise in the Normal case. A conclusion must also persist for the next two larger evaluated sample sizes.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Reading the results">
+<div class="callout callout-style-default callout-note callout-titled" title="Why n = 30 is not a law">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Reading the results
+<span class="screen-reader-only">Note</span>Why n = 30 is not a law
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The Normal case has a theoretical answer of <span class="math inline">\(n=1\)</span>. The Cauchy case has no ordinary-CLT threshold. The other three thresholds are empirical and will be reported from the completed simulation rather than assumed in advance.</p>
+<p>At <span class="math inline">\(n=30\)</span>, the die is defensible, Exponential still shows substantial right-tail curvature, and the small Binomial remains skewed and visibly discrete. Sample size cannot be judged apart from the parent shape and the intended use of the approximation.</p>
 </div>
 </div>
+</section>
+<section id="reproducibility-and-limits" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-and-limits">Reproducibility and limits</h2>
+<p>All final results use seed 631 and 10,000 repetitions per sample size. The borderline small-Binomial conclusion was repeated with seed 1631 and remained in the same transition region. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.</p>
+<p>See the <a href="docs/methodology_decisions.md">methodology decisions</a> and <a href="docs/ai_interaction_log.md">curated AI interaction log</a> for the full decision trail.</p>
 
 
 </section>

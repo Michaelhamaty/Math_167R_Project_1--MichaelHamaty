@@ -4,10 +4,10 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Verify and commit the landing-page synthesis and second-seed conclusion.
+Complete desktop and narrow-screen editorial QA, then fix any presentation defects.
 
 ## Current Phase
-Phase 5
+Phase 6
 
 ## Phases
 
@@ -45,16 +45,16 @@ Phase 5
 - **Status:** complete
 
 ### Phase 5: Reproducibility and synthesis
-- [ ] Run the second-seed experiment
-- [ ] Build the comparison table and centerpiece
-- [ ] Write conclusions from actual results
-- **Status:** in_progress
+- [x] Run the second-seed experiment
+- [x] Build the comparison table and centerpiece
+- [x] Write conclusions from actual results
+- **Status:** complete
 
 ### Phase 6: Editorial and visual quality
 - [ ] Apply prose and code-style checks
 - [ ] Inspect desktop and narrow layouts
 - [ ] Fix every visual or accessibility defect
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 7: Verification and handoff
 - [ ] Render from a clean R session
