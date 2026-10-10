@@ -14,7 +14,7 @@ diagnostics <- read.csv("results/diagnostics.csv")
 ```
 
 ::: {.hero}
-# How Fast Does Normal Happen?
+# One theorem. Five very different speeds.
 
 Five parent populations enter. Their sample means do not all approach the bell curve at the same pace, and one never does.
 :::

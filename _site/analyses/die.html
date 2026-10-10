@@ -283,7 +283,7 @@ E(\bar X_n)=3.5, \qquad SE(\bar X_n)=\sqrt{\frac{35}{12n}}.
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shown <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>), <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"mean_error"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(shown) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Center error"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-die-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -295,16 +295,14 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 18%">
-<col style="width: 25%">
-<col style="width: 12%">
-<col style="width: 22%">
-<col style="width: 12%">
+<col style="width: 19%">
+<col style="width: 26%">
+<col style="width: 13%">
+<col style="width: 23%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">Center error</th>
 <th style="text-align: right;">Relative SE error</th>
@@ -315,7 +313,6 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">16</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">0.0021</td>
 <td style="text-align: right;">0.0018</td>
@@ -324,7 +321,6 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <td style="text-align: right;">0.0538</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">19</td>
 <td style="text-align: right;">20</td>
 <td style="text-align: right;">-0.0050</td>
 <td style="text-align: right;">0.0036</td>
@@ -333,7 +329,6 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <td style="text-align: right;">0.0422</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">21</td>
 <td style="text-align: right;">30</td>
 <td style="text-align: right;">0.0048</td>
 <td style="text-align: right;">0.0107</td>
@@ -342,7 +337,6 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <td style="text-align: right;">0.0322</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">22</td>
 <td style="text-align: right;">40</td>
 <td style="text-align: right;">0.0008</td>
 <td style="text-align: right;">0.0055</td>
@@ -351,7 +345,6 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <td style="text-align: right;">0.0266</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">23</td>
 <td style="text-align: right;">50</td>
 <td style="text-align: right;">0.0008</td>
 <td style="text-align: right;">0.0057</td>

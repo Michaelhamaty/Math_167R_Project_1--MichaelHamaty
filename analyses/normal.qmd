@@ -53,7 +53,7 @@ At every evaluated $n$, I generated 10,000 independent sample means with seed 63
 #| tbl-cap: "Normal diagnostics at three scales. Empirical center and SE remain close to exact theory; shape metrics fluctuate slightly because only 10,000 means are simulated."
 normal_table <- page_results[page_results$n %in% selected_n, c("n", "simulated_mean", "simulated_se", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
 names(normal_table) <- c("n", "Mean", "Empirical SE", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
-knitr::kable(normal_table, digits = 4)
+knitr::kable(normal_table, digits = 4, row.names = FALSE)
 ```
 
 At $n=1$, the simulated mean is `r sprintf("%.4f", page_results$simulated_mean[page_results$n == 1])` and the empirical SE is `r sprintf("%.4f", page_results$simulated_se[page_results$n == 1])`. These are simulation errors around 0 and 1, not evidence against the exact theorem.
@@ -83,7 +83,7 @@ plot_qq_comparison(simulation$means, population, selected_n)
 #| tbl-cap: "Guidance bands calibrated from the largest Normal fluctuation, subject to practical floors. These bands guide later judgments but do not form a weighted score."
 band_table <- bands
 band_table$threshold <- round(band_table$threshold, 4)
-knitr::kable(band_table, col.names = c("Metric", "Guidance threshold"))
+knitr::kable(band_table, col.names = c("Metric", "Guidance threshold"), row.names = FALSE)
 ```
 
 ## 9. Decision and diagnostic agreement

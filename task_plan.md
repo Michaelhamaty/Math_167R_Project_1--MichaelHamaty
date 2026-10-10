@@ -4,10 +4,10 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Complete desktop and narrow-screen editorial QA, then fix any presentation defects.
+Run the clean acceptance suite and dispatch the required fresh-agent final review.
 
 ## Current Phase
-Phase 6
+Phase 7
 
 ## Phases
 
@@ -51,17 +51,17 @@ Phase 6
 - **Status:** complete
 
 ### Phase 6: Editorial and visual quality
-- [ ] Apply prose and code-style checks
-- [ ] Inspect desktop and narrow layouts
-- [ ] Fix every visual or accessibility defect
-- **Status:** in_progress
+- [x] Apply prose and code-style checks
+- [x] Inspect desktop and narrow layouts
+- [x] Fix every visual or accessibility defect
+- **Status:** complete
 
 ### Phase 7: Verification and handoff
 - [ ] Render from a clean R session
 - [ ] Run all acceptance checks
 - [ ] Complete a fresh-agent review and revisions
 - [ ] Reconcile documentation, commits, and remote state
-- **Status:** pending
+- **Status:** in_progress
 
 ## Decisions Made
 | Decision | Rationale |

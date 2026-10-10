@@ -54,7 +54,7 @@ The grid is dense from $n=1$ to 200, then checks 300 and 500 for stability. Ever
 #| tbl-cap: "Small-Binomial diagnostics around n = 200. Skewness reaches the practical band while Q-Q RMSE remains elevated by the lattice."
 shown <- page_results[page_results$n %in% c(75, 100, 125, 150, 200, 300, 500), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
 names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
-knitr::kable(shown, digits = 4)
+knitr::kable(shown, digits = 4, row.names = FALSE)
 ```
 
 At $n=200$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n == 200])`, below the 0.10 guidance, and the empirical SE is within `r sprintf("%.2f%%", 100 * page_results$relative_se_error[page_results$n == 200])` of theory.
@@ -89,7 +89,7 @@ seed_compare <- merge(
   suffixes = c("_631", "_1631")
 )
 names(seed_compare) <- c("n", "Skewness, seed 631", "Q-Q RMSE, seed 631", "Skewness, seed 1631", "Q-Q RMSE, seed 1631")
-knitr::kable(seed_compare, digits = 4)
+knitr::kable(seed_compare, digits = 4, row.names = FALSE)
 ```
 
 ## 9. Decision and disagreement

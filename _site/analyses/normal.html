@@ -283,7 +283,7 @@ Figure&nbsp;1: The Standard Normal parent is symmetric and light-tailed. It supp
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>normal_table <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> selected_n, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_se"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(normal_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Mean"</span>, <span class="st">"Empirical SE"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(normal_table, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(normal_table, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-normal-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -294,18 +294,16 @@ Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 3%">
 <col style="width: 5%">
 <col style="width: 10%">
 <col style="width: 16%">
-<col style="width: 22%">
+<col style="width: 23%">
 <col style="width: 11%">
 <col style="width: 20%">
 <col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">Mean</th>
 <th style="text-align: right;">Empirical SE</th>
@@ -317,7 +315,6 @@ Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">-0.0063</td>
 <td style="text-align: right;">1.0042</td>
@@ -327,7 +324,6 @@ Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain
 <td style="text-align: right;">0.0074</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">0.0022</td>
 <td style="text-align: right;">0.3145</td>
@@ -337,7 +333,6 @@ Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain
 <td style="text-align: right;">0.0079</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">8</td>
 <td style="text-align: right;">100</td>
 <td style="text-align: right;">0.0014</td>
 <td style="text-align: right;">0.0993</td>
@@ -404,7 +399,7 @@ Figure&nbsp;3: Standardized Normal quantiles at three sample sizes closely follo
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>band_table <span class="ot">&lt;-</span> bands</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>band_table<span class="sc">$</span>threshold <span class="ot">&lt;-</span> <span class="fu">round</span>(band_table<span class="sc">$</span>threshold, <span class="dv">4</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(band_table, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Metric"</span>, <span class="st">"Guidance threshold"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(band_table, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Metric"</span>, <span class="st">"Guidance threshold"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-normal-bands" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">

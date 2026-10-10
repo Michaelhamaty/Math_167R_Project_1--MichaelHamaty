@@ -283,7 +283,7 @@ SE(\bar X_n)=\sqrt{\frac{0.45}{n}}.
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shown <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">100</span>, <span class="dv">125</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">500</span>), <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"mean_error"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(shown) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Center error"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-binomial-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -294,17 +294,15 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
 <col style="width: 5%">
 <col style="width: 18%">
-<col style="width: 25%">
-<col style="width: 12%">
-<col style="width: 22%">
-<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 13%">
+<col style="width: 23%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">Center error</th>
 <th style="text-align: right;">Relative SE error</th>
@@ -315,7 +313,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">65</td>
 <td style="text-align: right;">75</td>
 <td style="text-align: right;">-1e-03</td>
 <td style="text-align: right;">0.0068</td>
@@ -324,7 +321,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0597</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">66</td>
 <td style="text-align: right;">100</td>
 <td style="text-align: right;">-1e-03</td>
 <td style="text-align: right;">0.0034</td>
@@ -333,7 +329,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0506</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">67</td>
 <td style="text-align: right;">125</td>
 <td style="text-align: right;">2e-04</td>
 <td style="text-align: right;">0.0040</td>
@@ -342,7 +337,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0518</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">68</td>
 <td style="text-align: right;">150</td>
 <td style="text-align: right;">0e+00</td>
 <td style="text-align: right;">0.0001</td>
@@ -351,7 +345,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0462</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">69</td>
 <td style="text-align: right;">200</td>
 <td style="text-align: right;">-6e-04</td>
 <td style="text-align: right;">0.0028</td>
@@ -360,7 +353,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0352</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">70</td>
 <td style="text-align: right;">300</td>
 <td style="text-align: right;">2e-04</td>
 <td style="text-align: right;">0.0016</td>
@@ -369,7 +361,6 @@ Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the pr
 <td style="text-align: right;">0.0282</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">71</td>
 <td style="text-align: right;">500</td>
 <td style="text-align: right;">2e-04</td>
 <td style="text-align: right;">0.0046</td>
@@ -440,7 +431,7 @@ Figure&nbsp;3: Q-Q curvature and steps both shrink with n.&nbsp;At n = 200, smal
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">suffixes =</span> <span class="fu">c</span>(<span class="st">"_631"</span>, <span class="st">"_1631"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(seed_compare) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Skewness, seed 631"</span>, <span class="st">"Q-Q RMSE, seed 631"</span>, <span class="st">"Skewness, seed 1631"</span>, <span class="st">"Q-Q RMSE, seed 1631"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seed_compare, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seed_compare, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-binomial-second-seed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">

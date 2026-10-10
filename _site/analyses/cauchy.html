@@ -283,7 +283,7 @@ Figure&nbsp;1: The central standard-Cauchy density resembles a bell, but its tai
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cauchy_table <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> selected_n, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"q01"</span>, <span class="st">"q25"</span>, <span class="st">"median"</span>, <span class="st">"q75"</span>, <span class="st">"q99"</span>, <span class="st">"iqr"</span>, <span class="st">"max_abs"</span>)]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cauchy_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"1%"</span>, <span class="st">"25%"</span>, <span class="st">"Median"</span>, <span class="st">"75%"</span>, <span class="st">"99%"</span>, <span class="st">"IQR"</span>, <span class="st">"Maximum |mean|"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(cauchy_table, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(cauchy_table, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-cauchy-quantiles" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -294,19 +294,17 @@ Table&nbsp;1: Cauchy quantiles and extremes across n.&nbsp;The theoretical quart
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 6%">
-<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 11%">
 <col style="width: 9%">
 <col style="width: 9%">
 <col style="width: 8%">
 <col style="width: 9%">
 <col style="width: 8%">
-<col style="width: 33%">
+<col style="width: 35%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">1%</th>
 <th style="text-align: right;">25%</th>
@@ -319,7 +317,6 @@ Table&nbsp;1: Cauchy quantiles and extremes across n.&nbsp;The theoretical quart
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">72</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">-35.161</td>
 <td style="text-align: right;">-1.034</td>
@@ -330,7 +327,6 @@ Table&nbsp;1: Cauchy quantiles and extremes across n.&nbsp;The theoretical quart
 <td style="text-align: right;">929388.546</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">76</td>
 <td style="text-align: right;">30</td>
 <td style="text-align: right;">-31.163</td>
 <td style="text-align: right;">-1.043</td>
@@ -341,7 +337,6 @@ Table&nbsp;1: Cauchy quantiles and extremes across n.&nbsp;The theoretical quart
 <td style="text-align: right;">4109.833</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">79</td>
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">-29.661</td>
 <td style="text-align: right;">-1.027</td>
@@ -384,7 +379,7 @@ Figure&nbsp;2: Sample means inside the fixed window -10 to 10 at n = 1, 30, and 
 <details class="code-fold">
 <summary>Show R code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>outside<span class="sc">$</span>percent_outside <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> outside<span class="sc">$</span>fraction_outside</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(outside[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"percent_outside"</span>)], <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Outside [-10, 10], percent"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(outside[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"percent_outside"</span>)], <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Outside [-10, 10], percent"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-cauchy-outside" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">

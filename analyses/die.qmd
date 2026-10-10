@@ -53,7 +53,7 @@ The grid is dense near the expected transition: 1 through 6, then 8, 10, 12, 15,
 #| tbl-cap: "Die diagnostics around the transition. Center and SE agree early; excess kurtosis settles before Q-Q RMSE because a discrete lattice remains visible."
 shown <- page_results[page_results$n %in% c(10, 20, 30, 40, 50), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
 names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
-knitr::kable(shown, digits = 4)
+knitr::kable(shown, digits = 4, row.names = FALSE)
 ```
 
 At $n=30$, the simulated center is `r sprintf("%.4f", page_results$simulated_mean[page_results$n == 30])` and the empirical SE is `r sprintf("%.4f", page_results$simulated_se[page_results$n == 30])`, close to the theoretical `r sprintf("%.4f", page_results$theoretical_se[page_results$n == 30])`.

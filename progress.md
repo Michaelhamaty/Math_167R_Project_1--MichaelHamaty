@@ -3,9 +3,9 @@
 ## Session: 2026-10-10
 
 ### Current status
-- **Phase:** 6 - Editorial and visual quality
+- **Phase:** 7 - Verification and handoff
 - **Started:** 2026-10-10
-- **Next action:** Inspect every page at desktop and narrow viewport sizes and fix presentation defects.
+- **Next action:** Run the clean acceptance suite and dispatch the fresh-agent final review.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -32,6 +32,8 @@
 - Verified the small-Binomial transition at n = 200 and its seed-1631 sensitivity comparison.
 - Verified the Cauchy stress test with undefined moments, persistent robust spread, and explicitly disclosed plot limits.
 - Completed the landing-page answer, convergence ordering, synthesis table, n = 30 comparison, and second-seed interpretation.
+- Responsive QA exposed unlabeled source row numbers in filtered tables; all tables now suppress them explicitly, and the duplicated landing headline is removed.
+- Inspected the landing page at desktop width and the full site at a 367 by 730 responsive viewport; navigation, headings, alt text, tables, and captions remain accessible.
 
 ### Tests and results
 | Test | Result | Notes |

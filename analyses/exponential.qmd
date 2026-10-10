@@ -49,7 +49,7 @@ The adaptive grid extends from $n=1$ to $n=1000$, with extra points between 75 a
 #| tbl-cap: "Exponential diagnostics near the transition. Center and SE are accurate before the right-tail shape meets the practical skewness guidance."
 shown <- page_results[page_results$n %in% c(100, 150, 200, 300, 500, 750), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
 names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
-knitr::kable(shown, digits = 4)
+knitr::kable(shown, digits = 4, row.names = FALSE)
 ```
 
 At $n=300$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n == 300])` and relative SE error is `r sprintf("%.2f%%", 100 * page_results$relative_se_error[page_results$n == 300])`. Q-Q RMSE remains above the exact-Normal noise band, so the graphical tail check still matters.

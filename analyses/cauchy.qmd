@@ -54,7 +54,7 @@ I simulated 10,000 means at each of $n=1,2,5,10,30,100,500,$ and 1000 with seed 
 #| tbl-cap: "Cauchy quantiles and extremes across n. The theoretical quartiles are -1 and 1, so an IQR near 2 at every n confirms that averaging does not contract the distribution."
 cauchy_table <- page_results[page_results$n %in% selected_n, c("n", "q01", "q25", "median", "q75", "q99", "iqr", "max_abs")]
 names(cauchy_table) <- c("n", "1%", "25%", "Median", "75%", "99%", "IQR", "Maximum |mean|")
-knitr::kable(cauchy_table, digits = 3)
+knitr::kable(cauchy_table, digits = 3, row.names = FALSE)
 ```
 
 The IQR is about 2 at all three scales, while the largest absolute mean can reach thousands or more. It does not shrink like $1/\sqrt{n}$.
@@ -72,7 +72,7 @@ plot_sampling_distributions(simulation$means, population, selected_n, x_limits =
 #| label: tbl-cauchy-outside
 #| tbl-cap: "Fraction of all simulated means outside the displayed window. Similar rates across n make the truncation explicit and confirm persistent tails."
 outside$percent_outside <- 100 * outside$fraction_outside
-knitr::kable(outside[, c("n", "percent_outside")], digits = 2, col.names = c("n", "Outside [-10, 10], percent"))
+knitr::kable(outside[, c("n", "percent_outside")], digits = 2, col.names = c("n", "Outside [-10, 10], percent"), row.names = FALSE)
 ```
 
 ## 7. Why ordinary diagnostics are absent
