@@ -29,6 +29,7 @@
 - Replaced the misleading first Cauchy histogram with fixed-window bins whose density denominator includes every simulated mean.
 - Verified the Normal calibration page and the die investigation for milestone commits.
 - Verified the Exponential transition at n = 300 with persistence at 500 and 750.
+- Verified the small-Binomial transition at n = 200 and its seed-1631 sensitivity comparison.
 
 ### Tests and results
 | Test | Result | Notes |

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Discrete, zero-heavy, and skewed">
+<meta name="description" content="Zero concentration, skewness, and a persistent lattice">
 
 <title>Small Binomial – How Fast Does Normal Happen?</title>
 <style>
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -75,6 +110,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -135,8 +199,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prediction" id="toc-prediction" class="nav-link active" data-scroll-target="#prediction">Prediction</a></li>
-  <li><a href="#analysis-pending" id="toc-analysis-pending" class="nav-link" data-scroll-target="#analysis-pending">Analysis pending</a></li>
+  <li><a href="#question-and-prediction" id="toc-question-and-prediction" class="nav-link active" data-scroll-target="#question-and-prediction">1. Question and prediction</a></li>
+  <li><a href="#parent-population" id="toc-parent-population" class="nav-link" data-scroll-target="#parent-population">2. Parent population</a></li>
+  <li><a href="#theory-before-simulation" id="toc-theory-before-simulation" class="nav-link" data-scroll-target="#theory-before-simulation">3. Theory before simulation</a></li>
+  <li><a href="#simulation-design" id="toc-simulation-design" class="nav-link" data-scroll-target="#simulation-design">4. Simulation design</a></li>
+  <li><a href="#numerical-evidence" id="toc-numerical-evidence" class="nav-link" data-scroll-target="#numerical-evidence">5. Numerical evidence</a></li>
+  <li><a href="#shape-across-sample-sizes" id="toc-shape-across-sample-sizes" class="nav-link" data-scroll-target="#shape-across-sample-sizes">6. Shape across sample sizes</a></li>
+  <li><a href="#q-q-evidence" id="toc-q-q-evidence" class="nav-link" data-scroll-target="#q-q-evidence">7. Q-Q evidence</a></li>
+  <li><a href="#second-seed-check" id="toc-second-seed-check" class="nav-link" data-scroll-target="#second-seed-check">8. Second-seed check</a></li>
+  <li><a href="#decision-and-disagreement" id="toc-decision-and-disagreement" class="nav-link" data-scroll-target="#decision-and-disagreement">9. Decision and disagreement</a></li>
+  <li><a href="#limitation-and-surprise" id="toc-limitation-and-surprise" class="nav-link" data-scroll-target="#limitation-and-surprise">10. Limitation and surprise</a></li>
   </ul>
 </nav>
     </div>
@@ -150,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Discrete, zero-heavy, and skewed
+    Zero concentration, skewness, and a persistent lattice
   </div>
 </div>
 
@@ -167,13 +239,270 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prediction" class="level2">
-<h2 class="anchored" data-anchor-id="prediction">Prediction</h2>
-<p>With size 5 and success probability 0.10, zeros and positive skew should delay a convincing Normal approximation.</p>
+<section id="question-and-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="question-and-prediction">1. Question and prediction</h2>
+<p>For <span class="math inline">\(X \sim Binomial(5,0.10)\)</span>, most individual values are zero and the remaining mass stretches right. I expected both skewness and lattice spacing to delay a useful Normal approximation.</p>
 </section>
-<section id="analysis-pending" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-pending">Analysis pending</h2>
-<p>The final page will separate discreteness from asymmetry.</p>
+<section id="parent-population" class="level2">
+<h2 class="anchored" data-anchor-id="parent-population">2. Parent population</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_parent_population</span>(population)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-binomial-parent" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A bar chart dominated by outcome zero, with rapidly decreasing bars through five.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binomial-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="binomial_files/figure-html/fig-binomial-parent-1.png" class="img-fluid figure-img" alt="A bar chart dominated by outcome zero, with rapidly decreasing bars through five." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binomial-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Binomial(5, 0.10) parent places most probability at zero and rapidly less at larger counts. Both zero concentration and right skew challenge the approximation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="theory-before-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="theory-before-simulation">3. Theory before simulation</h2>
+<p>The parent mean is <span class="math inline">\(5(0.10)=0.5\)</span> and variance is <span class="math inline">\(5(0.10)(0.90)=0.45\)</span>. Independent identical observations are bounded, so the ordinary CLT applies and</p>
+<p><span class="math display">\[
+SE(\bar X_n)=\sqrt{\frac{0.45}{n}}.
+\]</span></p>
+<p>Discreteness does not violate the theorem, but it can remain visible in finite samples.</p>
+</section>
+<section id="simulation-design" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-design">4. Simulation design</h2>
+<p>The grid is dense from <span class="math inline">\(n=1\)</span> to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. Because the transition is borderline, <span class="math inline">\(n=200\)</span>, 300, and 500 are repeated with seed 1631.</p>
+</section>
+<section id="numerical-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-evidence">5. Numerical evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shown <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">100</span>, <span class="dv">125</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">500</span>), <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"mean_error"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(shown) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Center error"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-binomial-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-binomial-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Small-Binomial diagnostics around n = 200. Skewness reaches the practical band while Q-Q RMSE remains elevated by the lattice.
+</figcaption>
+<div aria-describedby="tbl-binomial-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Center error</th>
+<th style="text-align: right;">Relative SE error</th>
+<th style="text-align: right;">Skewness</th>
+<th style="text-align: right;">Excess kurtosis</th>
+<th style="text-align: right;">Q-Q RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">65</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">-1e-03</td>
+<td style="text-align: right;">0.0068</td>
+<td style="text-align: right;">0.1205</td>
+<td style="text-align: right;">0.0583</td>
+<td style="text-align: right;">0.0597</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">66</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">-1e-03</td>
+<td style="text-align: right;">0.0034</td>
+<td style="text-align: right;">0.0942</td>
+<td style="text-align: right;">-0.0339</td>
+<td style="text-align: right;">0.0506</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">67</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">2e-04</td>
+<td style="text-align: right;">0.0040</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">-0.0109</td>
+<td style="text-align: right;">0.0518</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">68</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">0e+00</td>
+<td style="text-align: right;">0.0001</td>
+<td style="text-align: right;">0.1139</td>
+<td style="text-align: right;">-0.1100</td>
+<td style="text-align: right;">0.0462</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">69</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">-6e-04</td>
+<td style="text-align: right;">0.0028</td>
+<td style="text-align: right;">0.0618</td>
+<td style="text-align: right;">-0.0417</td>
+<td style="text-align: right;">0.0352</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">70</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">2e-04</td>
+<td style="text-align: right;">0.0016</td>
+<td style="text-align: right;">0.0567</td>
+<td style="text-align: right;">-0.0671</td>
+<td style="text-align: right;">0.0282</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">71</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">2e-04</td>
+<td style="text-align: right;">0.0046</td>
+<td style="text-align: right;">0.0326</td>
+<td style="text-align: right;">0.0547</td>
+<td style="text-align: right;">0.0235</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At <span class="math inline">\(n=200\)</span>, skewness is 0.062, below the 0.10 guidance, and the empirical SE is within 0.28% of theory.</p>
+</section>
+<section id="shape-across-sample-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="shape-across-sample-sizes">6. Shape across sample sizes</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sampling_distributions</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-binomial-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three histograms showing a zero-heavy discrete shape becoming a narrow, nearly symmetric bell.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binomial-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="binomial_files/figure-html/fig-binomial-sampling-1.png" class="img-fluid figure-img" alt="Three histograms showing a zero-heavy discrete shape becoming a narrow, nearly symmetric bell." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binomial-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="q-q-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="q-q-evidence">7. Q-Q evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qq_comparison</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-binomial-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three Q-Q panels becoming straighter and more finely stepped with larger sample size.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binomial-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="binomial_files/figure-html/fig-binomial-qq-1.png" class="img-fluid figure-img" alt="Three Q-Q panels becoming straighter and more finely stepped with larger sample size." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binomial-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Q-Q curvature and steps both shrink with n.&nbsp;At n = 200, small steps remain even though the overall line is straight enough for a practical approximation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="second-seed-check" class="level2">
+<h2 class="anchored" data-anchor-id="second-seed-check">8. Second-seed check</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>seed_compare <span class="ot">&lt;-</span> <span class="fu">merge</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">500</span>), <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"skewness"</span>, <span class="st">"qq_rmse"</span>)],</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  second_seed[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"skewness"</span>, <span class="st">"qq_rmse"</span>)],</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"n"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">suffixes =</span> <span class="fu">c</span>(<span class="st">"_631"</span>, <span class="st">"_1631"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(seed_compare) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Skewness, seed 631"</span>, <span class="st">"Q-Q RMSE, seed 631"</span>, <span class="st">"Skewness, seed 1631"</span>, <span class="st">"Q-Q RMSE, seed 1631"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seed_compare, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-binomial-second-seed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-binomial-second-seed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Seed 1631 reproduces the same transition region at n = 200, 300, and 500. Individual metrics move, but the substantive conclusion does not.
+</figcaption>
+<div aria-describedby="tbl-binomial-second-seed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Skewness, seed 631</th>
+<th style="text-align: right;">Q-Q RMSE, seed 631</th>
+<th style="text-align: right;">Skewness, seed 1631</th>
+<th style="text-align: right;">Q-Q RMSE, seed 1631</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">0.0618</td>
+<td style="text-align: right;">0.0352</td>
+<td style="text-align: right;">0.0737</td>
+<td style="text-align: right;">0.0360</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">0.0567</td>
+<td style="text-align: right;">0.0282</td>
+<td style="text-align: right;">0.1099</td>
+<td style="text-align: right;">0.0322</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.0326</td>
+<td style="text-align: right;">0.0235</td>
+<td style="text-align: right;">0.0254</td>
+<td style="text-align: right;">0.0220</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="decision-and-disagreement" class="level2">
+<h2 class="anchored" data-anchor-id="decision-and-disagreement">9. Decision and disagreement</h2>
+<p><strong>Decision: <span class="math inline">\(n=200\)</span>.</strong> The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at <span class="math inline">\(n=300\)</span> and <span class="math inline">\(n=500\)</span> under both seeds. Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations.</p>
+</section>
+<section id="limitation-and-surprise" class="level2">
+<h2 class="anchored" data-anchor-id="limitation-and-surprise">10. Limitation and surprise</h2>
+<p>The threshold is specific to size 5 and probability 0.10. A rarer-success Binomial would converge more slowly. The surprise is that the discrete grid remains measurable after the histogram already looks convincingly bell-shaped.</p>
 
 
 </section>

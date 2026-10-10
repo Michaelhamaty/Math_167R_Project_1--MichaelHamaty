@@ -40,7 +40,7 @@ Phase 4
 - [x] Complete Normal
 - [x] Complete die
 - [x] Complete Exponential
-- [ ] Complete small Binomial
+- [x] Complete small Binomial
 - [ ] Complete Cauchy
 - **Status:** in_progress
 

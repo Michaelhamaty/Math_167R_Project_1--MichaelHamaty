@@ -1,12 +1,101 @@
 ---
 title: "Small Binomial"
-description: "Discrete, zero-heavy, and skewed"
+description: "Zero concentration, skewness, and a persistent lattice"
 ---
 
-## Prediction
+```{r}
+#| label: setup
+#| include: false
+source("../R/populations.R")
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+library(ggplot2)
+population <- get_population("binomial")
+diagnostics <- read.csv("../results/diagnostics.csv")
+page_results <- diagnostics[diagnostics$population == "binomial", ]
+second_seed <- read.csv("../results/second_seed.csv")
+bands <- read.csv("../results/calibration_bands.csv")
+selected_n <- c(1, 30, 200)
+simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
+```
 
-With size 5 and success probability 0.10, zeros and positive skew should delay a convincing Normal approximation.
+## 1. Question and prediction
 
-## Analysis pending
+For $X \sim Binomial(5,0.10)$, most individual values are zero and the remaining mass stretches right. I expected both skewness and lattice spacing to delay a useful Normal approximation.
 
-The final page will separate discreteness from asymmetry.
+## 2. Parent population
+
+```{r}
+#| label: fig-binomial-parent
+#| fig-cap: "The Binomial(5, 0.10) parent places most probability at zero and rapidly less at larger counts. Both zero concentration and right skew challenge the approximation."
+#| fig-alt: "A bar chart dominated by outcome zero, with rapidly decreasing bars through five."
+plot_parent_population(population)
+```
+
+## 3. Theory before simulation
+
+The parent mean is $5(0.10)=0.5$ and variance is $5(0.10)(0.90)=0.45$. Independent identical observations are bounded, so the ordinary CLT applies and
+
+$$
+SE(\bar X_n)=\sqrt{\frac{0.45}{n}}.
+$$
+
+Discreteness does not violate the theorem, but it can remain visible in finite samples.
+
+## 4. Simulation design
+
+The grid is dense from $n=1$ to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. Because the transition is borderline, $n=200$, 300, and 500 are repeated with seed 1631.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-binomial-diagnostics
+#| tbl-cap: "Small-Binomial diagnostics around n = 200. Skewness reaches the practical band while Q-Q RMSE remains elevated by the lattice."
+shown <- page_results[page_results$n %in% c(75, 100, 125, 150, 200, 300, 500), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
+names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
+knitr::kable(shown, digits = 4)
+```
+
+At $n=200$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n == 200])`, below the 0.10 guidance, and the empirical SE is within `r sprintf("%.2f%%", 100 * page_results$relative_se_error[page_results$n == 200])` of theory.
+
+## 6. Shape across sample sizes
+
+```{r}
+#| label: fig-binomial-sampling
+#| fig-cap: "The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200."
+#| fig-alt: "Three histograms showing a zero-heavy discrete shape becoming a narrow, nearly symmetric bell."
+plot_sampling_distributions(simulation$means, population, selected_n)
+```
+
+## 7. Q-Q evidence
+
+```{r}
+#| label: fig-binomial-qq
+#| fig-cap: "Q-Q curvature and steps both shrink with n. At n = 200, small steps remain even though the overall line is straight enough for a practical approximation."
+#| fig-alt: "Three Q-Q panels becoming straighter and more finely stepped with larger sample size."
+plot_qq_comparison(simulation$means, population, selected_n)
+```
+
+## 8. Second-seed check
+
+```{r}
+#| label: tbl-binomial-second-seed
+#| tbl-cap: "Seed 1631 reproduces the same transition region at n = 200, 300, and 500. Individual metrics move, but the substantive conclusion does not."
+seed_compare <- merge(
+  page_results[page_results$n %in% c(200, 300, 500), c("n", "skewness", "qq_rmse")],
+  second_seed[, c("n", "skewness", "qq_rmse")],
+  by = "n",
+  suffixes = c("_631", "_1631")
+)
+names(seed_compare) <- c("n", "Skewness, seed 631", "Q-Q RMSE, seed 631", "Skewness, seed 1631", "Q-Q RMSE, seed 1631")
+knitr::kable(seed_compare, digits = 4)
+```
+
+## 9. Decision and disagreement
+
+**Decision: $n=200$.** The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at $n=300$ and $n=500$ under both seeds. Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations.
+
+## 10. Limitation and surprise
+
+The threshold is specific to size 5 and probability 0.10. A rarer-success Binomial would converge more slowly. The surprise is that the discrete grid remains measurable after the histogram already looks convincingly bell-shaped.
