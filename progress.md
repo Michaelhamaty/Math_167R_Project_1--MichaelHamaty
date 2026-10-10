@@ -3,9 +3,9 @@
 ## Session: 2026-10-10
 
 ### Current status
-- **Phase:** 4 - Required population analyses
+- **Phase:** 5 - Reproducibility and synthesis
 - **Started:** 2026-10-10
-- **Next action:** Commit each verified population page and then complete synthesis.
+- **Next action:** Verify and commit the landing-page synthesis and second-seed conclusion.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -30,6 +30,7 @@
 - Verified the Normal calibration page and the die investigation for milestone commits.
 - Verified the Exponential transition at n = 300 with persistence at 500 and 750.
 - Verified the small-Binomial transition at n = 200 and its seed-1631 sensitivity comparison.
+- Verified the Cauchy stress test with undefined moments, persistent robust spread, and explicitly disclosed plot limits.
 
 ### Tests and results
 | Test | Result | Notes |

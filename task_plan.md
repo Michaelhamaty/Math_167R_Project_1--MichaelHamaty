@@ -4,10 +4,10 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Commit each verified population analysis, then complete the synthesis and second-seed comparison.
+Verify and commit the landing-page synthesis and second-seed conclusion.
 
 ## Current Phase
-Phase 4
+Phase 5
 
 ## Phases
 
@@ -41,14 +41,14 @@ Phase 4
 - [x] Complete die
 - [x] Complete Exponential
 - [x] Complete small Binomial
-- [ ] Complete Cauchy
-- **Status:** in_progress
+- [x] Complete Cauchy
+- **Status:** complete
 
 ### Phase 5: Reproducibility and synthesis
 - [ ] Run the second-seed experiment
 - [ ] Build the comparison table and centerpiece
 - [ ] Write conclusions from actual results
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 6: Editorial and visual quality
 - [ ] Apply prose and code-style checks

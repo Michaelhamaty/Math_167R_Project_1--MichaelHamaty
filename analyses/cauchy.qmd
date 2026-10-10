@@ -1,12 +1,92 @@
 ---
 title: "Standard Cauchy"
-description: "Where ordinary averaging fails"
+description: "A stress test where averaging does not stabilize"
 ---
 
-## Prediction
+```{r}
+#| label: setup
+#| include: false
+source("../R/populations.R")
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+library(ggplot2)
+population <- get_population("cauchy")
+diagnostics <- read.csv("../results/diagnostics.csv")
+page_results <- diagnostics[diagnostics$population == "cauchy", ]
+selected_n <- c(1, 30, 1000)
+simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
+outside <- aggregate(abs(sample_mean) > 10 ~ n, simulation$means, mean)
+names(outside)[2] <- "fraction_outside"
+```
 
-No sample size will produce an ordinary CLT approximation because the population mean and variance do not exist.
+## 1. Question and prediction
 
-## Analysis pending
+Can a huge sample rescue an average from a standard Cauchy parent? No. The population has no finite mean or variance, so the ordinary CLT does not apply. I predicted persistent heavy tails at every $n$.
 
-The final page will use tail-aware quantiles and theory instead of invented moments.
+## 2. Parent population
+
+```{r}
+#| label: fig-cauchy-parent
+#| fig-cap: "The central standard-Cauchy density resembles a bell, but its tails decay too slowly for a finite mean or variance. Central appearance alone is therefore deceptive."
+#| fig-alt: "A symmetric peaked Cauchy density shown from negative ten to ten."
+plot_parent_population(population)
+```
+
+## 3. Theory before simulation
+
+If $X_1,\ldots,X_n$ are independent standard Cauchy variables, then
+
+$$
+\frac{X_1+\cdots+X_n}{n} \sim Cauchy(0,1).
+$$
+
+The sample mean has exactly the same distribution for every $n$. Population mean, variance, and theoretical SE are unavailable, so reporting them would be mathematically false.
+
+## 4. Simulation design
+
+I simulated 10,000 means at each of $n=1,2,5,10,30,100,500,$ and 1000 with seed 631. All observations, including extremes, enter the quantiles and maximum. Histograms show only the declared central window $[-10,10]$ and report the omitted fraction.
+
+## 5. Tail-aware numerical evidence
+
+```{r}
+#| label: tbl-cauchy-quantiles
+#| tbl-cap: "Cauchy quantiles and extremes across n. The theoretical quartiles are -1 and 1, so an IQR near 2 at every n confirms that averaging does not contract the distribution."
+cauchy_table <- page_results[page_results$n %in% selected_n, c("n", "q01", "q25", "median", "q75", "q99", "iqr", "max_abs")]
+names(cauchy_table) <- c("n", "1%", "25%", "Median", "75%", "99%", "IQR", "Maximum |mean|")
+knitr::kable(cauchy_table, digits = 3)
+```
+
+The IQR is about 2 at all three scales, while the largest absolute mean can reach thousands or more. It does not shrink like $1/\sqrt{n}$.
+
+## 6. Central window without hidden deletion
+
+```{r}
+#| label: fig-cauchy-sampling
+#| fig-cap: "Sample means inside the fixed window -10 to 10 at n = 1, 30, and 1000. Bin heights use all 10,000 means as the denominator; about 6 percent lie outside the window in each panel."
+#| fig-alt: "Three nearly identical heavy-tailed central histograms across widely different sample sizes."
+plot_sampling_distributions(simulation$means, population, selected_n, x_limits = c(-10, 10))
+```
+
+```{r}
+#| label: tbl-cauchy-outside
+#| tbl-cap: "Fraction of all simulated means outside the displayed window. Similar rates across n make the truncation explicit and confirm persistent tails."
+outside$percent_outside <- 100 * outside$fraction_outside
+knitr::kable(outside[, c("n", "percent_outside")], digits = 2, col.names = c("n", "Outside [-10, 10], percent"))
+```
+
+## 7. Why ordinary diagnostics are absent
+
+Sample SD, moment skewness, and moment kurtosis exist for a finite simulated batch, but they are dominated by whichever rare extreme appears. They do not estimate stable Cauchy population moments. I therefore mark center, theoretical SE, relative SE error, skewness, excess kurtosis, and Normal Q-Q RMSE unavailable rather than presenting unstable numbers as comparable evidence.
+
+## 8. Robust comparison
+
+For a standard Cauchy, the theoretical 1st and 99th percentiles are approximately -31.82 and 31.82, and the IQR is exactly 2. The simulated values in the table remain close across $n$, even while the maximum varies wildly. Robust center and spread tell the stable story better than sample variance.
+
+## 9. Decision
+
+**Decision: no ordinary-CLT threshold exists.** The failure is theoretical and empirical. Larger samples do not narrow the distribution of the mean, and persistent extreme means are part of the result rather than data errors.
+
+## 10. Limitation and surprise
+
+Any finite simulation understates some possible tail events, and a central plot cannot display an unbounded range. The striking surprise is that averaging 1,000 observations changes neither the law nor the typical IQR of the mean. More data do not repair a missing first moment.
