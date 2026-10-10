@@ -37,8 +37,8 @@ Phase 4
 - **Status:** complete
 
 ### Phase 4: Required population analyses
-- [ ] Complete Normal
-- [ ] Complete die
+- [x] Complete Normal
+- [x] Complete die
 - [ ] Complete Exponential
 - [ ] Complete small Binomial
 - [ ] Complete Cauchy

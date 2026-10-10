@@ -1,12 +1,94 @@
 ---
 title: "Six-Sided Die"
-description: "How quickly discreteness fades"
+description: "Symmetry helps before discreteness disappears"
 ---
 
-## Prediction
+```{r}
+#| label: setup
+#| include: false
+source("../R/populations.R")
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+library(ggplot2)
+population <- get_population("die")
+diagnostics <- read.csv("../results/diagnostics.csv")
+page_results <- diagnostics[diagnostics$population == "die", ]
+bands <- read.csv("../results/calibration_bands.csv")
+selected_n <- c(1, 10, 30)
+simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
+```
 
-Symmetry should help the sampling distribution settle quickly, although small samples remain visibly discrete.
+## 1. Question and prediction
 
-## Analysis pending
+A die is bounded and symmetric, so I expected its sample mean to become bell-shaped relatively quickly. The main obstacle should be visible spacing between possible means, not skewness.
 
-The final page will locate and verify the transition region.
+## 2. Parent population
+
+```{r}
+#| label: fig-die-parent
+#| fig-cap: "Each die face has probability 1/6. The parent is perfectly symmetric but discrete, which separates the effects of asymmetry and lattice spacing."
+#| fig-alt: "Six equal bars for die outcomes one through six."
+plot_parent_population(population)
+```
+
+## 3. Theory before simulation
+
+For one fair die, $E(X)=3.5$ and $Var(X)=35/12$. Independence, identical distribution, and finite variance hold, so
+
+$$
+E(\bar X_n)=3.5, \qquad SE(\bar X_n)=\sqrt{\frac{35}{12n}}.
+$$
+
+The ordinary CLT applies.
+
+## 4. Simulation design
+
+The grid is dense near the expected transition: 1 through 6, then 8, 10, 12, 15, 20, 25, 30, 40, 50, 75, and 100. Each point uses 10,000 means and seed 631.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-die-diagnostics
+#| tbl-cap: "Die diagnostics around the transition. Center and SE agree early; excess kurtosis settles before Q-Q RMSE because a discrete lattice remains visible."
+shown <- page_results[page_results$n %in% c(10, 20, 30, 40, 50), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
+names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
+knitr::kable(shown, digits = 4)
+```
+
+At $n=30$, the simulated center is `r sprintf("%.4f", page_results$simulated_mean[page_results$n == 30])` and the empirical SE is `r sprintf("%.4f", page_results$simulated_se[page_results$n == 30])`, close to the theoretical `r sprintf("%.4f", page_results$theoretical_se[page_results$n == 30])`.
+
+## 6. Shape across sample sizes
+
+```{r}
+#| label: fig-die-sampling
+#| fig-cap: "The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. The last shape is useful despite residual spacing."
+#| fig-alt: "Three histograms showing six spikes, then increasingly fine symmetric bell shapes."
+plot_sampling_distributions(simulation$means, population, selected_n)
+```
+
+## 7. Q-Q evidence
+
+```{r}
+#| label: fig-die-qq
+#| fig-cap: "Q-Q points straighten as n grows, but stair steps remain at n = 30 because sample means occupy a lattice. This explains why Q-Q RMSE stays above the continuous Normal calibration."
+#| fig-alt: "Three Q-Q panels becoming straighter while retaining small steps."
+plot_qq_comparison(simulation$means, population, selected_n)
+```
+
+## 8. Diagnostic trajectory
+
+```{r}
+#| label: fig-die-trajectory
+#| fig-cap: "Absolute skewness, excess kurtosis, and Q-Q RMSE over n. The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry."
+#| fig-alt: "Three line charts showing shape diagnostics generally declining with sample size."
+plot_diagnostic_trajectory(page_results, population, bands)
+```
+
+## 9. Decision and disagreement
+
+**Decision: $n=30$.** The histogram is symmetric and sufficiently smooth for a practical Normal approximation, the center and SE are accurate, and the conclusion remains credible at $n=40$ and $n=50$. Q-Q RMSE still exceeds the stringent Normal-noise band. I retain that disagreement because it correctly detects lattice spacing, but it does not make the global approximation misleading.
+
+## 10. Limitation and surprise
+
+The selected threshold depends on the intended use. A continuity-sensitive tail calculation may need a larger $n$ than a central probability approximation. The notable surprise is that symmetry solves the skewness problem immediately, while discreteness leaves a longer numerical fingerprint.

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="How quickly discreteness fades">
+<meta name="description" content="Symmetry helps before discreteness disappears">
 
 <title>Six-Sided Die – How Fast Does Normal Happen?</title>
 <style>
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -75,6 +110,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -135,8 +199,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prediction" id="toc-prediction" class="nav-link active" data-scroll-target="#prediction">Prediction</a></li>
-  <li><a href="#analysis-pending" id="toc-analysis-pending" class="nav-link" data-scroll-target="#analysis-pending">Analysis pending</a></li>
+  <li><a href="#question-and-prediction" id="toc-question-and-prediction" class="nav-link active" data-scroll-target="#question-and-prediction">1. Question and prediction</a></li>
+  <li><a href="#parent-population" id="toc-parent-population" class="nav-link" data-scroll-target="#parent-population">2. Parent population</a></li>
+  <li><a href="#theory-before-simulation" id="toc-theory-before-simulation" class="nav-link" data-scroll-target="#theory-before-simulation">3. Theory before simulation</a></li>
+  <li><a href="#simulation-design" id="toc-simulation-design" class="nav-link" data-scroll-target="#simulation-design">4. Simulation design</a></li>
+  <li><a href="#numerical-evidence" id="toc-numerical-evidence" class="nav-link" data-scroll-target="#numerical-evidence">5. Numerical evidence</a></li>
+  <li><a href="#shape-across-sample-sizes" id="toc-shape-across-sample-sizes" class="nav-link" data-scroll-target="#shape-across-sample-sizes">6. Shape across sample sizes</a></li>
+  <li><a href="#q-q-evidence" id="toc-q-q-evidence" class="nav-link" data-scroll-target="#q-q-evidence">7. Q-Q evidence</a></li>
+  <li><a href="#diagnostic-trajectory" id="toc-diagnostic-trajectory" class="nav-link" data-scroll-target="#diagnostic-trajectory">8. Diagnostic trajectory</a></li>
+  <li><a href="#decision-and-disagreement" id="toc-decision-and-disagreement" class="nav-link" data-scroll-target="#decision-and-disagreement">9. Decision and disagreement</a></li>
+  <li><a href="#limitation-and-surprise" id="toc-limitation-and-surprise" class="nav-link" data-scroll-target="#limitation-and-surprise">10. Limitation and surprise</a></li>
   </ul>
 </nav>
     </div>
@@ -150,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    How quickly discreteness fades
+    Symmetry helps before discreteness disappears
   </div>
 </div>
 
@@ -167,13 +239,205 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prediction" class="level2">
-<h2 class="anchored" data-anchor-id="prediction">Prediction</h2>
-<p>Symmetry should help the sampling distribution settle quickly, although small samples remain visibly discrete.</p>
+<section id="question-and-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="question-and-prediction">1. Question and prediction</h2>
+<p>A die is bounded and symmetric, so I expected its sample mean to become bell-shaped relatively quickly. The main obstacle should be visible spacing between possible means, not skewness.</p>
 </section>
-<section id="analysis-pending" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-pending">Analysis pending</h2>
-<p>The final page will locate and verify the transition region.</p>
+<section id="parent-population" class="level2">
+<h2 class="anchored" data-anchor-id="parent-population">2. Parent population</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_parent_population</span>(population)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-die-parent" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Six equal bars for die outcomes one through six.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-die-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="die_files/figure-html/fig-die-parent-1.png" class="img-fluid figure-img" alt="Six equal bars for die outcomes one through six." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Each die face has probability 1/6. The parent is perfectly symmetric but discrete, which separates the effects of asymmetry and lattice spacing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="theory-before-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="theory-before-simulation">3. Theory before simulation</h2>
+<p>For one fair die, <span class="math inline">\(E(X)=3.5\)</span> and <span class="math inline">\(Var(X)=35/12\)</span>. Independence, identical distribution, and finite variance hold, so</p>
+<p><span class="math display">\[
+E(\bar X_n)=3.5, \qquad SE(\bar X_n)=\sqrt{\frac{35}{12n}}.
+\]</span></p>
+<p>The ordinary CLT applies.</p>
+</section>
+<section id="simulation-design" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-design">4. Simulation design</h2>
+<p>The grid is dense near the expected transition: 1 through 6, then 8, 10, 12, 15, 20, 25, 30, 40, 50, 75, and 100. Each point uses 10,000 means and seed 631.</p>
+</section>
+<section id="numerical-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-evidence">5. Numerical evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shown <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>), <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"mean_error"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(shown) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Center error"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-die-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-die-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; excess kurtosis settles before Q-Q RMSE because a discrete lattice remains visible.
+</figcaption>
+<div aria-describedby="tbl-die-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Center error</th>
+<th style="text-align: right;">Relative SE error</th>
+<th style="text-align: right;">Skewness</th>
+<th style="text-align: right;">Excess kurtosis</th>
+<th style="text-align: right;">Q-Q RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">16</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.0021</td>
+<td style="text-align: right;">0.0018</td>
+<td style="text-align: right;">-0.0150</td>
+<td style="text-align: right;">-0.1503</td>
+<td style="text-align: right;">0.0538</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">19</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">-0.0050</td>
+<td style="text-align: right;">0.0036</td>
+<td style="text-align: right;">-0.0135</td>
+<td style="text-align: right;">-0.1572</td>
+<td style="text-align: right;">0.0422</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.0048</td>
+<td style="text-align: right;">0.0107</td>
+<td style="text-align: right;">-0.0062</td>
+<td style="text-align: right;">-0.0689</td>
+<td style="text-align: right;">0.0322</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0.0008</td>
+<td style="text-align: right;">0.0055</td>
+<td style="text-align: right;">-0.0146</td>
+<td style="text-align: right;">0.0619</td>
+<td style="text-align: right;">0.0266</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">23</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">0.0008</td>
+<td style="text-align: right;">0.0057</td>
+<td style="text-align: right;">0.0039</td>
+<td style="text-align: right;">0.0445</td>
+<td style="text-align: right;">0.0270</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At <span class="math inline">\(n=30\)</span>, the simulated center is 3.5048 and the empirical SE is 0.3085, close to the theoretical 0.3118.</p>
+</section>
+<section id="shape-across-sample-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="shape-across-sample-sizes">6. Shape across sample sizes</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sampling_distributions</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-die-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three histograms showing six spikes, then increasingly fine symmetric bell shapes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-die-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="die_files/figure-html/fig-die-sampling-1.png" class="img-fluid figure-img" alt="Three histograms showing six spikes, then increasingly fine symmetric bell shapes." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. The last shape is useful despite residual spacing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="q-q-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="q-q-evidence">7. Q-Q evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qq_comparison</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-die-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three Q-Q panels becoming straighter while retaining small steps.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-die-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="die_files/figure-html/fig-die-qq-1.png" class="img-fluid figure-img" alt="Three Q-Q panels becoming straighter while retaining small steps." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Q-Q points straighten as n grows, but stair steps remain at n = 30 because sample means occupy a lattice. This explains why Q-Q RMSE stays above the continuous Normal calibration.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="diagnostic-trajectory" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostic-trajectory">8. Diagnostic trajectory</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_diagnostic_trajectory</span>(page_results, population, bands)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-die-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three line charts showing shape diagnostics generally declining with sample size.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-die-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="die_files/figure-html/fig-die-trajectory-1.png" class="img-fluid figure-img" alt="Three line charts showing shape diagnostics generally declining with sample size." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Absolute skewness, excess kurtosis, and Q-Q RMSE over n.&nbsp;The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="decision-and-disagreement" class="level2">
+<h2 class="anchored" data-anchor-id="decision-and-disagreement">9. Decision and disagreement</h2>
+<p><strong>Decision: <span class="math inline">\(n=30\)</span>.</strong> The histogram is symmetric and sufficiently smooth for a practical Normal approximation, the center and SE are accurate, and the conclusion remains credible at <span class="math inline">\(n=40\)</span> and <span class="math inline">\(n=50\)</span>. Q-Q RMSE still exceeds the stringent Normal-noise band. I retain that disagreement because it correctly detects lattice spacing, but it does not make the global approximation misleading.</p>
+</section>
+<section id="limitation-and-surprise" class="level2">
+<h2 class="anchored" data-anchor-id="limitation-and-surprise">10. Limitation and surprise</h2>
+<p>The selected threshold depends on the intended use. A continuity-sensitive tail calculation may need a larger <span class="math inline">\(n\)</span> than a central probability approximation. The notable surprise is that symmetry solves the skewness problem immediately, while discreteness leaves a longer numerical fingerprint.</p>
 
 
 </section>
