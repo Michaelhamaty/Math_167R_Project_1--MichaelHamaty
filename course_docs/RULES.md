@@ -1,0 +1,5 @@
+This is a document written by myself. This document aims to give you strict rules to abide by in the generation of this project. 
+
+First, this project contins many file, some being more relevant and more 'source of truth' that the others. These following files iare the most 'source of truth files': Math167R - Class 06 project_1_clt_monte_carlo.html, clt_project_1_student_guidance.qmd
+
+Note: Math167R - Class 06 statistical_distributions_lesson for class.html AND Math167R - Class 05 central_limit_theorem.html contian code examples. When possible, all code we create should be directly taken from these examples, and modified to fit our situation. All other code should come from an online source, preferebly geekforgeeks, stack overflow, or documentation, and there should always be a comment on top of the code mentioning where the foundation of the code was derived from. 

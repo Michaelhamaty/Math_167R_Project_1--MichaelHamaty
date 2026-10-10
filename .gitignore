@@ -1,0 +1,15 @@
+.DS_Store
+.quarto/
+_freeze/
+*.knit.md
+*.utf8.md
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.tools/
+ledger-*.jsonl
+.stop_blocks
+.gate_ledger_state
+.pretool-cache*
+*.log
