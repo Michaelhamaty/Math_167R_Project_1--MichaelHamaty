@@ -28,6 +28,7 @@
 - Completed all five ten-part analysis narratives and rendered every figure.
 - Replaced the misleading first Cauchy histogram with fixed-window bins whose density denominator includes every simulated mean.
 - Verified the Normal calibration page and the die investigation for milestone commits.
+- Verified the Exponential transition at n = 300 with persistence at 500 and 750.
 
 ### Tests and results
 | Test | Result | Notes |
