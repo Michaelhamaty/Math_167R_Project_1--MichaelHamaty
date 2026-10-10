@@ -35,12 +35,30 @@ plot_parent_population <- function(population, seed = 631L) {
 plot_sampling_distributions <- function(means_data, population, selected_n, x_limits = NULL) {
   data <- means_data[means_data$n %in% selected_n, ]
   data$n_label <- factor(paste0("n = ", data$n), levels = paste0("n = ", selected_n))
-  plot <- ggplot2::ggplot(data, ggplot2::aes(sample_mean)) +
-    ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 42, fill = population$color, color = "white", linewidth = 0.25) +
+  if (is.null(x_limits)) {
+    return(ggplot2::ggplot(data, ggplot2::aes(sample_mean)) +
+      ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 42, fill = population$color, color = "white", linewidth = 0.25) +
+      ggplot2::facet_wrap(ggplot2::vars(n_label), scales = "free_y", ncol = min(3, length(selected_n))) +
+      ggplot2::labs(x = "Sample mean", y = "Density") + analysis_theme())
+  }
+  breaks <- seq(x_limits[1], x_limits[2], length.out = 51)
+  bin_width <- breaks[2] - breaks[1]
+  pieces <- split(data, data$n)
+  bins <- do.call(rbind, lapply(pieces, function(piece) {
+    inside <- piece$sample_mean[piece$sample_mean >= x_limits[1] & piece$sample_mean <= x_limits[2]]
+    counts <- hist(inside, breaks = breaks, plot = FALSE)$counts
+    data.frame(
+      n = unique(piece$n),
+      midpoint = head(breaks, -1) + bin_width / 2,
+      density = counts / (nrow(piece) * bin_width)
+    )
+  }))
+  bins$n_label <- factor(paste0("n = ", bins$n), levels = paste0("n = ", selected_n))
+  ggplot2::ggplot(bins, ggplot2::aes(midpoint, density)) +
+    ggplot2::geom_col(fill = population$color, color = "white", linewidth = 0.25, width = bin_width) +
     ggplot2::facet_wrap(ggplot2::vars(n_label), scales = "free_y", ncol = min(3, length(selected_n))) +
+    ggplot2::coord_cartesian(xlim = x_limits) +
     ggplot2::labs(x = "Sample mean", y = "Density") + analysis_theme()
-  if (!is.null(x_limits)) plot <- plot + ggplot2::coord_cartesian(xlim = x_limits)
-  plot
 }
 
 plot_qq_comparison <- function(means_data, population, selected_n) {

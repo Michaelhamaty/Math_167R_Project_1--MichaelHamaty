@@ -1,12 +1,95 @@
 ---
 title: "Standard Normal"
-description: "The calibration case"
+description: "The exact reference case and Monte Carlo calibration"
 ---
 
-## Prediction
+```{r}
+#| label: setup
+#| include: false
+source("../R/populations.R")
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+library(ggplot2)
+population <- get_population("normal")
+diagnostics <- read.csv("../results/diagnostics.csv")
+page_results <- diagnostics[diagnostics$population == "normal", ]
+bands <- read.csv("../results/calibration_bands.csv")
+selected_n <- c(1, 10, 100)
+simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
+```
 
-The sample mean is exactly Normal for every positive sample size, so the theoretical threshold is $n=1$.
+## 1. Question and prediction
 
-## Analysis pending
+How quickly does Normal happen when the parent population is already Standard Normal? It happens immediately. A linear combination of independent Normal variables is Normal, so the sample mean is exactly Normal at every positive sample size. The smallest defensible answer is therefore $n=1$.
 
-The final page will distinguish exact theory from finite Monte Carlo noise.
+## 2. Parent population
+
+```{r}
+#| label: fig-normal-parent
+#| fig-cap: "The Standard Normal parent is symmetric and light-tailed. It supplies the exact-shape reference used to distinguish simulation noise from meaningful departures elsewhere."
+#| fig-alt: "A symmetric bell-shaped Standard Normal density centered at zero."
+plot_parent_population(population)
+```
+
+## 3. Theory before simulation
+
+For independent $X_i \sim N(0,1)$,
+
+$$
+\bar X_n \sim N\left(0,\frac{1}{n}\right).
+$$
+
+The center is 0 and the standard error is $1/\sqrt{n}$. No approximation is involved.
+
+## 4. Simulation design
+
+At every evaluated $n$, I generated 10,000 independent sample means with seed 631. The simulated diagnostics calibrate the amount of random fluctuation expected even when Normality is exact.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-normal-diagnostics
+#| tbl-cap: "Normal diagnostics at three scales. Empirical center and SE remain close to exact theory; shape metrics fluctuate slightly because only 10,000 means are simulated."
+normal_table <- page_results[page_results$n %in% selected_n, c("n", "simulated_mean", "simulated_se", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
+names(normal_table) <- c("n", "Mean", "Empirical SE", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
+knitr::kable(normal_table, digits = 4)
+```
+
+At $n=1$, the simulated mean is `r sprintf("%.4f", page_results$simulated_mean[page_results$n == 1])` and the empirical SE is `r sprintf("%.4f", page_results$simulated_se[page_results$n == 1])`. These are simulation errors around 0 and 1, not evidence against the exact theorem.
+
+## 6. Shape across sample sizes
+
+```{r}
+#| label: fig-normal-sampling
+#| fig-cap: "Sampling distributions at n = 1, 10, and 100. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient."
+#| fig-alt: "Three symmetric bell-shaped histograms that narrow around zero as sample size increases."
+plot_sampling_distributions(simulation$means, population, selected_n)
+```
+
+## 7. Q-Q evidence
+
+```{r}
+#| label: fig-normal-qq
+#| fig-cap: "Standardized Normal quantiles at three sample sizes closely follow the reference line. Small tail deviations show Monte Carlo noise, not a changing distributional shape."
+#| fig-alt: "Three Q-Q panels with points close to a straight diagonal line."
+plot_qq_comparison(simulation$means, population, selected_n)
+```
+
+## 8. Calibration bands
+
+```{r}
+#| label: tbl-normal-bands
+#| tbl-cap: "Guidance bands calibrated from the largest Normal fluctuation, subject to practical floors. These bands guide later judgments but do not form a weighted score."
+band_table <- bands
+band_table$threshold <- round(band_table$threshold, 4)
+knitr::kable(band_table, col.names = c("Metric", "Guidance threshold"))
+```
+
+## 9. Decision and diagnostic agreement
+
+**Decision: $n=1$.** Theory is decisive, and the numerical and graphical evidence agree. The calibration results show why a finite simulation should never be expected to produce exactly zero skewness, exactly zero excess kurtosis, or a perfect Q-Q line.
+
+## 10. Limitation and surprise
+
+The apparent roughness of a histogram depends on binning, and the largest simulated calibration fluctuation depends on the chosen grid. The important surprise is conceptual: increasing $n$ improves precision here, but it does not make the standardized shape more Normal. It was already Normal.

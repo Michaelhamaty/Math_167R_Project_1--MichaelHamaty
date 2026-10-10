@@ -4,10 +4,10 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Freeze the calibration interpretation after inspecting Normal, Exponential, and Cauchy pilot graphics.
+Commit each verified population analysis, then complete the synthesis and second-seed comparison.
 
 ## Current Phase
-Phase 3
+Phase 4
 
 ## Phases
 
@@ -31,10 +31,10 @@ Phase 3
 - **Status:** complete
 
 ### Phase 3: Calibration and method exploration
-- [ ] Calibrate with Standard Normal
-- [ ] Pilot Exponential and Cauchy
-- [ ] Freeze and document the evidence standard
-- **Status:** in_progress
+- [x] Calibrate with Standard Normal
+- [x] Pilot Exponential and Cauchy
+- [x] Freeze and document the evidence standard
+- **Status:** complete
 
 ### Phase 4: Required population analyses
 - [ ] Complete Normal
@@ -42,7 +42,7 @@ Phase 3
 - [ ] Complete Exponential
 - [ ] Complete small Binomial
 - [ ] Complete Cauchy
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 5: Reproducibility and synthesis
 - [ ] Run the second-seed experiment

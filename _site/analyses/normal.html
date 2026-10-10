@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="The calibration case">
+<meta name="description" content="The exact reference case and Monte Carlo calibration">
 
 <title>Standard Normal – How Fast Does Normal Happen?</title>
 <style>
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -164,8 +199,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prediction" id="toc-prediction" class="nav-link active" data-scroll-target="#prediction">Prediction</a></li>
-  <li><a href="#analysis-pending" id="toc-analysis-pending" class="nav-link" data-scroll-target="#analysis-pending">Analysis pending</a></li>
+  <li><a href="#question-and-prediction" id="toc-question-and-prediction" class="nav-link active" data-scroll-target="#question-and-prediction">1. Question and prediction</a></li>
+  <li><a href="#parent-population" id="toc-parent-population" class="nav-link" data-scroll-target="#parent-population">2. Parent population</a></li>
+  <li><a href="#theory-before-simulation" id="toc-theory-before-simulation" class="nav-link" data-scroll-target="#theory-before-simulation">3. Theory before simulation</a></li>
+  <li><a href="#simulation-design" id="toc-simulation-design" class="nav-link" data-scroll-target="#simulation-design">4. Simulation design</a></li>
+  <li><a href="#numerical-evidence" id="toc-numerical-evidence" class="nav-link" data-scroll-target="#numerical-evidence">5. Numerical evidence</a></li>
+  <li><a href="#shape-across-sample-sizes" id="toc-shape-across-sample-sizes" class="nav-link" data-scroll-target="#shape-across-sample-sizes">6. Shape across sample sizes</a></li>
+  <li><a href="#q-q-evidence" id="toc-q-q-evidence" class="nav-link" data-scroll-target="#q-q-evidence">7. Q-Q evidence</a></li>
+  <li><a href="#calibration-bands" id="toc-calibration-bands" class="nav-link" data-scroll-target="#calibration-bands">8. Calibration bands</a></li>
+  <li><a href="#decision-and-diagnostic-agreement" id="toc-decision-and-diagnostic-agreement" class="nav-link" data-scroll-target="#decision-and-diagnostic-agreement">9. Decision and diagnostic agreement</a></li>
+  <li><a href="#limitation-and-surprise" id="toc-limitation-and-surprise" class="nav-link" data-scroll-target="#limitation-and-surprise">10. Limitation and surprise</a></li>
   </ul>
 </nav>
     </div>
@@ -179,7 +222,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    The calibration case
+    The exact reference case and Monte Carlo calibration
   </div>
 </div>
 
@@ -196,13 +239,223 @@ window.Quarto = {
 </header>
 
 
-<section id="prediction" class="level2">
-<h2 class="anchored" data-anchor-id="prediction">Prediction</h2>
-<p>The sample mean is exactly Normal for every positive sample size, so the theoretical threshold is <span class="math inline">\(n=1\)</span>.</p>
+<section id="question-and-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="question-and-prediction">1. Question and prediction</h2>
+<p>How quickly does Normal happen when the parent population is already Standard Normal? It happens immediately. A linear combination of independent Normal variables is Normal, so the sample mean is exactly Normal at every positive sample size. The smallest defensible answer is therefore <span class="math inline">\(n=1\)</span>.</p>
 </section>
-<section id="analysis-pending" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-pending">Analysis pending</h2>
-<p>The final page will distinguish exact theory from finite Monte Carlo noise.</p>
+<section id="parent-population" class="level2">
+<h2 class="anchored" data-anchor-id="parent-population">2. Parent population</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_parent_population</span>(population)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-normal-parent" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A symmetric bell-shaped Standard Normal density centered at zero.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-normal-parent-1.png" class="img-fluid figure-img" alt="A symmetric bell-shaped Standard Normal density centered at zero." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-parent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Standard Normal parent is symmetric and light-tailed. It supplies the exact-shape reference used to distinguish simulation noise from meaningful departures elsewhere.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="theory-before-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="theory-before-simulation">3. Theory before simulation</h2>
+<p>For independent <span class="math inline">\(X_i \sim N(0,1)\)</span>,</p>
+<p><span class="math display">\[
+\bar X_n \sim N\left(0,\frac{1}{n}\right).
+\]</span></p>
+<p>The center is 0 and the standard error is <span class="math inline">\(1/\sqrt{n}\)</span>. No approximation is involved.</p>
+</section>
+<section id="simulation-design" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-design">4. Simulation design</h2>
+<p>At every evaluated <span class="math inline">\(n\)</span>, I generated 10,000 independent sample means with seed 631. The simulated diagnostics calibrate the amount of random fluctuation expected even when Normality is exact.</p>
+</section>
+<section id="numerical-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-evidence">5. Numerical evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>normal_table <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">%in%</span> selected_n, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_se"</span>, <span class="st">"relative_se_error"</span>, <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_rmse"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(normal_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"Mean"</span>, <span class="st">"Empirical SE"</span>, <span class="st">"Relative SE error"</span>, <span class="st">"Skewness"</span>, <span class="st">"Excess kurtosis"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(normal_table, <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-normal-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-normal-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain close to exact theory; shape metrics fluctuate slightly because only 10,000 means are simulated.
+</figcaption>
+<div aria-describedby="tbl-normal-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 22%">
+<col style="width: 11%">
+<col style="width: 20%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Empirical SE</th>
+<th style="text-align: right;">Relative SE error</th>
+<th style="text-align: right;">Skewness</th>
+<th style="text-align: right;">Excess kurtosis</th>
+<th style="text-align: right;">Q-Q RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-0.0063</td>
+<td style="text-align: right;">1.0042</td>
+<td style="text-align: right;">0.0042</td>
+<td style="text-align: right;">-0.0237</td>
+<td style="text-align: right;">0.0043</td>
+<td style="text-align: right;">0.0074</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.0022</td>
+<td style="text-align: right;">0.3145</td>
+<td style="text-align: right;">0.0054</td>
+<td style="text-align: right;">-0.0077</td>
+<td style="text-align: right;">0.0180</td>
+<td style="text-align: right;">0.0079</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.0014</td>
+<td style="text-align: right;">0.0993</td>
+<td style="text-align: right;">0.0067</td>
+<td style="text-align: right;">-0.0415</td>
+<td style="text-align: right;">0.0113</td>
+<td style="text-align: right;">0.0095</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At <span class="math inline">\(n=1\)</span>, the simulated mean is -0.0063 and the empirical SE is 1.0042. These are simulation errors around 0 and 1, not evidence against the exact theorem.</p>
+</section>
+<section id="shape-across-sample-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="shape-across-sample-sizes">6. Shape across sample sizes</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sampling_distributions</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-normal-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three symmetric bell-shaped histograms that narrow around zero as sample size increases.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-normal-sampling-1.png" class="img-fluid figure-img" alt="Three symmetric bell-shaped histograms that narrow around zero as sample size increases." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Sampling distributions at n = 1, 10, and 100. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="q-q-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="q-q-evidence">7. Q-Q evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qq_comparison</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-normal-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three Q-Q panels with points close to a straight diagonal line.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-normal-qq-1.png" class="img-fluid figure-img" alt="Three Q-Q panels with points close to a straight diagonal line." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Standardized Normal quantiles at three sample sizes closely follow the reference line. Small tail deviations show Monte Carlo noise, not a changing distributional shape.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="calibration-bands" class="level2">
+<h2 class="anchored" data-anchor-id="calibration-bands">8. Calibration bands</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>band_table <span class="ot">&lt;-</span> bands</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>band_table<span class="sc">$</span>threshold <span class="ot">&lt;-</span> <span class="fu">round</span>(band_table<span class="sc">$</span>threshold, <span class="dv">4</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(band_table, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Metric"</span>, <span class="st">"Guidance threshold"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-normal-bands" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-normal-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Guidance bands calibrated from the largest Normal fluctuation, subject to practical floors. These bands guide later judgments but do not form a weighted score.
+</figcaption>
+<div aria-describedby="tbl-normal-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Guidance threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">center_mcse_multiplier</td>
+<td style="text-align: right;">3.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">relative_se_error</td>
+<td style="text-align: right;">0.0300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">absolute_skewness</td>
+<td style="text-align: right;">0.1000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">absolute_excess_kurtosis</td>
+<td style="text-align: right;">0.2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qq_rmse</td>
+<td style="text-align: right;">0.0149</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="decision-and-diagnostic-agreement" class="level2">
+<h2 class="anchored" data-anchor-id="decision-and-diagnostic-agreement">9. Decision and diagnostic agreement</h2>
+<p><strong>Decision: <span class="math inline">\(n=1\)</span>.</strong> Theory is decisive, and the numerical and graphical evidence agree. The calibration results show why a finite simulation should never be expected to produce exactly zero skewness, exactly zero excess kurtosis, or a perfect Q-Q line.</p>
+</section>
+<section id="limitation-and-surprise" class="level2">
+<h2 class="anchored" data-anchor-id="limitation-and-surprise">10. Limitation and surprise</h2>
+<p>The apparent roughness of a histogram depends on binning, and the largest simulated calibration fluctuation depends on the chosen grid. The important surprise is conceptual: increasing <span class="math inline">\(n\)</span> improves precision here, but it does not make the standardized shape more Normal. It was already Normal.</p>
 
 
 </section>

@@ -35,7 +35,7 @@ make_populations <- function() {
       mean = 1,
       variance = 1,
       color = "#bd5b32",
-      n_values = c(1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 300, 500)
+      n_values = c(1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 300, 500, 750, 1000)
     ),
     binomial = list(
       id = "binomial",

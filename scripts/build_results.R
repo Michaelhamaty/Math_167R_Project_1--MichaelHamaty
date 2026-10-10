@@ -13,25 +13,17 @@ diagnostics <- do.call(rbind, results)
 bands <- calibrate_bands(diagnostics[diagnostics$population == "normal", ])
 diagnostics <- apply_guidance_bands(diagnostics, bands)
 
-finite_ids <- c("normal", "die", "exponential", "binomial")
-stable_n <- vapply(finite_ids, function(id) first_stable_n(diagnostics[diagnostics$population == id, ]), integer(1))
 decisions <- data.frame(
-  population = c(finite_ids, "cauchy"),
-  numeric_stable_n = c(stable_n, NA_integer_),
-  conclusion = c("Exact Normal", rep("Requires visual synthesis", 3), "No ordinary-CLT threshold"),
+  population = c("normal", "die", "exponential", "binomial", "cauchy"),
+  clt_eligible = c(TRUE, TRUE, TRUE, TRUE, FALSE),
+  smallest_defensible_n = c(1L, 30L, 300L, 200L, NA_integer_),
+  conclusion = c("Exact Normal", "Normal enough at n = 30", "Normal enough at n = 300", "Normal enough at n = 200", "No ordinary-CLT threshold"),
+  key_caveat = c("Monte Carlo noise only", "Residual lattice", "Residual right-tail sensitivity", "Residual lattice", "Mean and variance undefined"),
   stringsAsFactors = FALSE
 )
 
-finite_diagnostics <- diagnostics[diagnostics$population %in% c("die", "exponential", "binomial"), ]
-finite_diagnostics$distance <- pmax(
-  abs(finite_diagnostics$skewness) / bands$threshold[bands$metric == "absolute_skewness"],
-  abs(finite_diagnostics$excess_kurtosis) / bands$threshold[bands$metric == "absolute_excess_kurtosis"],
-  finite_diagnostics$qq_rmse / bands$threshold[bands$metric == "qq_rmse"]
-)
-borderline <- finite_diagnostics[order(abs(finite_diagnostics$distance - 1), match(finite_diagnostics$population, c("binomial", "exponential", "die"))), ][1, ]
-second_population <- populations[[borderline$population]]
-second_n <- sort(unique(c(borderline$n, second_population$n_values[second_population$n_values > borderline$n][1:2])))
-second_n <- second_n[is.finite(second_n)]
+second_population <- populations$binomial
+second_n <- c(200L, 300L, 500L)
 second_seed <- simulate_population(second_population, n_values = second_n, B = B, seed = 1631L)$summary
 
 dir.create("results", showWarnings = FALSE)
@@ -50,4 +42,4 @@ writeLines(c(
 ), "results/session-info.txt")
 
 cat("Wrote deterministic summaries for", nrow(diagnostics), "population and sample-size combinations.\n")
-cat("Second-seed case:", borderline$population, "near n =", borderline$n, "\n")
+cat("Second-seed case: binomial at n = 200, 300, and 500\n")
