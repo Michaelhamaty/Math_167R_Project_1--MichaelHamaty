@@ -4,10 +4,10 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Create the Quarto site skeleton, documentation shells, and visual system, then verify a minimal six-page render.
+Freeze the calibration interpretation after inspecting Normal, Exponential, and Cauchy pilot graphics.
 
 ## Current Phase
-Phase 1
+Phase 3
 
 ## Phases
 
@@ -19,22 +19,22 @@ Phase 1
 - **Status:** complete
 
 ### Phase 1: Project skeleton and design system
-- [ ] Create the Quarto site structure
-- [ ] Add the editorial theme and documentation shells
-- [ ] Render the minimal site
-- **Status:** in_progress
+- [x] Create the Quarto site structure
+- [x] Add the editorial theme and documentation shells
+- [x] Render the minimal site
+- **Status:** complete
 
 ### Phase 2: Reusable simulation foundation
-- [ ] Implement populations, simulation, diagnostics, and plots
-- [ ] Add deterministic validation
-- [ ] Verify theoretical values and reproducibility
-- **Status:** pending
+- [x] Implement populations, simulation, diagnostics, and plots
+- [x] Add deterministic validation
+- [x] Verify theoretical values and reproducibility
+- **Status:** complete
 
 ### Phase 3: Calibration and method exploration
 - [ ] Calibrate with Standard Normal
 - [ ] Pilot Exponential and Cauchy
 - [ ] Freeze and document the evidence standard
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 4: Required population analyses
 - [ ] Complete Normal

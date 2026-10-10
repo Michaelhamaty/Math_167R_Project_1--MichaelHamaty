@@ -8,8 +8,13 @@ _freeze/
 .RData
 .Ruserdata
 .tools/
+__pycache__/
+*.pyc
 ledger-*.jsonl
 .stop_blocks
 .gate_ledger_state
 .pretool-cache*
 *.log
+
+/.quarto/
+**/*.quarto_ipynb

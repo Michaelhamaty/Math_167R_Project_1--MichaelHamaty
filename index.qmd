@@ -1,0 +1,49 @@
+---
+title: "How Fast Does Normal Happen?"
+author: "Michael Hamaty"
+description: "A Monte Carlo investigation of when sample means become approximately Normal"
+page-layout: full
+---
+
+::: {.hero}
+# How Fast Does Normal Happen?
+
+Five parent populations enter. Their sample means do not all approach the bell curve at the same pace, and one never does.
+:::
+
+This project uses repeated sampling to ask a practical version of the Central Limit Theorem: how large must the sample be before a Normal approximation is genuinely useful? Each analysis begins with a prediction, checks the theorem, and then compares graphical and numerical evidence.
+
+::: {.metric-strip}
+::: {.metric}
+**5 populations**
+One shared experiment
+:::
+::: {.metric}
+**10,000 repetitions**
+At every sample size
+:::
+::: {.metric}
+**Seed 631**
+Fully reproducible
+:::
+::: {.metric}
+**1 exception**
+Cauchy defeats the ordinary CLT
+:::
+:::
+
+## The five investigations
+
+- [Standard Normal](analyses/normal.qmd): an exact reference case at every sample size.
+- [Six-sided die](analyses/die.qmd): bounded, discrete, and symmetric.
+- [Exponential](analyses/exponential.qmd): continuous with a long right tail.
+- [Small Binomial](analyses/binomial.qmd): discrete, zero-heavy, and right-skewed.
+- [Standard Cauchy](analyses/cauchy.qmd): a stress test with no finite mean or variance.
+
+## Evidence standard
+
+The final decision does not come from a single score. Center, standard error, skewness, excess kurtosis, a Q-Q discrepancy, and the plots each answer a different question. Numerical bands are calibrated against the finite simulation noise in the Normal case. A conclusion must also persist for the next two larger evaluated sample sizes.
+
+::: {.callout-note title="Reading the results"}
+The Normal case has a theoretical answer of $n=1$. The Cauchy case has no ordinary-CLT threshold. The other three thresholds are empirical and will be reported from the completed simulation rather than assumed in advance.
+:::

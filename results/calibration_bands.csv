@@ -1,0 +1,6 @@
+"metric","threshold"
+"center_mcse_multiplier",3
+"relative_se_error",0.03
+"absolute_skewness",0.1
+"absolute_excess_kurtosis",0.2
+"qq_rmse",0.0148950093384862

@@ -1,0 +1,2 @@
+"population","label","n","B","seed","theoretical_mean","theoretical_se","simulated_mean","simulated_se","mean_error","mean_mcse","relative_se_error","skewness","excess_kurtosis","qq_rmse","shapiro_w","q01","q10","q25","median","q75","q90","q99","iqr","max_abs"
+"die","Die",100,10000,1631,3.5,0.170782512765993,3.501365,0.171888456096197,0.00136499999999984,0.00170782512765993,0.00647574105973603,0.00599254242730417,-0.0796391660307303,0.0192100996260488,0.999136687816307,3.11,3.28,3.39,3.5,3.62,3.72,3.9,0.23,4.24

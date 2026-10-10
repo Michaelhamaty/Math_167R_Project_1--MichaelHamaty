@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export XDG_CACHE_HOME="${TMPDIR:-/tmp}/math167r-quarto-cache"
+exec "$project_dir/.tools/quarto/bin/quarto" "$@"

@@ -1,0 +1,12 @@
+---
+title: "Six-Sided Die"
+description: "How quickly discreteness fades"
+---
+
+## Prediction
+
+Symmetry should help the sampling distribution settle quickly, although small samples remain visibly discrete.
+
+## Analysis pending
+
+The final page will locate and verify the transition region.

@@ -29,6 +29,9 @@
 - Normal sample means are exactly Normal for every positive sample size, so the theoretical answer is `n = 1`.
 - The average of independent standard Cauchy observations is itself standard Cauchy for every sample size. Increasing `n` does not create an ordinary CLT result.
 - The final finite-variance transition decisions must be computed, not prewritten.
+- Normal calibration produced guidance bands of 0.10 for absolute skewness, 0.20 for absolute excess kurtosis, 0.03 for relative SE error, and 0.01490 for Q-Q RMSE.
+- The calibrated Q-Q RMSE band is deliberately stringent. Even visually modest lattice effects can exceed it, so it must remain guidance rather than an automatic gate.
+- Shapiro-Wilk W is recorded on the first deterministic 5,000 means for method exploration. Its p-value is excluded because large samples make it an overly sensitive decision rule.
 
 ## Technical decisions
 

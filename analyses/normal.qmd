@@ -1,0 +1,12 @@
+---
+title: "Standard Normal"
+description: "The calibration case"
+---
+
+## Prediction
+
+The sample mean is exactly Normal for every positive sample size, so the theoretical threshold is $n=1$.
+
+## Analysis pending
+
+The final page will distinguish exact theory from finite Monte Carlo noise.

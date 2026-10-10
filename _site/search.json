@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "analyses/normal.html",
+    "href": "analyses/normal.html",
+    "title": "Standard Normal",
+    "section": "",
+    "text": "The sample mean is exactly Normal for every positive sample size, so the theoretical threshold is \\(n=1\\)."
+  },
+  {
+    "objectID": "analyses/normal.html#prediction",
+    "href": "analyses/normal.html#prediction",
+    "title": "Standard Normal",
+    "section": "",
+    "text": "The sample mean is exactly Normal for every positive sample size, so the theoretical threshold is \\(n=1\\)."
+  },
+  {
+    "objectID": "analyses/normal.html#analysis-pending",
+    "href": "analyses/normal.html#analysis-pending",
+    "title": "Standard Normal",
+    "section": "Analysis pending",
+    "text": "Analysis pending\nThe final page will distinguish exact theory from finite Monte Carlo noise."
+  },
+  {
+    "objectID": "analyses/die.html",
+    "href": "analyses/die.html",
+    "title": "Six-Sided Die",
+    "section": "",
+    "text": "Symmetry should help the sampling distribution settle quickly, although small samples remain visibly discrete."
+  },
+  {
+    "objectID": "analyses/die.html#prediction",
+    "href": "analyses/die.html#prediction",
+    "title": "Six-Sided Die",
+    "section": "",
+    "text": "Symmetry should help the sampling distribution settle quickly, although small samples remain visibly discrete."
+  },
+  {
+    "objectID": "analyses/die.html#analysis-pending",
+    "href": "analyses/die.html#analysis-pending",
+    "title": "Six-Sided Die",
+    "section": "Analysis pending",
+    "text": "Analysis pending\nThe final page will locate and verify the transition region."
+  },
+  {
+    "objectID": "analyses/binomial.html",
+    "href": "analyses/binomial.html",
+    "title": "Small Binomial",
+    "section": "",
+    "text": "With size 5 and success probability 0.10, zeros and positive skew should delay a convincing Normal approximation."
+  },
+  {
+    "objectID": "analyses/binomial.html#prediction",
+    "href": "analyses/binomial.html#prediction",
+    "title": "Small Binomial",
+    "section": "",
+    "text": "With size 5 and success probability 0.10, zeros and positive skew should delay a convincing Normal approximation."
+  },
+  {
+    "objectID": "analyses/binomial.html#analysis-pending",
+    "href": "analyses/binomial.html#analysis-pending",
+    "title": "Small Binomial",
+    "section": "Analysis pending",
+    "text": "Analysis pending\nThe final page will separate discreteness from asymmetry."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "How Fast Does Normal Happen?",
+    "section": "",
+    "text": "Five parent populations enter. Their sample means do not all approach the bell curve at the same pace, and one never does.\nThis project uses repeated sampling to ask a practical version of the Central Limit Theorem: how large must the sample be before a Normal approximation is genuinely useful? Each analysis begins with a prediction, checks the theorem, and then compares graphical and numerical evidence."
+  },
+  {
+    "objectID": "index.html#the-five-investigations",
+    "href": "index.html#the-five-investigations",
+    "title": "How Fast Does Normal Happen?",
+    "section": "The five investigations",
+    "text": "The five investigations\n\nStandard Normal: an exact reference case at every sample size.\nSix-sided die: bounded, discrete, and symmetric.\nExponential: continuous with a long right tail.\nSmall Binomial: discrete, zero-heavy, and right-skewed.\nStandard Cauchy: a stress test with no finite mean or variance."
+  },
+  {
+    "objectID": "index.html#evidence-standard",
+    "href": "index.html#evidence-standard",
+    "title": "How Fast Does Normal Happen?",
+    "section": "Evidence standard",
+    "text": "Evidence standard\nThe final decision does not come from a single score. Center, standard error, skewness, excess kurtosis, a Q-Q discrepancy, and the plots each answer a different question. Numerical bands are calibrated against the finite simulation noise in the Normal case. A conclusion must also persist for the next two larger evaluated sample sizes.\n\n\n\n\n\n\nNoteReading the results\n\n\n\nThe Normal case has a theoretical answer of \\(n=1\\). The Cauchy case has no ordinary-CLT threshold. The other three thresholds are empirical and will be reported from the completed simulation rather than assumed in advance."
+  },
+  {
+    "objectID": "analyses/cauchy.html",
+    "href": "analyses/cauchy.html",
+    "title": "Standard Cauchy",
+    "section": "",
+    "text": "No sample size will produce an ordinary CLT approximation because the population mean and variance do not exist."
+  },
+  {
+    "objectID": "analyses/cauchy.html#prediction",
+    "href": "analyses/cauchy.html#prediction",
+    "title": "Standard Cauchy",
+    "section": "",
+    "text": "No sample size will produce an ordinary CLT approximation because the population mean and variance do not exist."
+  },
+  {
+    "objectID": "analyses/cauchy.html#analysis-pending",
+    "href": "analyses/cauchy.html#analysis-pending",
+    "title": "Standard Cauchy",
+    "section": "Analysis pending",
+    "text": "Analysis pending\nThe final page will use tail-aware quantiles and theory instead of invented moments."
+  },
+  {
+    "objectID": "analyses/exponential.html",
+    "href": "analyses/exponential.html",
+    "title": "Exponential",
+    "section": "",
+    "text": "The ordinary CLT applies, but the positive skew should remain visible longer than in the die case."
+  },
+  {
+    "objectID": "analyses/exponential.html#prediction",
+    "href": "analyses/exponential.html#prediction",
+    "title": "Exponential",
+    "section": "",
+    "text": "The ordinary CLT applies, but the positive skew should remain visible longer than in the die case."
+  },
+  {
+    "objectID": "analyses/exponential.html#analysis-pending",
+    "href": "analyses/exponential.html#analysis-pending",
+    "title": "Exponential",
+    "section": "Analysis pending",
+    "text": "Analysis pending\nThe final page will track the shrinking right tail across sample sizes."
+  }
+]

@@ -1,0 +1,12 @@
+---
+title: "Exponential"
+description: "A long right tail under averaging"
+---
+
+## Prediction
+
+The ordinary CLT applies, but the positive skew should remain visible longer than in the die case.
+
+## Analysis pending
+
+The final page will track the shrinking right tail across sample sizes.

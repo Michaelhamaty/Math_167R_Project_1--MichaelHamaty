@@ -1,0 +1,6 @@
+"population","numeric_stable_n","conclusion"
+"normal",1,"Exact Normal"
+"die",,"Requires visual synthesis"
+"exponential",,"Requires visual synthesis"
+"binomial",,"Requires visual synthesis"
+"cauchy",,"No ordinary-CLT threshold"

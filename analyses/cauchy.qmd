@@ -1,0 +1,12 @@
+---
+title: "Standard Cauchy"
+description: "Where ordinary averaging fails"
+---
+
+## Prediction
+
+No sample size will produce an ordinary CLT approximation because the population mean and variance do not exist.
+
+## Analysis pending
+
+The final page will use tail-aware quantiles and theory instead of invented moments.

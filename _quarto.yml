@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - analyses/*.qmd
+
+website:
+  title: "How Fast Does Normal Happen?"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Synthesis
+      - href: analyses/normal.qmd
+        text: Normal
+      - href: analyses/die.qmd
+        text: Die
+      - href: analyses/exponential.qmd
+        text: Exponential
+      - href: analyses/binomial.qmd
+        text: Small Binomial
+      - href: analyses/cauchy.qmd
+        text: Cauchy
+  page-footer:
+    left: "Math 167R | Michael Hamaty"
+    right: "Reproducible with R and Quarto"
+
+format:
+  html:
+    theme: styles/theme.scss
+    toc: true
+    code-fold: true
+    code-summary: "Show R code"
+    fig-responsive: true
+    link-external-newwindow: true
+    html-math-method: mathjax
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  cache: false
+  freeze: false

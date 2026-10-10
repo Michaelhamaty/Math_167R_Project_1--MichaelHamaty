@@ -3,9 +3,9 @@
 ## Session: 2026-10-10
 
 ### Current status
-- **Phase:** 1 - Project skeleton and design system
+- **Phase:** 3 - Calibration and method exploration
 - **Started:** 2026-10-10
-- **Next action:** Create and render the six-page Quarto skeleton.
+- **Next action:** Inspect pilot plots and freeze the evidence standard.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -19,6 +19,10 @@
 - Ran 182 selected upstream planning tests with the required temporary cache prefix: 171 passed, 10 skipped, and one sandbox-inapplicable Darwin test could not write `/var/tmp`.
 - Verified the official Quarto 1.10.18 archive against SHA-256 `ddd6a71a9e0448ab15fb655bc589e11cb6589a248ec35ccd7f7f44137531688e` and installed it under ignored `.tools/`.
 - Committed and pushed the isolated repository baseline as `ee78b72`.
+- Committed and pushed the planning workflow as `320650d`.
+- Created and rendered a linked six-page Quarto skeleton with the academic theme.
+- Implemented five population definitions, simulation, diagnostics, shared plotting functions, and deterministic result generation.
+- Generated 77 final-seed population and sample-size summaries with `B = 10000`.
 
 ### Tests and results
 | Test | Result | Notes |
@@ -29,6 +33,8 @@
 | Original file inventory | Pass | Twelve supplied files were hashed before mutation. |
 | Quarto runtime | Pass | Project-local Quarto reports version 1.10.18. |
 | R packages | Pass | R 4.6.1, ggplot2 4.0.3, and knitr 1.52 are available. |
+| Minimal site render | Pass | `_site/index.html` and five analysis pages were created. |
+| Simulation assertions | Pass | Input guards, theory, generator lengths, exact `B`, Cauchy missing moments, and repeatability passed. |
 
 ### Errors
 | Error | Attempt | Resolution |
@@ -36,6 +42,7 @@
 | Protected configuration directories rejected the first copy | 1 | Repeated with approved narrow elevation. |
 | pytest was not installed in the temporary audit environment | 1 | Used the repository's unittest-compatible test modules. |
 | Homebrew Quarto installation required an interactive administrator password | 1 | Switched to the official checksum-verified release archive and a project-local ignored installation. |
+| First Quarto render could not write the default home cache | 1 | The project wrapper now uses a task-specific cache under `${TMPDIR:-/tmp}`. |
 
 ### Files modified
 - `.git/`, `.agents/`, `.codex/`

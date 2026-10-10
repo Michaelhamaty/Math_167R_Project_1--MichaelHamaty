@@ -1,0 +1,12 @@
+---
+title: "Small Binomial"
+description: "Discrete, zero-heavy, and skewed"
+---
+
+## Prediction
+
+With size 5 and success probability 0.10, zeros and positive skew should delay a convincing Normal approximation.
+
+## Analysis pending
+
+The final page will separate discreteness from asymmetry.
