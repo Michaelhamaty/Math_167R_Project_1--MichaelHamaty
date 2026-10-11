@@ -69,7 +69,7 @@ simulate_probability_case <- function(case_id, label, variant, start_probability
     summaries[[index]] <- summarize_extension_means(
       means, case_id, label, variant, "independent non-identical Bernoulli",
       n, B, seed, theoretical_mean, theoretical_se,
-      ordinary_clt_eligible = TRUE, notes = notes
+      ordinary_clt_eligible = FALSE, notes = notes
     )
     summaries[[index]]$max_variance_share <- max(probabilities * (1 - probabilities)) / sum(probabilities * (1 - probabilities))
     if (keep_means) mean_rows[[index]] <- data.frame(case_id = case_id, variant = variant, n = n, sample_mean = means)

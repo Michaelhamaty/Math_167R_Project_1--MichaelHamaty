@@ -61,6 +61,12 @@
 - At `n = 2000`, the dependent sample mean still has skewness about 0.103 and Q-Q RMSE about 0.021, both just outside the Normal-calibration guidance. The correct result is no calibration-band threshold through 2000, not a forced pass.
 - The changing Bernoulli path has exact mean 0.70 and a slightly smaller theoretical SE than fixed Bernoulli 0.70. The maximum individual variance share decreases toward zero as `n` grows.
 - The synthetic age mixture reproduces the instructor values, with mean 49.9809755 and SD 27.6345157 after probability normalization.
+- First visual inspection found all new plots legible except the nine-panel creative histogram, where the shared x-axis title crowded the final row. The creative figure receives extra height and bottom margin before browser QA.
+- Non-identical Bernoulli reaches a practical global Normal shape by `n = 50`; its Q-Q RMSE remains strict because the average is lattice-valued.
+- The synthetic age mixture reaches a defensible tested transition at `n = 75`, with small later Q-Q fluctuation interpreted as Monte Carlo noise rather than reversed convergence.
+- All three creative paths are practically useful by `n = 50`. Increasing and decreasing paths have identical exact moments because they reverse the same probability multiset, while the stable path has slightly larger variance.
+- The local browser policy blocks automated `file://` control, so interaction verification uses deterministic Node assertions and rendered-HTML accessibility checks rather than bypassing that security boundary.
+- The extension documentation now distinguishes implemented work from any future empirical layer, and records the local Canvas and input-event provenance beside the interaction source.
 
 ## Issues encountered
 

@@ -48,4 +48,4 @@
 
 **Improvement.** The three paths share average probability 0.60, allowing the analysis to isolate heterogeneity and order without presenting one direction as a real cultural trajectory.
 
-**Verification.** This entry will be completed with exact theory assertions, deterministic simulation checks, interaction tests, and fresh-review findings after implementation.
+**Verification.** Assertions verify the dependent rate, positive finite chains, exact Bernoulli center and SE, normalized age probabilities, equal creative-path means, and probability-path reversal. Two clean builds reproduce compact outputs, Node checks the deterministic interaction core, and the eleven-page render receives static visual and fresh-agent review.

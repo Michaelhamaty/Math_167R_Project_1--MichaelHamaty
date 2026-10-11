@@ -4,10 +4,10 @@
 Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-Build the dependent machine-failure page from the verified extension summaries.
+Finalize the interactive integration, extension synthesis, documentation, and complete-site QA.
 
 ## Current Phase
-Phase 10
+Phase 14
 
 ## Phases
 
@@ -76,41 +76,41 @@ Phase 10
 - **Status:** complete
 
 ### Phase 10: Dependent machine failures
-- [ ] Complete the conditional and marginal analysis
-- [ ] Compare dependent and matched-marginal iid behavior
-- [ ] Verify burn-in, seed sensitivity, and effective sample size
-- **Status:** in_progress
+- [x] Complete the conditional and marginal analysis
+- [x] Compare dependent and matched-marginal iid behavior
+- [x] Verify burn-in, seed sensitivity, and effective sample size
+- **Status:** complete
 
 ### Phase 11: Non-identical Bernoulli
-- [ ] Complete the changing-probability analysis
-- [ ] Compare Poisson-binomial and matched fixed-probability behavior
-- [ ] Verify exact center, SE, and bounded-array diagnostics
-- **Status:** pending
+- [x] Complete the changing-probability analysis
+- [x] Compare Poisson-binomial and matched fixed-probability behavior
+- [x] Verify exact center, SE, and bounded-array diagnostics
+- **Status:** complete
 
 ### Phase 12: Synthetic age-at-death mixture
-- [ ] Reproduce and verify the instructor-defined synthetic distribution
-- [ ] Complete its iid sampling-mean analysis
-- [ ] Preserve the synthetic-data limitation in every interpretation
-- **Status:** pending
+- [x] Reproduce and verify the instructor-defined synthetic distribution
+- [x] Complete its iid sampling-mean analysis
+- [x] Preserve the synthetic-data limitation in every interpretation
+- **Status:** complete
 
 ### Phase 13: Creative heritage-language case
-- [ ] Implement the neutral stable, increasing, and decreasing paths
-- [ ] Explain order invariance and variance differences respectfully
-- [ ] Complete the static authoritative analysis
-- **Status:** pending
+- [x] Implement the neutral stable, increasing, and decreasing paths
+- [x] Explain order invariance and variance differences respectfully
+- [x] Complete the static authoritative analysis
+- **Status:** complete
 
 ### Phase 14: Interaction and extension synthesis
-- [ ] Add the accessible local creative interaction and static fallback
-- [ ] Add the Extensions hub, navigation, landing callout, and synthesis
-- [ ] Verify interaction behavior without network dependencies
-- **Status:** pending
+- [x] Add the accessible local creative interaction and static fallback
+- [x] Add the Extensions hub, navigation, landing callout, and synthesis
+- [x] Verify interaction behavior without network dependencies
+- **Status:** complete
 
 ### Phase 15: Extension verification and handoff
-- [ ] Run deterministic builds, clean rendering, source checks, and link checks
+- [x] Run deterministic builds, clean rendering, source checks, and link checks
 - [ ] Inspect all extension pages at desktop and narrow widths
 - [ ] Complete a fresh-agent review and valid revisions
 - [ ] Reconcile planning files, commits, and remote state
-- **Status:** pending
+- **Status:** in_progress
 
 ## Decisions Made
 | Decision | Rationale |
@@ -134,3 +134,8 @@ Phase 10
 | The sandbox blocked DNS during the final read-only `git ls-remote` check | Repeat only the remote-state query with network approval, then continue local handoff checks separately. |
 | The first extension build used base `rbind()` on case-specific summaries with different columns | Bind against the explicit union of columns and fill unavailable quantities with `NA`. |
 | The first creative reversal assertion required byte identity and the expected extension row count was overstated | Compare floating paths with numerical tolerance and assert the actual 72-row contract. |
+| The first expanded render passed variant names into the probability-path color argument | Use the shared named extension palette directly for both probability-path figures. |
+| The full-identifier scan flagged the one-million simulation length and decimal digits from verified age moments | Distinguish decimal fractions and allow only audited simulation and PRNG constants while adding JS and SCSS to source coverage. |
+| Browser automation rejected the local `file://` site under its URL security policy | Do not bypass the policy; validate the deterministic interaction core with Node, inspect rendered accessibility structure, and retain static visual QA. |
+| The first Phase 15 plan-doctor command used a nonexistent Python filename | Run the vendored `plan-doctor.sh` entry point and record the corrected result. |
+| The first deterministic hash command named `calibration.csv` instead of the generated `calibration_bands.csv` | Correct the audit target list; all preceding builders and validators passed. |

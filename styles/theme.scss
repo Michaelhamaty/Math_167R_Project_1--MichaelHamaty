@@ -80,6 +80,60 @@ table {
   background: #fffdf8;
 }
 
+.heritage-tool {
+  background: #fffdf8;
+  border: 1px solid #d7d4c9;
+  border-top: 5px solid #8b4f79;
+  margin: 1.25rem 0;
+  padding: 1rem;
+}
+
+.heritage-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.heritage-presets button {
+  background: #173f47;
+  border: 2px solid #173f47;
+  color: #fffdf6;
+  font: inherit;
+  padding: 0.45rem 0.8rem;
+}
+
+.heritage-controls {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.heritage-controls label,
+.heritage-controls output {
+  color: #173f47;
+  font-weight: 650;
+}
+
+.heritage-controls input {
+  display: block;
+  margin-top: 0.35rem;
+  width: 100%;
+}
+
+.heritage-tool canvas {
+  display: block;
+  height: auto;
+  margin-top: 1rem;
+  max-width: 100%;
+}
+
+.heritage-summary {
+  background: #f1eee5;
+  margin: 0.8rem 0 0;
+  padding: 0.7rem;
+}
+
 .figure-caption {
   color: #40545a;
   font-size: 0.92rem;
@@ -102,5 +156,11 @@ table {
 
   .table-responsive {
     font-size: 0.85rem;
+  }
+
+  .heritage-tool {
+    margin-left: -0.45rem;
+    margin-right: -0.45rem;
+    padding: 0.75rem;
   }
 }

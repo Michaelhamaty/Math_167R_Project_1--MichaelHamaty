@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A respectful stylized simulation with changing probabilities">
+
+<title>Creative Case: Heritage-Language Retention – How Fast Does Normal Happen?</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">How Fast Does Normal Happen?</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+<span class="menu-text">Synthesis</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../analyses/normal.html">
+<span class="menu-text">Normal</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../analyses/die.html">
+<span class="menu-text">Die</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../analyses/exponential.html">
+<span class="menu-text">Exponential</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../analyses/binomial.html">
+<span class="menu-text">Small Binomial</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../analyses/cauchy.html">
+<span class="menu-text">Cauchy</span></a>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-extensions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Extensions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-extensions">
+        <li>
+    <a class="dropdown-item" href="../extensions/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="../extensions/dependent-failures.html">
+ <span class="dropdown-text">Dependent failures</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="../extensions/nonidentical-bernoulli.html">
+ <span class="dropdown-text">Non-identical Bernoulli</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="../extensions/age-mixture.html">
+ <span class="dropdown-text">Synthetic age mixture</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="../extensions/heritage-language.html">
+ <span class="dropdown-text">Creative case</span></a>
+  </li>
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+
+  <ul>
+  <li><a href="#question-and-role" id="toc-question-and-role" class="nav-link active" data-scroll-target="#question-and-role">1. Question and role</a></li>
+  <li><a href="#model-and-assumptions" id="toc-model-and-assumptions" class="nav-link" data-scroll-target="#model-and-assumptions">2. Model and assumptions</a></li>
+  <li><a href="#exact-order-invariance" id="toc-exact-order-invariance" class="nav-link" data-scroll-target="#exact-order-invariance">3. Exact order invariance</a></li>
+  <li><a href="#prediction-and-design" id="toc-prediction-and-design" class="nav-link" data-scroll-target="#prediction-and-design">4. Prediction and design</a></li>
+  <li><a href="#numerical-evidence" id="toc-numerical-evidence" class="nav-link" data-scroll-target="#numerical-evidence">5. Numerical evidence</a></li>
+  <li><a href="#static-sampling-distribution-fallback" id="toc-static-sampling-distribution-fallback" class="nav-link" data-scroll-target="#static-sampling-distribution-fallback">6. Static sampling-distribution fallback</a></li>
+  <li><a href="#interactive-thought-experiment" id="toc-interactive-thought-experiment" class="nav-link" data-scroll-target="#interactive-thought-experiment">7. Interactive thought experiment</a></li>
+  <li><a href="#decision-and-disagreement" id="toc-decision-and-disagreement" class="nav-link" data-scroll-target="#decision-and-disagreement">8. Decision and disagreement</a></li>
+  <li><a href="#limitation" id="toc-limitation" class="nav-link" data-scroll-target="#limitation">9. Limitation</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">10. Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Creative Case: Heritage-Language Retention</h1>
+</div>
+
+<div>
+  <div class="description">
+    A respectful stylized simulation with changing probabilities
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+
+
+
+  </div>
+
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-important callout-titled" title="Creative simplified simulation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Creative simplified simulation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This page is not observed cultural data and is not a validated sociological model. It does not describe or rank any named language or community. Retention and shift are not treated as inherently better or worse.</p>
+</div>
+</div>
+<section id="question-and-role" class="level2">
+<h2 class="anchored" data-anchor-id="question-and-role">1. Question and role</h2>
+<p>How does an average behave when stylized retention probabilities vary across ordered household or contextual positions? The purpose is mathematical: to compare equal-mean Bernoulli paths, not to explain real cultural transmission.</p>
+</section>
+<section id="model-and-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="model-and-assumptions">2. Model and assumptions</h2>
+<p>Each observation is Bernoulli and independent by simplifying assumption. The three paths all average 0.60:</p>
+<ul>
+<li>stable at 0.60;</li>
+<li>gradual increase from 0.45 to 0.75;</li>
+<li>gradual decrease from 0.75 to 0.45.</li>
+</ul>
+<p>Families and communities can influence one another, so independence is unrealistic. Education, migration, discrimination, policy, and family decisions are outside this model.</p>
+</section>
+<section id="exact-order-invariance" class="level2">
+<h2 class="anchored" data-anchor-id="exact-order-invariance">3. Exact order invariance</h2>
+<p>The increasing and decreasing paths contain the same probabilities in reverse order. Under independence, the distribution of their total is therefore exactly the same. Order can change the story attached to a sequence, but it cannot change this Poisson-binomial distribution.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_probability_paths</span>(paths, <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-heritage-paths" class="quarto-float quarto-figure quarto-figure-center anchored" alt="One horizontal path at 0.60, one increasing path, and one decreasing path with equal average height.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heritage-paths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="heritage-language_files/figure-html/fig-heritage-paths-1.png" class="img-fluid figure-img" alt="One horizontal path at 0.60, one increasing path, and one decreasing path with equal average height." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heritage-paths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The neutral gallery holds average probability at 0.60 while varying heterogeneity and direction. Increasing and decreasing paths are reversals, not competing cultural narratives.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="prediction-and-design" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-and-design">4. Prediction and design</h2>
+<p>I expected the increasing and decreasing paths to agree up to Monte Carlo noise. The changing paths should be slightly narrower than the stable path because spreading probabilities around the same mean lowers the sum of Bernoulli variances.</p>
+<p>Static results use seed 631, 10,000 repetitions, and sample sizes from 10 through 200. The browser tool later on is supplemental and uses 3,000 deterministic repetitions for responsiveness.</p>
+</section>
+<section id="numerical-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-evidence">5. Numerical evidence</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shown <span class="ot">&lt;-</span> page_results[page_results<span class="sc">$</span>n <span class="sc">==</span> <span class="dv">50</span>, <span class="fu">c</span>(<span class="st">"variant"</span>, <span class="st">"theoretical_mean"</span>, <span class="st">"theoretical_se"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_se"</span>, <span class="st">"skewness"</span>, <span class="st">"qq_rmse"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(shown) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Scenario"</span>, <span class="st">"Exact mean"</span>, <span class="st">"Exact SE"</span>, <span class="st">"Simulated mean"</span>, <span class="st">"Empirical SE"</span>, <span class="st">"Skewness"</span>, <span class="st">"Q-Q RMSE"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shown, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-heritage-diagnostics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-heritage-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: At n = 50, all three scenarios share center 0.60. Increasing and decreasing paths have the same exact SE, while the stable path is slightly wider.
+</figcaption>
+<div aria-describedby="tbl-heritage-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 18%">
+<col style="width: 15%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: right;">Exact mean</th>
+<th style="text-align: right;">Exact SE</th>
+<th style="text-align: right;">Simulated mean</th>
+<th style="text-align: right;">Empirical SE</th>
+<th style="text-align: right;">Skewness</th>
+<th style="text-align: right;">Q-Q RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Stable</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.0693</td>
+<td style="text-align: right;">0.6000</td>
+<td style="text-align: right;">0.0687</td>
+<td style="text-align: right;">-0.0690</td>
+<td style="text-align: right;">0.0841</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gradual increase</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.0681</td>
+<td style="text-align: right;">0.5999</td>
+<td style="text-align: right;">0.0679</td>
+<td style="text-align: right;">-0.0210</td>
+<td style="text-align: right;">0.0841</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gradual decrease</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.0681</td>
+<td style="text-align: right;">0.6002</td>
+<td style="text-align: right;">0.0681</td>
+<td style="text-align: right;">-0.0243</td>
+<td style="text-align: right;">0.0837</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="static-sampling-distribution-fallback" class="level2">
+<h2 class="anchored" data-anchor-id="static-sampling-distribution-fallback">6. Static sampling-distribution fallback</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_extension_sampling</span>(means, page_results, selected_n, <span class="fu">c</span>(<span class="st">"Stable"</span>, <span class="st">"Gradual increase"</span>, <span class="st">"Gradual decrease"</span>)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">14</span>, <span class="dv">18</span>, <span class="dv">34</span>, <span class="dv">28</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-heritage-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Nine histogram panels comparing three probability paths at three sample sizes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heritage-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="heritage-language_files/figure-html/fig-heritage-sampling-1.png" class="img-fluid figure-img" alt="Nine histogram panels comparing three probability paths at three sample sizes." width="1056">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heritage-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The static authoritative results use 10,000 simulations. By n = 50 all paths have a useful global bell shape, while the changing paths are slightly narrower than the stable path.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_extension_trajectory</span>(page_results, <span class="fu">c</span>(<span class="st">"Stable"</span>, <span class="st">"Gradual increase"</span>, <span class="st">"Gradual decrease"</span>), bands)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-heritage-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three diagnostic trajectories for stable, increasing, and decreasing probability paths.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heritage-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="heritage-language_files/figure-html/fig-heritage-trajectory-1.png" class="img-fluid figure-img" alt="Three diagnostic trajectories for stable, increasing, and decreasing probability paths." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heritage-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Shape diagnostics improve across all three paths. Q-Q RMSE stays comparatively strict because every average lies on a finite lattice.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-thought-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-thought-experiment">7. Interactive thought experiment</h2>
+<p>Use the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.</p>
+<div class="heritage-tool" data-seed="631" data-repetitions="3000">
+<div class="heritage-presets" role="group" aria-label="Probability path presets">
+<pre><code>&lt;button type="button" data-preset="stable"&gt;Stable&lt;/button&gt;
+&lt;button type="button" data-preset="increase"&gt;Gradual increase&lt;/button&gt;
+&lt;button type="button" data-preset="decrease"&gt;Gradual decrease&lt;/button&gt;</code></pre>
+</div>
+<div class="heritage-controls">
+<pre><code>&lt;label&gt;Start probability &lt;output data-output="start"&gt;0.45&lt;/output&gt;&lt;input data-control="start" type="range" min="0.10" max="0.90" step="0.05" value="0.45"&gt;&lt;/label&gt;
+&lt;label&gt;End probability &lt;output data-output="end"&gt;0.75&lt;/output&gt;&lt;input data-control="end" type="range" min="0.10" max="0.90" step="0.05" value="0.75"&gt;&lt;/label&gt;
+&lt;label&gt;Sample size &lt;output data-output="n"&gt;50&lt;/output&gt;&lt;input data-control="n" type="range" min="10" max="200" step="10" value="50"&gt;&lt;/label&gt;</code></pre>
+</div>
+<canvas width="900" height="430" role="img" aria-label="Interactive probability path and simulated distribution of the sample average">
+</canvas>
+<p class="heritage-summary" aria-live="polite">
+</p>
+</div>
+<noscript>
+The interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above.
+</noscript>
+<script src="../assets/heritage-interactive.js" defer=""></script>
+</section>
+<section id="decision-and-disagreement" class="level2">
+<h2 class="anchored" data-anchor-id="decision-and-disagreement">8. Decision and disagreement</h2>
+<p><strong>For this stylized whole-distribution comparison, <span class="math inline">\(n=50\)</span> is practically useful.</strong> The histograms are globally bell-shaped, skewness is modest, and the result remains stable at 75 and 100. Q-Q RMSE remains above the continuous calibration because of the Bernoulli lattice.</p>
+</section>
+<section id="limitation" class="level2">
+<h2 class="anchored" data-anchor-id="limitation">9. Limitation</h2>
+<p>The model cannot explain real retention, shift, identity, or community change. Its probabilities are chosen for a mathematical comparison, not measured. Dependence, social networks, varying definitions, and unequal contexts would all matter in a real study.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">10. Conclusion</h2>
+<p>Changing probabilities alter variance even when the average probability is held fixed. Reversing the same probability set does not alter the distribution under independence, which separates the mathematics of order from any real-world narrative.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined;
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              }
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            }
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Math 167R | Michael Hamaty</p>
+</div>
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Reproducible with R and Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

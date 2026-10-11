@@ -25,7 +25,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-26f4b3e6ab11363da727809d32884945.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -161,29 +161,56 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="./index.html" aria-current="page">
 <span class="menu-text">Synthesis</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./analyses/normal.html"> 
+    <a class="nav-link" href="./analyses/normal.html">
 <span class="menu-text">Normal</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./analyses/die.html"> 
+    <a class="nav-link" href="./analyses/die.html">
 <span class="menu-text">Die</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./analyses/exponential.html"> 
+    <a class="nav-link" href="./analyses/exponential.html">
 <span class="menu-text">Exponential</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./analyses/binomial.html"> 
+    <a class="nav-link" href="./analyses/binomial.html">
 <span class="menu-text">Small Binomial</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./analyses/cauchy.html"> 
+    <a class="nav-link" href="./analyses/cauchy.html">
 <span class="menu-text">Cauchy</span></a>
-  </li>  
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-extensions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Extensions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-extensions">
+        <li>
+    <a class="dropdown-item" href="./extensions/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="./extensions/dependent-failures.html">
+ <span class="dropdown-text">Dependent failures</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="./extensions/nonidentical-bernoulli.html">
+ <span class="dropdown-text">Non-identical Bernoulli</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="./extensions/age-mixture.html">
+ <span class="dropdown-text">Synthetic age mixture</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="./extensions/heritage-language.html">
+ <span class="dropdown-text">Creative case</span></a>
+  </li>
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -198,7 +225,7 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
+
   <ul>
   <li><a href="#one-theorem.-five-very-different-speeds." id="toc-one-theorem.-five-very-different-speeds." class="nav-link active" data-scroll-target="#one-theorem.-five-very-different-speeds.">One theorem. Five very different speeds.</a></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research question</a></li>
@@ -211,7 +238,7 @@ window.Quarto = {
   <li><a href="#what-each-diagnostic-contributed" id="toc-what-each-diagnostic-contributed" class="nav-link" data-scroll-target="#what-each-diagnostic-contributed">What each diagnostic contributed</a></li>
   <li><a href="#evidence-standard" id="toc-evidence-standard" class="nav-link" data-scroll-target="#evidence-standard">Evidence standard</a></li>
   <li><a href="#reproducibility-and-limits" id="toc-reproducibility-and-limits" class="nav-link" data-scroll-target="#reproducibility-and-limits">Reproducibility and limits</a></li>
-  <li><a href="#future-work-preview" id="toc-future-work-preview" class="nav-link" data-scroll-target="#future-work-preview">Future work preview</a></li>
+  <li><a href="#beyond-the-iid-foundation" id="toc-beyond-the-iid-foundation" class="nav-link" data-scroll-target="#beyond-the-iid-foundation">Beyond the iid foundation</a></li>
   </ul>
 </nav>
     </div>
@@ -238,11 +265,11 @@ window.Quarto = {
              <p>Michael Hamaty </p>
           </div>
   </div>
-    
-  
-    
+
+
+
   </div>
-  
+
 
 
 </header>
@@ -320,13 +347,13 @@ window.Quarto = {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">analysis_theme</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-synthesis-thresholds" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, and Exponential at 300.">
+<div id="fig-synthesis-thresholds" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, Exponential at 1000, and Cauchy marked as having no threshold.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-synthesis-thresholds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-synthesis-thresholds-1.png" class="img-fluid figure-img" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, and Exponential at 300." width="672">
+<img src="index_files/figure-html/fig-synthesis-thresholds-1.png" class="img-fluid figure-img" alt="A horizontal log-scale dot plot with Normal at 1, die at 30, small Binomial at 200, Exponential at 1000, and Cauchy marked as having no threshold." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-synthesis-thresholds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy is excluded because no ordinary-CLT threshold exists.
+Figure&nbsp;1: Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy has no ordinary-CLT threshold.
 </figcaption>
 </figure>
 </div>
@@ -490,9 +517,10 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
 <p>All final results use seed 631 and 10,000 repetitions per sample size. The borderline Exponential conclusion was repeated with seed 1631; that run rejected the first impression at 300 and motivated the conservative 1000 threshold. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.</p>
 <p>See the <a href="docs/methodology_decisions.md">methodology decisions</a> and <a href="docs/ai_interaction_log.md">curated AI interaction log</a> for the full decision trail.</p>
 </section>
-<section id="future-work-preview" class="level2">
-<h2 class="anchored" data-anchor-id="future-work-preview">Future work preview</h2>
-<p>The first run stops at the five required cases. Planned extensions will study dependent machine failures, independent but non-identical Bernoulli observations, and a stylized age-at-death mixture. A separate creative case may explore heritage-language retention under changing probabilities, with respectful non-empirical framing and a complete static fallback. No extension result is implemented here; the designs live in <a href="docs/future_extensions.md">future extensions</a>.</p>
+<section id="beyond-the-iid-foundation" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-the-iid-foundation">Beyond the iid foundation</h2>
+<p>The completed <a href="./extensions/index.html">Extensions section</a> tests assumptions rather than only parent shapes. It studies dependent machine failures, independent non-identical Bernoulli observations, a synthetic age-at-death mixture, and a respectful creative heritage-language thought experiment with a local interactive enhancement and full static fallback.</p>
+<p>The five required conclusions above remain unchanged. The extension pages use separate statistical contracts so dependent or non-identical observations are never passed through an iid formula merely for consistency.</p>
 
 
 </section>
@@ -509,7 +537,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -529,11 +557,11 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -615,7 +643,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -690,7 +718,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -718,7 +746,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -742,7 +770,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -782,7 +810,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");
@@ -908,7 +936,7 @@ Table&nbsp;1: Cross-population decisions from the completed simulation. Shape me
   <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Math 167R | Michael Hamaty</p>
-</div>   
+</div>
     <div class="nav-footer-center">
       &nbsp;
     </div>

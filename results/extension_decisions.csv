@@ -1,0 +1,5 @@
+"case_id","ordinary_iid_clt","generalized_or_iid_framework","smallest_defensible_n","conclusion","key_caveat"
+"dependent_failure",FALSE,"Dependent-process approximation",,"No calibration-band threshold through n = 2000","Marginal theory is simulation-referenced and dependence remains"
+"nonidentical_bernoulli",FALSE,"Bounded independent-array CLT",50,"Practical Normal shape by n = 50","Lattice-sensitive Q-Q RMSE stays above calibration"
+"age_mixture",TRUE,"Ordinary iid CLT",75,"Practical Normal shape by n = 75","Synthetic graph-inspired population, not historical data"
+"heritage_language",FALSE,"Bounded independent-array CLT",50,"Static gallery is practically Normal by n = 50","Creative independent model, not observed cultural data"

@@ -86,11 +86,22 @@ creative_summary <- do.call(rbind, creative_rows)
 
 extension_diagnostics <- bind_extension_rows(dependent$summary, bernoulli_changing, bernoulli_fixed, age_summary, creative_summary)
 
+extension_decisions <- data.frame(
+  case_id = c("dependent_failure", "nonidentical_bernoulli", "age_mixture", "heritage_language"),
+  ordinary_iid_clt = c(FALSE, FALSE, TRUE, FALSE),
+  generalized_or_iid_framework = c("Dependent-process approximation", "Bounded independent-array CLT", "Ordinary iid CLT", "Bounded independent-array CLT"),
+  smallest_defensible_n = c(NA_integer_, 50L, 75L, 50L),
+  conclusion = c("No calibration-band threshold through n = 2000", "Practical Normal shape by n = 50", "Practical Normal shape by n = 75", "Static gallery is practically Normal by n = 50"),
+  key_caveat = c("Marginal theory is simulation-referenced and dependence remains", "Lattice-sensitive Q-Q RMSE stays above calibration", "Synthetic graph-inspired population, not historical data", "Creative independent model, not observed cultural data"),
+  stringsAsFactors = FALSE
+)
+
 utils::write.csv(extension_diagnostics, "results/extension_diagnostics.csv", row.names = FALSE, na = "")
 utils::write.csv(reference_outputs$summary, "results/dependent_reference.csv", row.names = FALSE, na = "")
 utils::write.csv(reference_outputs$acf, "results/dependent_acf.csv", row.names = FALSE, na = "")
 utils::write.csv(dependent_sensitivity, "results/dependent_sensitivity.csv", row.names = FALSE, na = "")
 utils::write.csv(age_population$distribution, "results/age_distribution.csv", row.names = FALSE, na = "")
 utils::write.csv(scenarios, "results/creative_scenarios.csv", row.names = FALSE, na = "")
+utils::write.csv(extension_decisions, "results/extension_decisions.csv", row.names = FALSE, na = "")
 
 cat("Wrote extension summaries for", nrow(extension_diagnostics), "case, variant, and sample-size combinations.\n")

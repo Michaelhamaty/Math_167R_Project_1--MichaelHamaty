@@ -2,7 +2,10 @@ source("R/populations.R")
 source("R/diagnostics.R")
 source("R/simulation.R")
 
-required_pages <- file.path("_site", c("index.html", "analyses/normal.html", "analyses/die.html", "analyses/exponential.html", "analyses/binomial.html", "analyses/cauchy.html"))
+required_pages <- file.path("_site", c(
+  "index.html", "analyses/normal.html", "analyses/die.html", "analyses/exponential.html", "analyses/binomial.html", "analyses/cauchy.html",
+  "extensions/index.html", "extensions/dependent-failures.html", "extensions/nonidentical-bernoulli.html", "extensions/age-mixture.html", "extensions/heritage-language.html"
+))
 stopifnot(all(file.exists(required_pages)))
 
 diagnostics <- utils::read.csv("results/diagnostics.csv")
@@ -19,8 +22,11 @@ stopifnot(is.na(decisions$smallest_defensible_n[decisions$population == "cauchy"
 authored <- c(
   "AGENTS.md", "README.md", "index.qmd", "_quarto.yml",
   list.files("analyses", pattern = "\\.qmd$", full.names = TRUE),
+  list.files("extensions", pattern = "\\.qmd$", full.names = TRUE),
   list.files("R", pattern = "\\.R$", full.names = TRUE),
   list.files("scripts", pattern = "\\.(R|py)$", full.names = TRUE),
+  list.files("assets", pattern = "\\.js$", full.names = TRUE),
+  list.files("styles", pattern = "\\.scss$", full.names = TRUE),
   list.files("docs", pattern = "\\.md$", full.names = TRUE),
   list.files("references", pattern = "\\.md$", full.names = TRUE)
 )
@@ -37,7 +43,7 @@ for (path in r_files) {
   if (any(grepl("^\\s*# ", lines))) stop("Spaced R comment found in ", path)
 }
 
-qmd_files <- c("index.qmd", list.files("analyses", pattern = "\\.qmd$", full.names = TRUE))
+qmd_files <- c("index.qmd", list.files("analyses", pattern = "\\.qmd$", full.names = TRUE), list.files("extensions", pattern = "\\.qmd$", full.names = TRUE))
 for (path in qmd_files) {
   lines <- readLines(path, warn = FALSE)
   in_chunk <- FALSE
@@ -49,8 +55,9 @@ for (path in qmd_files) {
 }
 
 all_lines <- unlist(contents, use.names = FALSE)
-matches <- regmatches(all_lines, gregexpr("(?<![0-9])[0-9]{7,10}(?![0-9])", all_lines, perl = TRUE))
-possible_ids <- setdiff(unique(unlist(matches)), "10000")
+matches <- regmatches(all_lines, gregexpr("(?<![0-9.])[0-9]{7,10}(?![0-9.])", all_lines, perl = TRUE))
+audited_constants <- c("1000000", "1000003", "4294967296")
+possible_ids <- setdiff(unique(unlist(matches)), audited_constants)
 if (length(possible_ids)) stop("Investigate possible full identifier(s): ", paste(possible_ids, collapse = ", "))
 
 cat("Project validation passed.\n")

@@ -1,33 +1,33 @@
-# Future Extensions
+# Extension Status and Remaining Future Work
 
-The first submission intentionally stops at the five required populations. The items below are designs only. They contain no extension simulations, numerical results, or historical claims.
+The original submission remains frozen at five required populations. The four planned extensions are now implemented in a separate website section, with compact deterministic results and no historical-data claims. This file records what was delivered and the boundary for later work.
 
 ## Dependent machine failures
 
-This extension would use the instructor-provided conditional Exponential model to show how dependence breaks the simple independent-observation argument. The implementation should derive or simulate both conditional and marginal behavior, explain the shared source of dependence, and compare nominal sample size with an effective sample-size interpretation. A useful design would contrast independent failures with matched dependent failures while keeping marginal scales comparable.
+Implemented from the instructor-provided conditional Exponential model. The analysis contrasts dependent chains with iid resampling from the estimated marginal distribution, distinguishes conditional from marginal behavior, and reports effective sample size only as a descriptive finite-sample quantity.
 
-Before implementation, the conditional generator and theoretical covariance should be checked directly against `course_docs/dependent_failure_process.html`. The page should avoid reusing the finite-variance threshold rubric until the correct dependent-limit conditions are stated.
+The long-run marginal moments are labeled simulation references rather than exact theory. No ordinary iid CLT threshold is claimed.
 
 ## Non-identical Bernoulli observations
 
-This extension would adapt the changing-probability basketball structure from `course_docs/non_identical_basketball_shots.html`. Independent Bernoulli observations would have probabilities $p_i$ that change with trial order. The analysis must distinguish this sum from a fixed-parameter Binomial random variable and compare the theoretical center and variance, $\sum p_i$ and $\sum p_i(1-p_i)$, with simulation.
+Implemented with independent Bernoulli observations whose probabilities change linearly from 0.90 to 0.50. The total is identified as Poisson-binomial, and its exact center and variance are compared with simulation and with an iid Bernoulli 0.70 reference.
 
-A future page should make the probability path visible before showing the distribution of the average. It should state which triangular-array or bounded-variable limit condition is being used rather than invoking the identical-distribution CLT.
+The page shows the probability path first and evaluates the bounded-array variance condition instead of invoking an identical-distribution argument.
 
 ## Custom age-at-death mixture
 
-This extension would use the irregular two-component discrete population in `course_docs/custom_age_at_death_distribution_monte_carlo.html`. It must be labeled as a stylized distribution created for mathematical exploration, not as fitted historical mortality data. The analysis should separate multimodality in the parent from the behavior of its sample mean and should verify all mixture weights, support values, mean, and variance before simulation.
+Implemented using the instructor-defined two-component discrete population. The page labels it as synthetic and graph-inspired, separates parent multimodality from sample-mean behavior, and verifies the weights, support, mean, and standard deviation before simulation.
 
-Any later historical comparison would require a credible dataset, transparent measurement limits, and a clear separation between observed evidence and the stylized mixture.
+Any later historical comparison would require a credible dataset, transparent measurement limits, and a clear separation between observed evidence and this stylized mixture.
 
 ## Featured creative case: heritage-language retention
 
-The creative case would model independent Bernoulli observations for different households or communities under ordered contextual conditions, with retention probabilities that vary across observations. It must be presented as a simplified statistical thought experiment, not a sociological model or observed cultural dataset.
+Implemented as a neutral three-path gallery of independent Bernoulli outcomes for stylized households or contextual positions. The page states that the model is a mathematical thought experiment, not a sociological model or observed cultural dataset.
 
 The framing must not rank languages or communities, treat retention or shift as inherently better, or claim to explain assimilation, discrimination, education, migration, or policy. Independence must be identified as an unrealistic simplification because families and communities can influence one another. Cultural transmission should be described as complex and context-dependent.
 
-The reserved interactive graphic could let a reader vary a probability path and sample size, then observe the distribution of an average or total. The HTML must also include a complete static fallback showing several preselected paths, so the argument remains available without JavaScript interaction.
+The local interactive graphic lets a reader vary the probability path and sample size. A complete R-generated static gallery remains visible without JavaScript, and the browser simulation is clearly supplemental to the authoritative 10,000-run analysis.
 
-## Prerequisites
+## Remaining boundary
 
-Before any extension begins, retain the existing deterministic seed contract, add case-specific theory assertions, define diagnostics appropriate to the changed assumptions, and complete a separate editorial review of claims and labels. No real-data layer should be added until the stylized required and extra-credit cases are sound.
+No named community, historical comparison, causal claim, or empirical dataset belongs in this version. A future real-data layer would require source provenance, measurement and sampling analysis, privacy review where applicable, and subject-matter review of the cultural framing before implementation.

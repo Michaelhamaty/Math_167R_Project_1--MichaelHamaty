@@ -1,0 +1,104 @@
+---
+title: "Non-identical Bernoulli Observations"
+description: "Changing shot probabilities and a Poisson-binomial total"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+source("../R/extensions.R")
+source("../R/extension_plots.R")
+library(ggplot2)
+bands <- read.csv("../results/calibration_bands.csv")
+all_results <- read.csv("../results/extension_diagnostics.csv")
+page_results <- all_results[all_results$case_id == "nonidentical_bernoulli", ]
+n_values <- c(5, 10, 20, 30, 50, 75, 100, 200, 500)
+changing <- simulate_probability_case("nonidentical_bernoulli", "Non-identical Bernoulli", "changing 0.90 to 0.50", 0.90, 0.50, n_values, 10000L, 631L, keep_means = TRUE)
+fixed <- simulate_probability_case("nonidentical_bernoulli", "Non-identical Bernoulli", "fixed 0.70", 0.70, 0.70, n_values, 10000L, 631L, keep_means = TRUE)
+means <- rbind(changing$means, fixed$means)
+paths <- rbind(changing$paths, fixed$paths)
+selected_n <- c(10, 50, 200)
+```
+
+## 1. Question and role
+
+What happens when observations remain independent but their success probabilities change? The instructor basketball example models fatigue by moving from $p_1=0.90$ to $p_n=0.50$.
+
+## 2. Theory before simulation
+
+Each $X_i$ is Bernoulli, but the total is Poisson-binomial rather than ordinary Binomial. For the average,
+
+$$
+E(\bar X)=\frac{1}{n}\sum_i p_i=0.70,
+\qquad
+SE(\bar X)=\frac{\sqrt{\sum_i p_i(1-p_i)}}{n}.
+$$
+
+The introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance.
+
+## 3. Prediction
+
+I expected a useful Normal shape well before the highly skewed small-Binomial case. The changing path should be slightly narrower than fixed Bernoulli 0.70 because heterogeneity reduces $\sum p_i(1-p_i)$ when the average probability is held fixed.
+
+## 4. Probability path and design
+
+```{r}
+#| label: fig-bernoulli-path
+#| fig-cap: "Across 20 ordered shots, the changing model falls from 0.90 to 0.50 while the matched iid comparator stays at 0.70. Both have average probability 0.70."
+#| fig-alt: "One declining probability line and one horizontal line at 0.70 across 20 positions."
+plot_probability_paths(paths, 20)
+```
+
+Every evaluated $n$ uses an evenly spaced path with the same endpoints, 10,000 repeated games, and seed 631. The primary statistic is the average; multiplying it by $n$ gives the total number made.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-bernoulli-diagnostics
+#| tbl-cap: "The changing and fixed cases have the same center. The changing probabilities produce a slightly smaller exact and empirical SE."
+shown <- page_results[page_results$n %in% c(20, 50, 75, 100), c("variant", "n", "simulated_mean", "theoretical_se", "simulated_se", "skewness", "qq_rmse", "max_variance_share")]
+names(shown) <- c("Process", "n", "Mean", "Theoretical SE", "Empirical SE", "Skewness", "Q-Q RMSE", "Largest variance share")
+knitr::kable(shown, digits = 4, row.names = FALSE)
+```
+
+The largest variance share falls from about `r sprintf("%.3f", page_results$max_variance_share[page_results$variant == "changing 0.90 to 0.50" & page_results$n == 5])` at $n=5$ to `r sprintf("%.4f", page_results$max_variance_share[page_results$variant == "changing 0.90 to 0.50" & page_results$n == 500])` at $n=500$. That decreasing share is the key bounded-array evidence.
+
+## 6. Sampling distributions
+
+```{r}
+#| label: fig-bernoulli-sampling
+#| fig-cap: "Changing and fixed-probability averages share a center and become bell-shaped at similar rates. The changing case is slightly narrower, while both retain visible lattice spacing at small n."
+#| fig-alt: "Six histogram panels comparing changing and fixed Bernoulli averages at three sample sizes."
+plot_extension_sampling(means, page_results, selected_n, c("changing 0.90 to 0.50", "fixed 0.70"))
+```
+
+```{r}
+#| label: fig-bernoulli-qq
+#| fig-cap: "Q-Q plots straighten globally by n = 50, but repeated lattice values keep the numerical Q-Q discrepancy above the continuous Normal calibration."
+#| fig-alt: "Six Q-Q panels with step patterns that become finer as sample size increases."
+plot_extension_qq(means, selected_n, c("changing 0.90 to 0.50", "fixed 0.70"))
+```
+
+## 7. Diagnostic trajectory
+
+```{r}
+#| label: fig-bernoulli-trajectory
+#| fig-cap: "Skewness and kurtosis settle by the transition region while Q-Q RMSE declines more slowly because it detects the discrete lattice. The dashed lines are Normal-calibrated guidance."
+#| fig-alt: "Three log-scale trajectory panels comparing changing and fixed probability cases."
+plot_extension_trajectory(page_results, c("changing 0.90 to 0.50", "fixed 0.70"), bands)
+```
+
+## 8. Decision and disagreement
+
+**Decision: $n=50$ is a practical transition point.** Skewness is inside the guidance and remains small at 75 and 100, the center and SE match exact theory, and the global histogram is useful. Q-Q RMSE remains above the exact-Normal calibration because the average still lives on a lattice. That disagreement is retained rather than forcing a numerical pass.
+
+## 9. Limitation and surprise
+
+Independence is assumed, not observed. In a real game, confidence, defense, and earlier outcomes could create dependence. The useful surprise is that changing probabilities do not automatically make the approximation worse: with the same average probability, this path is slightly less variable than fixed Bernoulli 0.70.
+
+## 10. Conclusion
+
+Identical distribution is not required for every Normal approximation. Here bounded independent observations, a growing total variance, and a vanishing largest variance share support a generalized CLT, with a practical transition near 50 observations.

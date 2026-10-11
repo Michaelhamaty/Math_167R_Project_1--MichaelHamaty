@@ -1,0 +1,43 @@
+---
+title: "Extensions: When iid Assumptions Change"
+description: "Three extra-credit investigations and one creative application"
+---
+
+```{r}
+#| label: setup
+#| include: false
+decisions <- read.csv("../results/extension_decisions.csv")
+```
+
+## Why extend the project?
+
+The required analyses changed parent distributions while mostly preserving iid sampling. These extensions ask what happens when independence or identical distribution changes, and whether the same evidence language still makes sense.
+
+The original five-case conclusions remain frozen. The extensions use separate simulation contracts so an ordinary iid formula is never applied merely for visual consistency.
+
+## Four investigations
+
+- [Dependent machine failures](dependent-failures.qmd) use a conditional Exponential rate determined by the previous operating time.
+- [Non-identical Bernoulli observations](nonidentical-bernoulli.qmd) preserve independence while probabilities decline from 0.90 to 0.50.
+- [Synthetic age-at-death mixture](age-mixture.qmd) applies the ordinary iid CLT to a bounded two-component construction.
+- [Heritage-language creative case](heritage-language.qmd) compares neutral equal-mean probability paths and adds one accessible interactive thought experiment.
+
+## Results at a glance
+
+```{r}
+#| label: tbl-extension-synthesis
+#| tbl-cap: "Extension conclusions use the framework appropriate to each process. A missing n for dependent failures means no calibration-band threshold was reached through 2000."
+shown <- decisions[, c("case_id", "ordinary_iid_clt", "generalized_or_iid_framework", "smallest_defensible_n", "conclusion", "key_caveat")]
+shown$case_id <- c("Dependent failures", "Non-identical Bernoulli", "Synthetic age mixture", "Creative heritage-language case")
+shown$smallest_defensible_n[is.na(shown$smallest_defensible_n)] <- "None through 2000"
+names(shown) <- c("Case", "Ordinary iid CLT", "Framework", "Selected n", "Conclusion", "Key caveat")
+knitr::kable(shown, row.names = FALSE)
+```
+
+## Central lesson
+
+The phrase "the CLT works" is incomplete unless the theorem and process are named. The synthetic age mixture fits the ordinary iid framework. The changing Bernoulli and creative paths need a bounded independent-array argument. The machine-failure process is dependent and receives empirical, simulation-referenced comparisons rather than an invented iid SE.
+
+## Reproducibility
+
+All authoritative static results use seed 631 and 10,000 repetitions. The dependent case receives a seed-1631 and burn-in sensitivity check. Only compact summaries are committed. The creative browser tool is supplemental, deterministic, local, and paired with a complete static fallback.

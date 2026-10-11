@@ -3,9 +3,11 @@ project:
   output-dir: _site
   resources:
     - docs/*.md
+    - assets/**
   render:
     - index.qmd
     - analyses/*.qmd
+    - extensions/*.qmd
 
 website:
   title: "How Fast Does Normal Happen?"
@@ -23,6 +25,18 @@ website:
         text: Small Binomial
       - href: analyses/cauchy.qmd
         text: Cauchy
+      - text: Extensions
+        menu:
+          - href: extensions/index.qmd
+            text: Overview
+          - href: extensions/dependent-failures.qmd
+            text: Dependent failures
+          - href: extensions/nonidentical-bernoulli.qmd
+            text: Non-identical Bernoulli
+          - href: extensions/age-mixture.qmd
+            text: Synthetic age mixture
+          - href: extensions/heritage-language.qmd
+            text: Creative case
   page-footer:
     left: "Math 167R | Michael Hamaty"
     right: "Reproducible with R and Quarto"

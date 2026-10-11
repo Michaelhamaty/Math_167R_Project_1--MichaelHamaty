@@ -1,0 +1,124 @@
+---
+title: "Creative Case: Heritage-Language Retention"
+description: "A respectful stylized simulation with changing probabilities"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+source("../R/extensions.R")
+source("../R/extension_plots.R")
+library(ggplot2)
+bands <- read.csv("../results/calibration_bands.csv")
+all_results <- read.csv("../results/extension_diagnostics.csv")
+page_results <- all_results[all_results$case_id == "heritage_language", ]
+n_values <- c(10, 20, 30, 50, 75, 100, 150, 200)
+scenarios <- make_creative_scenarios()
+simulations <- lapply(seq_len(nrow(scenarios)), function(index) {
+  scenario <- scenarios[index, ]
+  simulate_probability_case("heritage_language", "Stylized Heritage-Language Retention", scenario$variant, scenario$start_probability, scenario$end_probability, n_values, 10000L, 631L, keep_means = TRUE)
+})
+means <- do.call(rbind, lapply(simulations, `[[`, "means"))
+paths <- do.call(rbind, lapply(simulations, `[[`, "paths"))
+selected_n <- c(10, 50, 200)
+```
+
+::: {.callout-important title="Creative simplified simulation"}
+This page is not observed cultural data and is not a validated sociological model. It does not describe or rank any named language or community. Retention and shift are not treated as inherently better or worse.
+:::
+
+## 1. Question and role
+
+How does an average behave when stylized retention probabilities vary across ordered household or contextual positions? The purpose is mathematical: to compare equal-mean Bernoulli paths, not to explain real cultural transmission.
+
+## 2. Model and assumptions
+
+Each observation is Bernoulli and independent by simplifying assumption. The three paths all average 0.60:
+
+- stable at 0.60;
+- gradual increase from 0.45 to 0.75;
+- gradual decrease from 0.75 to 0.45.
+
+Families and communities can influence one another, so independence is unrealistic. Education, migration, discrimination, policy, and family decisions are outside this model.
+
+## 3. Exact order invariance
+
+The increasing and decreasing paths contain the same probabilities in reverse order. Under independence, the distribution of their total is therefore exactly the same. Order can change the story attached to a sequence, but it cannot change this Poisson-binomial distribution.
+
+```{r}
+#| label: fig-heritage-paths
+#| fig-cap: "The neutral gallery holds average probability at 0.60 while varying heterogeneity and direction. Increasing and decreasing paths are reversals, not competing cultural narratives."
+#| fig-alt: "One horizontal path at 0.60, one increasing path, and one decreasing path with equal average height."
+plot_probability_paths(paths, 50)
+```
+
+## 4. Prediction and design
+
+I expected the increasing and decreasing paths to agree up to Monte Carlo noise. The changing paths should be slightly narrower than the stable path because spreading probabilities around the same mean lowers the sum of Bernoulli variances.
+
+Static results use seed 631, 10,000 repetitions, and sample sizes from 10 through 200. The browser tool later on is supplemental and uses 3,000 deterministic repetitions for responsiveness.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-heritage-diagnostics
+#| tbl-cap: "At n = 50, all three scenarios share center 0.60. Increasing and decreasing paths have the same exact SE, while the stable path is slightly wider."
+shown <- page_results[page_results$n == 50, c("variant", "theoretical_mean", "theoretical_se", "simulated_mean", "simulated_se", "skewness", "qq_rmse")]
+names(shown) <- c("Scenario", "Exact mean", "Exact SE", "Simulated mean", "Empirical SE", "Skewness", "Q-Q RMSE")
+knitr::kable(shown, digits = 4, row.names = FALSE)
+```
+
+## 6. Static sampling-distribution fallback
+
+```{r}
+#| label: fig-heritage-sampling
+#| fig-width: 11
+#| fig-height: 7.5
+#| fig-cap: "The static authoritative results use 10,000 simulations. By n = 50 all paths have a useful global bell shape, while the changing paths are slightly narrower than the stable path."
+#| fig-alt: "Nine histogram panels comparing three probability paths at three sample sizes."
+plot_extension_sampling(means, page_results, selected_n, c("Stable", "Gradual increase", "Gradual decrease")) +
+  theme(plot.margin = margin(14, 18, 34, 28))
+```
+
+```{r}
+#| label: fig-heritage-trajectory
+#| fig-cap: "Shape diagnostics improve across all three paths. Q-Q RMSE stays comparatively strict because every average lies on a finite lattice."
+#| fig-alt: "Three diagnostic trajectories for stable, increasing, and decreasing probability paths."
+plot_extension_trajectory(page_results, c("Stable", "Gradual increase", "Gradual decrease"), bands)
+```
+
+## 7. Interactive thought experiment
+
+Use the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.
+
+<div class="heritage-tool" data-seed="631" data-repetitions="3000">
+  <div class="heritage-presets" role="group" aria-label="Probability path presets">
+    <button type="button" data-preset="stable">Stable</button>
+    <button type="button" data-preset="increase">Gradual increase</button>
+    <button type="button" data-preset="decrease">Gradual decrease</button>
+  </div>
+  <div class="heritage-controls">
+    <label>Start probability <output data-output="start">0.45</output><input data-control="start" type="range" min="0.10" max="0.90" step="0.05" value="0.45"></label>
+    <label>End probability <output data-output="end">0.75</output><input data-control="end" type="range" min="0.10" max="0.90" step="0.05" value="0.75"></label>
+    <label>Sample size <output data-output="n">50</output><input data-control="n" type="range" min="10" max="200" step="10" value="50"></label>
+  </div>
+  <canvas width="900" height="430" role="img" aria-label="Interactive probability path and simulated distribution of the sample average"></canvas>
+  <p class="heritage-summary" aria-live="polite"></p>
+</div>
+<noscript>The interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above.</noscript>
+<script src="../assets/heritage-interactive.js" defer></script>
+
+## 8. Decision and disagreement
+
+**For this stylized whole-distribution comparison, $n=50$ is practically useful.** The histograms are globally bell-shaped, skewness is modest, and the result remains stable at 75 and 100. Q-Q RMSE remains above the continuous calibration because of the Bernoulli lattice.
+
+## 9. Limitation
+
+The model cannot explain real retention, shift, identity, or community change. Its probabilities are chosen for a mathematical comparison, not measured. Dependence, social networks, varying definitions, and unequal contexts would all matter in a real study.
+
+## 10. Conclusion
+
+Changing probabilities alter variance even when the average probability is held fixed. Reversing the same probability set does not alter the distribution under independence, which separates the mathematics of order from any real-world narrative.

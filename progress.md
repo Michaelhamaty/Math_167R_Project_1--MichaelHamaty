@@ -82,9 +82,9 @@
 ## Session: 2026-10-11 extensions
 
 ### Current status
-- **Phase:** 10 - Dependent machine failures
+- **Phase:** 15 - Extension verification and handoff
 - **Started:** 2026-10-11
-- **Next action:** Build the dependent machine-failure page from the verified extension summaries.
+- **Next action:** Run the clean deterministic build and render suite, then request the context-free extension review.
 
 ### Actions taken
 - Re-read the repository guidance, source hierarchy, planning files, future-extension notes, and all three instructor-provided extension documents.
@@ -94,9 +94,21 @@
 - Ran the first 72-row extension build and used its diagnostics to extend the dependent grid beyond `n = 500`.
 - Completed an 80-row compact extension build after adaptively extending the dependent grid through `n = 2000`.
 - Verified deterministic interfaces, exact age and Bernoulli theory, creative path reversal, positive dependent rates, and the seed-1631 burn-in sensitivity contract.
+- Rendered all eleven pages successfully and inspected the eighteen new static figures; one creative-axis spacing defect is being corrected before interaction QA.
+- Completed all four extension narratives, exact-theory tables, case-specific figures, decisions, limitations, and conclusions.
+- Corrected the creative nine-panel figure and verified its final spacing visually.
+- Added deterministic Node checks for the browser simulation core and rendered accessibility structure after local-file browser automation was blocked by policy.
+- Completed the Extensions hub, navigation, landing callout, accessible interaction, static fallback, methodology record, code-source record, and future-work boundary.
+- Rebuilt both result families twice and confirmed byte-identical SHA-256 hashes for all twelve compact output files.
+- Completed a clean eleven-page Quarto render, then passed project, extension, interaction, link, and whitespace validation.
 
 ### Errors
 | Error | Attempt | Resolution |
 |-------|---------|------------|
 | Base `rbind()` rejected extension summaries with case-specific columns | 1 | Use an explicit union-column binder and retain unavailable fields as `NA`. |
 | Creative path reversal used strict byte identity and the validator expected 93 rather than 72 rows | 1 | Use `all.equal()` for floating sequences and correct the explicit row-count contract. |
+| Expanded render treated creative scenario labels as literal ggplot colors | 1 | Remove the incorrect positional argument and use the shared named palette. |
+| Full-identifier scan treated a simulation length and fractional age-moment digits as possible identifiers | 1 | Refine decimal boundaries, allow audited constants, and extend validation to JS and SCSS. |
+| In-app browser automation rejected the rendered `file://` URL | 1 | Respect the URL policy and substitute deterministic Node assertions plus rendered-HTML accessibility checks. |
+| The Phase 15 verification command addressed `plan-doctor.py`, which is not part of the pinned skill | 1 | Use the documented `scripts/plan-doctor.sh` entry point. |
+| The first Phase 15 hash list used the wrong calibration result filename | 1 | Replace `calibration.csv` with `calibration_bands.csv`; the build and validation stages had already passed. |

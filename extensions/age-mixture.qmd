@@ -1,0 +1,109 @@
+---
+title: "Synthetic Age-at-Death Mixture"
+description: "A bounded two-component distribution created for mathematical exploration"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+source("../R/extensions.R")
+source("../R/extension_plots.R")
+library(ggplot2)
+bands <- read.csv("../results/calibration_bands.csv")
+population <- make_age_population()
+all_results <- read.csv("../results/extension_diagnostics.csv")
+page_results <- all_results[all_results$case_id == "age_mixture", ]
+simulation <- simulate_population(population, B = 10000L, seed = 631L, keep_means = TRUE)
+selected_n <- c(5, 75, 200)
+```
+
+::: {.callout-warning title="Synthetic distribution"}
+This graph-inspired population is not fitted historical mortality data. It is used only to study how averaging acts on a bounded, irregular, two-component distribution.
+:::
+
+## 1. Question and role
+
+How quickly does an average become approximately Normal when the parent distribution has a sharp early component, a broad later component, and a deep valley between them?
+
+## 2. Population construction
+
+For integer support from 0 through 100, the instructor construction uses
+
+$$
+w_E(x)=0.045e^{-x/5}, \qquad
+w_A(x)=0.030\exp\left[-\frac12\left(\frac{x-65}{10}\right)^2\right],
+$$
+
+then normalizes $w_E(x)+w_A(x)$ to sum to one.
+
+```{r}
+#| label: fig-age-components
+#| fig-cap: "The synthetic population combines a rapidly decreasing early component with a broad component centered near 65. The normalized curve is a mathematical construction, not an empirical life table."
+#| fig-alt: "Three curves showing an early spike, a later bell-shaped component, and their normalized combination."
+plot_age_components(population$distribution)
+```
+
+## 3. Theory and prediction
+
+Exact weighted sums give mean `r sprintf("%.2f", population$mean)` and SD `r sprintf("%.2f", sqrt(population$variance))`. The observations are iid, bounded, and finite-variance, so the ordinary CLT applies. I expected the bimodal parent to leave visible asymmetry at small $n$, then converge faster than the unbounded Exponential case.
+
+## 4. Simulation design
+
+The grid runs from $n=1$ through 300 with extra attention near 75. Every point uses 10,000 repeated samples and seed 631. The same calibrated evidence categories used for the required populations are retained.
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-age-diagnostics
+#| tbl-cap: "The synthetic mixture reaches small skewness near n = 75. Q-Q RMSE sits near the strict Normal-noise band and fluctuates slightly afterward."
+shown <- page_results[page_results$n %in% c(30, 50, 75, 100, 150, 200), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
+names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
+knitr::kable(shown, digits = 4, row.names = FALSE)
+```
+
+## 6. Sampling-distribution evidence
+
+```{r}
+#| label: fig-age-sampling
+#| fig-cap: "At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays."
+#| fig-alt: "Three histograms progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes."
+plot_sampling_distributions(simulation$means, population, selected_n)
+```
+
+```{r}
+#| label: fig-age-qq
+#| fig-cap: "Q-Q curvature is material at n = 5 and small by n = 75. The remaining endpoint movement is minor compared with the parent population's irregular shape."
+#| fig-alt: "Three Q-Q panels that straighten substantially as sample size rises."
+plot_qq_comparison(simulation$means, population, selected_n)
+```
+
+## 7. Diagnostic trajectory and SE
+
+```{r}
+#| label: fig-age-trajectory
+#| fig-cap: "Shape diagnostics fall rapidly through n = 75. Small later reversals in Q-Q RMSE are finite-simulation variation, not evidence that convergence reverses."
+#| fig-alt: "Three log-scale trajectory panels with declining shape diagnostics."
+plot_diagnostic_trajectory(simulation$summary, population, bands)
+```
+
+```{r}
+#| label: fig-age-se
+#| fig-cap: "Empirical and theoretical standard errors nearly overlap across the grid, confirming the exact weighted variance calculation."
+#| fig-alt: "Two nearly overlapping standard-error curves decreasing with sample size."
+plot_se_comparison(simulation$summary, population)
+```
+
+## 8. Decision and disagreement
+
+**Decision: $n=75$ is the smallest defensible tested value.** Skewness is about `r sprintf("%.3f", page_results$skewness[page_results$n == 75])`, the histogram and Q-Q plot are convincing, and the conclusion remains visually stable at 100 and 150. Q-Q RMSE moves just above the calibration band at some larger points; that small fluctuation is retained as Monte Carlo disagreement rather than interpreted as reversed convergence.
+
+## 9. Limitation and surprise
+
+The numerical result belongs only to this constructed probability vector. It says nothing about any population, place, or historical period. The surprise is how completely averaging can conceal a parent with two visibly separate components.
+
+## 10. Conclusion
+
+A bounded but highly irregular parent can yield a useful Normal approximation by about 75 observations. Parent multimodality alone does not prevent the ordinary CLT.

@@ -21,8 +21,8 @@ class ReferenceParser(HTMLParser):
 site = Path("_site").resolve()
 errors = []
 html_files = sorted(site.rglob("*.html"))
-if len(html_files) != 6:
-    errors.append(f"Expected 6 HTML pages, found {len(html_files)}")
+if len(html_files) != 11:
+    errors.append(f"Expected 11 HTML pages, found {len(html_files)}")
 
 for html_file in html_files:
     parser = ReferenceParser()

@@ -7,6 +7,10 @@
 | [R stats distribution documentation](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html) | `R/populations.R`, `R/diagnostics.R` | Standard random generators, density functions, and theoretical quantiles are used with explicit parameters. |
 | [ggplot2 4.0.3 reference](https://ggplot2.tidyverse.org/reference/) | `R/plots.R`, `index.qmd` | Layers, facets, scales, and themes are assembled into a consistent static design. |
 | [Quarto website documentation](https://quarto.org/docs/websites/) | `_quarto.yml`, QMD pages | The navigation, output directory, code folding, and static resource rules follow the documented website format. |
+| `course_docs/dependent_failure_process.html` | `R/extensions.R`, `extensions/dependent-failures.qmd` | The instructor's conditional Exponential rate is implemented exactly; marginal moments are estimated from a deterministic long chain. |
+| `course_docs/non_identical_basketball_shots.html` | `R/extensions.R`, `extensions/nonidentical-bernoulli.qmd` | The changing Bernoulli-probability example is generalized across the evaluated sample-size grid and analyzed as Poisson-binomial. |
+| `course_docs/custom_age_at_death_distribution_monte_carlo.html` | `R/extensions.R`, `extensions/age-mixture.qmd` | The instructor's two component weights and support are normalized into a synthetic discrete population. |
+| [MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and [MDN input event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event) | `assets/heritage-interactive.js` | A local deterministic canvas display responds to labeled native controls without a network or package dependency. |
 
 ## Planning and recovery tooling
 

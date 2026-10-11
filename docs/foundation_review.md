@@ -2,7 +2,7 @@
 
 ## First-run foundation
 
-The completed site has one deterministic simulation interface, five explicit population definitions, a shared graphical system, compact committed results, and assertions for the theoretical values that anchor every case. The separation between exact theory, numerical guidance, and visual judgment is strong enough to support the first submission without implementing any extra-credit work.
+The completed site keeps the original deterministic iid simulation interface and five required populations as a frozen regression baseline. The extension layer adds a separate process-aware interface for dependent and non-identical observations, compact committed results, a shared graphical system, and assertions for the exact or simulation-reference quantities that anchor each case. This separation prevents the extension analyses from silently inheriting iid assumptions.
 
 ## Valid fixes from visual and editorial review
 
@@ -22,10 +22,13 @@ The completed site has one deterministic simulation interface, five explicit pop
 - Shapiro-Wilk W is computed for audit but adds little interpretive value. A future simplification could remove it from the result-generation code after preserving the documented rejection.
 - Automated checks verify source rules, results, and links, but not pixel-level layout. Visual inspection remains part of the release process.
 - The pinned Quarto archive lives in ignored `.tools/`, so a fresh clone requires a compatible Quarto installation even though the rendered site is committed.
+- The dependent-process marginal mean and variance are simulation references from a long deterministic chain, not exact theoretical moments. A substantially different process would need its own convergence study.
+- Browser automation could not open the local `file://` site under the managed browser policy. The interactive calculation and rendered accessibility structure were tested with Node, while the complete static gallery was inspected directly.
+- Discrete Bernoulli averages retain visible lattice effects in tail-sensitive Q-Q diagnostics after their central shape is practically useful. That disagreement is a limitation of the approximation, not a failed computation.
 
 ## Sensitivity and future prerequisites
 
-Before extra-credit work begins, expand the theory assertions for dependence and non-identical observations, define case-specific diagnostics before simulation, and keep the required five-case results frozen as a regression baseline. The creative heritage-language case needs a separate respectful-framing review and must retain a static fallback. Any empirical layer needs documented provenance, measurement limitations, and a strict separation from stylized assumptions.
+The extension phase now includes theory assertions for dependence and non-identical observations, framework-specific diagnostics, a respectful-framing review, and a static fallback for the creative interaction. Any future empirical layer still needs documented provenance, measurement limitations, subject-matter review, and a strict separation from the stylized assumptions used here.
 
 ## Simplification opportunities
 

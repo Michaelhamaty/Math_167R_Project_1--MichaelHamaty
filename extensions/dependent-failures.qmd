@@ -1,0 +1,141 @@
+---
+title: "Dependent Machine Failures"
+description: "Conditional Exponential times with compensating dependence"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../R/diagnostics.R")
+source("../R/simulation.R")
+source("../R/plots.R")
+source("../R/extensions.R")
+source("../R/extension_plots.R")
+library(ggplot2)
+bands <- read.csv("../results/calibration_bands.csv")
+all_results <- read.csv("../results/extension_diagnostics.csv")
+page_results <- all_results[all_results$case_id == "dependent_failure", ]
+reference <- simulate_dependent_reference(retained = 1000000L, burn_in = 10000L, seed = 631L)
+reference_outputs <- dependent_reference_summary(reference)
+selected_n <- c(30, 500, 2000)
+simulation <- simulate_dependent_case(reference$values, selected_n, B = 10000L, seed = 631L, burn_in = 500L, keep_means = TRUE)
+sensitivity <- read.csv("../results/dependent_sensitivity.csv")
+```
+
+## 1. Question and role
+
+What changes when each operating time affects the next failure rate? This process removes independence while retaining a simple conditional Exponential model. It tests an assumption of the ordinary CLT rather than merely changing the parent shape.
+
+## 2. Conditional model
+
+The instructor model is
+
+$$
+\lambda_t=\exp\{1.25(X_{t-1}-1)\}, \qquad
+X_t\mid X_{t-1}\sim \operatorname{Exponential}(\lambda_t).
+$$
+
+A long previous operating time raises the next rate and shortens the conditional expected time. A short previous time does the reverse.
+
+```{r}
+#| label: fig-dependent-rate
+#| fig-cap: "The conditional expected next operating time falls as the previous operating time rises. The dashed reference marks the baseline value 1, making the compensating mechanism visible."
+#| fig-alt: "A decreasing curve of expected next operating time against previous operating time, with a vertical reference at one."
+plot_dependent_rate_curve()
+```
+
+## 3. Prediction before simulation
+
+I expected alternating negative dependence: unusually long times should tend to be followed by shorter ones. That dependence may reduce the variance of an average, but it does not guarantee a rapidly Normal shape because the conditional Exponential draws remain right-skewed.
+
+## 4. Experimental design
+
+The marginal distribution has no closed form supplied by the course document. I therefore use a one-million-value reference chain after 10,000 burn-in steps to estimate its center and spread. Separately, 10,000 independent chains receive 500 burn-in steps before averages are retained through $n=2000$.
+
+The matched comparator resamples independently from the same estimated marginal distribution. This removes serial dependence while keeping marginal scale approximately fixed.
+
+```{r}
+#| label: fig-dependent-chain
+#| fig-cap: "A short reference-chain segment alternates between longer and shorter operating times. The order matters: these observations are neither independent nor identically distributed conditional on the past."
+#| fig-alt: "A jagged time-series segment with alternating high and low operating times."
+plot_dependent_chain(reference_outputs$segment)
+```
+
+```{r}
+#| label: fig-dependent-acf
+#| fig-cap: "The autocorrelation alternates in sign, beginning near -0.365 at lag 1. This compensating dependence explains why averaging can be more precise than matched independent resampling."
+#| fig-alt: "Autocorrelation stems alternating below and above zero with shrinking magnitude."
+plot_dependent_acf(reference_outputs$acf)
+```
+
+## 5. Numerical evidence
+
+```{r}
+#| label: tbl-dependent-reference
+#| tbl-cap: "The marginal center and spread are long-chain simulation references, not exact population moments."
+reference_table <- data.frame(
+  Quantity = c("Retained values", "Reference mean", "Reference SD", "Lag-1 autocorrelation"),
+  Value = c(
+    format(reference_outputs$summary$retained, big.mark = ","),
+    sprintf("%.4f", reference_outputs$summary$mean),
+    sprintf("%.4f", reference_outputs$summary$sd),
+    sprintf("%.4f", reference_outputs$summary$lag1_autocorrelation)
+  )
+)
+knitr::kable(reference_table, row.names = FALSE)
+```
+
+```{r}
+#| label: tbl-dependent-diagnostics
+#| tbl-cap: "Dependent and matched-marginal iid averages share a center but differ in precision and shape. Effective n is descriptive and uses the simulated marginal variance."
+shown <- page_results[page_results$n %in% selected_n, c("variant", "n", "simulated_mean", "simulated_se", "skewness", "excess_kurtosis", "qq_rmse", "effective_n")]
+names(shown) <- c("Process", "n", "Mean", "Empirical SE", "Skewness", "Excess kurtosis", "Q-Q RMSE", "Effective n")
+knitr::kable(shown, digits = 4, row.names = FALSE)
+```
+
+## 6. Distribution and Q-Q evidence
+
+```{r}
+#| label: fig-dependent-sampling
+#| fig-cap: "The dependent averages are narrower than matched iid averages, yet their right-tail departure persists. Dark curves are moment-matched Normal references, not ordinary-CLT claims."
+#| fig-alt: "Six histogram panels comparing dependent and matched independent averages at three sample sizes."
+plot_extension_sampling(simulation$means, simulation$summary, selected_n, c("dependent", "matched marginal iid"))
+```
+
+```{r}
+#| label: fig-dependent-qq
+#| fig-cap: "Q-Q curvature declines with sample size but remains visible for the dependent process at n = 2000. The iid comparator approaches the line faster."
+#| fig-alt: "Six Q-Q panels showing stronger right-tail curvature for dependent averages than matched independent averages."
+plot_extension_qq(simulation$means, selected_n, c("dependent", "matched marginal iid"))
+```
+
+## 7. Effective sample size and sensitivity
+
+```{r}
+#| label: fig-dependent-effective-n
+#| fig-cap: "Effective sample size lies above the nominal line because alternating negative dependence reduces the variance of the average. This precision gain does not remove right-tail skewness."
+#| fig-alt: "A log-scale effective-sample-size curve above a dashed equality line."
+plot_effective_sample_size(page_results)
+```
+
+```{r}
+#| label: tbl-dependent-sensitivity
+#| tbl-cap: "Seed 1631 gives similar results at the endpoint under 250, 500, and 1000 burn-in steps. Remaining variation is Monte Carlo noise rather than a burn-in trend."
+shown_sensitivity <- sensitivity[sensitivity$n == 2000, c("burn_in", "simulated_mean", "simulated_se", "skewness", "qq_rmse", "effective_n")]
+names(shown_sensitivity) <- c("Burn-in", "Mean", "Empirical SE", "Skewness", "Q-Q RMSE", "Effective n")
+knitr::kable(shown_sensitivity, digits = 4, row.names = FALSE)
+```
+
+## 8. Decision and disagreement
+
+**No calibration-band threshold appears through $n=2000$.** Shape improves steadily, and the histogram becomes visually close to Normal, but skewness is still about `r sprintf("%.3f", page_results$skewness[page_results$variant == "dependent" & page_results$n == 2000])` and Q-Q RMSE is about `r sprintf("%.3f", page_results$qq_rmse[page_results$variant == "dependent" & page_results$n == 2000])`. Both remain outside the Normal-noise guidance.
+
+The precision result points in the opposite direction: effective sample size is about `r sprintf("%.0f", page_results$effective_n[page_results$variant == "dependent" & page_results$n == 2000])` for nominal $n=2000$. Dependence improves precision here while delaying a conservative shape conclusion.
+
+## 9. Limitation
+
+This is one stylized Markov process, not a reliability model for a real machine. The marginal references are simulation estimates, and no general dependent-process theorem is proved here. A Normal-looking histogram would not restore the ordinary iid CLT assumptions.
+
+## 10. Conclusion
+
+Dependence changes more than standard error. In this compensating process it narrows averages, creates effective sample sizes above nominal $n$, and still leaves detectable right-tail shape after 2,000 observations.

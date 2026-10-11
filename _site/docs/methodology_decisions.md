@@ -32,3 +32,13 @@ The standard Cauchy mean and variance are undefined, so theoretical standard err
 ## Borderline sensitivity case
 
 Exponential is the genuinely most borderline finite-variance result. Although seed 631 produced skewness 0.096 at $n=300$, the exact sampling skewness is $2/\sqrt{300}=0.115$, above the practical band. Seed 1631 produced skewness 0.188 at 300 and 0.112 at 500. The second run therefore covers $n=300$, 500, 750, 1000, and 1500. Both seeds support $n=1000$ as a conservative threshold, while the remaining Q-Q fluctuation at 1500 is retained as Monte Carlo disagreement.
+
+## Extension frameworks
+
+The extension analyses do not share one theorem label.
+
+- Dependent machine failures use a simulation-estimated marginal reference and a matched-marginal iid comparator. The ordinary iid SE and ordinary iid CLT are unavailable. Effective sample size is descriptive: estimated marginal variance divided by empirical sample-mean variance.
+- Non-identical Bernoulli and creative paths use exact sums of Bernoulli means and variances. Their largest individual variance share must shrink with $n$. A bounded independent-array approximation, not an ordinary iid claim, supports the Normal comparison.
+- The synthetic age mixture is iid, bounded, and finite-variance, so the original evidence standard applies directly.
+
+The practical extension decisions are $n=50$ for the non-identical Bernoulli comparison, $n=75$ for the synthetic age mixture, and $n=50$ for the static creative gallery. Dependent failures have no calibration-band threshold through $n=2000$. Discrete Q-Q disagreement remains visible in both Bernoulli-based cases.

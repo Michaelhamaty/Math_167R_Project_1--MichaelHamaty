@@ -46,6 +46,13 @@ stopifnot(all(diagnostics$B == 10000L), all(diagnostics$seed == 631L))
 stopifnot(identical(sort(unique(diagnostics$case_id)), sort(c("dependent_failure", "nonidentical_bernoulli", "age_mixture", "heritage_language"))))
 stopifnot(all(is.na(diagnostics$theoretical_se[diagnostics$case_id == "dependent_failure"])))
 stopifnot(all(diagnostics$framework[diagnostics$case_id == "nonidentical_bernoulli"] == "independent non-identical Bernoulli"))
+stopifnot(all(!diagnostics$ordinary_clt_eligible[diagnostics$case_id %in% c("dependent_failure", "nonidentical_bernoulli", "heritage_language") & diagnostics$variant != "matched marginal iid"]))
+
+decisions <- utils::read.csv("results/extension_decisions.csv")
+expected_n <- c(nonidentical_bernoulli = 50L, age_mixture = 75L, heritage_language = 50L)
+observed_n <- stats::setNames(decisions$smallest_defensible_n[decisions$case_id != "dependent_failure"], decisions$case_id[decisions$case_id != "dependent_failure"])
+stopifnot(identical(observed_n[names(expected_n)], expected_n))
+stopifnot(is.na(decisions$smallest_defensible_n[decisions$case_id == "dependent_failure"]))
 
 sensitivity <- utils::read.csv("results/dependent_sensitivity.csv")
 stopifnot(all(sensitivity$seed == 1631L), identical(sort(unique(sensitivity$burn_in)), c(250L, 500L, 1000L)))
