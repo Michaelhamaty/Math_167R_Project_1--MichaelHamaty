@@ -109,8 +109,8 @@ Phase 14
 - [x] Run deterministic builds, clean rendering, source checks, and link checks
 - [x] Inspect all extension pages at desktop and narrow widths
 - [x] Complete a fresh-agent review and valid revisions
-- [ ] Reconcile planning files, commits, and remote state
-- **Status:** in_progress
+- [x] Reconcile planning files, commits, and remote state
+- **Status:** complete
 
 ## Decisions Made
 | Decision | Rationale |
