@@ -6,6 +6,8 @@
 - Final simulations use seed 631 and `B = 10000`; the sensitivity run uses seed 1631.
 - The primary artifact is a static Quarto website with `_site/index.html` as its entry point.
 - Authored prose has no em dash characters and authored R comments have no space after `#`.
+- The approved extension phase adds dependent failures, non-identical Bernoulli observations, the synthetic age-at-death mixture, and a neutral heritage-language thought experiment while freezing the verified required results.
+- Static extension results retain seed 631 and `B = 10000`; the dependent sensitivity uses seed 1631 and several burn-ins.
 
 ## Environment and repository findings
 
@@ -48,6 +50,9 @@
 | Commit compact summaries, not raw sample means | Raw means are deterministic render intermediates and would add large generated files. |
 | Calibrate numerical bands against the Normal simulation | This distinguishes practical Monte Carlo noise from material non-Normal shape. |
 | Keep diagnostic disagreement visible | Each diagnostic detects a different feature and the specification forbids a forced score. |
+| Keep non-iid cases outside `make_populations()` | Their generators and theoretical comparisons depend on an ordered process, not one iid marginal distribution. |
+| Compare dependent chains with matched-marginal iid resampling | This isolates dependence without pretending the conditional baseline Exponential is the marginal distribution. |
+| Use equal-mean creative paths | Stable 0.60, increasing 0.45 to 0.75, and decreasing 0.75 to 0.45 separate heterogeneity and ordering from average probability. |
 
 ## Issues encountered
 

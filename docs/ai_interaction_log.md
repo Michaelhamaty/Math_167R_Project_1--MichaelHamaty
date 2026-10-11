@@ -35,3 +35,17 @@
 **Improvement.** A fresh review compared simulation with exact Exponential skewness, $2/\sqrt{n}$. It showed that the seed-631 estimate at $n=300$ was unusually favorable, so Exponential replaced the Binomial as the sensitivity case.
 
 **Verification.** With seed 1631 and $B=10000$, Exponential skewness was 0.188 at $n=300$ and 0.112 at 500. Both exceed the 0.10 guidance. At $n=1000$, both seeds fall inside the skewness and Q-Q guidance, supporting the revised conservative threshold.
+
+## Example 4: designing the extension phase
+
+**Prompt.** Extend the completed project with the three instructor-defined extra-credit cases and a creative heritage-language case, while using the project hooks for a long-running implementation.
+
+**Initial response.** Preserve the verified five-case foundation, add a separate non-iid simulation layer, build four new analysis pages plus an Extensions hub, and reserve interaction for the creative page.
+
+**Unanswered question.** The documents fixed the respectful framing but did not choose the exact probability path for the creative case.
+
+**Follow-up.** Use a neutral gallery containing stable, gradually increasing, and gradually decreasing stylized paths.
+
+**Improvement.** The three paths share average probability 0.60, allowing the analysis to isolate heterogeneity and order without presenting one direction as a real cultural trajectory.
+
+**Verification.** This entry will be completed with exact theory assertions, deterministic simulation checks, interaction tests, and fresh-review findings after implementation.

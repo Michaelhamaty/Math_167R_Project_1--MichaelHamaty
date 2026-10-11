@@ -78,3 +78,15 @@
 - `.git/`, `.agents/`, `.codex/`
 - `AGENTS.md`, `.gitignore`
 - `task_plan.md`, `findings.md`, `progress.md`
+
+## Session: 2026-10-11 extensions
+
+### Current status
+- **Phase:** 8 - Extension scope and recovery
+- **Started:** 2026-10-11
+- **Next action:** Re-attest the expanded plan, verify hooks, and implement the extension simulation foundation.
+
+### Actions taken
+- Re-read the repository guidance, source hierarchy, planning files, future-extension notes, and all three instructor-provided extension documents.
+- Confirmed the approved neutral three-path creative design and the local vanilla JavaScript interaction contract.
+- Preserved the completed Phase 0 through Phase 7 history and added Phase 8 through Phase 15 for the extension run.

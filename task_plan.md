@@ -1,13 +1,13 @@
 # Task Plan: How Fast Does Normal Happen?
 
 ## Goal
-Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
+Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-No required implementation action remains. Future work is limited to the unimplemented designs in `docs/future_extensions.md`.
+Establish the extension recovery contract, validate the hooks, and implement the separate extension simulation foundation.
 
 ## Current Phase
-Phase 7
+Phase 8
 
 ## Phases
 
@@ -63,6 +63,55 @@ Phase 7
 - [x] Reconcile documentation, commits, and remote state
 - **Status:** complete
 
+### Phase 8: Extension scope and recovery
+- [ ] Authorize the approved extension scope without altering the frozen five-case results
+- [ ] Record the curated planning interaction and extension contracts
+- [ ] Re-attest the plan and verify the hooks
+- **Status:** in_progress
+
+### Phase 9: Extension simulation foundation
+- [ ] Implement separate dependent and non-identical simulation interfaces
+- [ ] Implement the synthetic age distribution and creative scenarios
+- [ ] Add deterministic extension assertions and compact result generation
+- **Status:** pending
+
+### Phase 10: Dependent machine failures
+- [ ] Complete the conditional and marginal analysis
+- [ ] Compare dependent and matched-marginal iid behavior
+- [ ] Verify burn-in, seed sensitivity, and effective sample size
+- **Status:** pending
+
+### Phase 11: Non-identical Bernoulli
+- [ ] Complete the changing-probability analysis
+- [ ] Compare Poisson-binomial and matched fixed-probability behavior
+- [ ] Verify exact center, SE, and bounded-array diagnostics
+- **Status:** pending
+
+### Phase 12: Synthetic age-at-death mixture
+- [ ] Reproduce and verify the instructor-defined synthetic distribution
+- [ ] Complete its iid sampling-mean analysis
+- [ ] Preserve the synthetic-data limitation in every interpretation
+- **Status:** pending
+
+### Phase 13: Creative heritage-language case
+- [ ] Implement the neutral stable, increasing, and decreasing paths
+- [ ] Explain order invariance and variance differences respectfully
+- [ ] Complete the static authoritative analysis
+- **Status:** pending
+
+### Phase 14: Interaction and extension synthesis
+- [ ] Add the accessible local creative interaction and static fallback
+- [ ] Add the Extensions hub, navigation, landing callout, and synthesis
+- [ ] Verify interaction behavior without network dependencies
+- **Status:** pending
+
+### Phase 15: Extension verification and handoff
+- [ ] Run deterministic builds, clean rendering, source checks, and link checks
+- [ ] Inspect all extension pages at desktop and narrow widths
+- [ ] Complete a fresh-agent review and valid revisions
+- [ ] Reconcile planning files, commits, and remote state
+- **Status:** pending
+
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
@@ -70,6 +119,9 @@ Phase 7
 | Use pinned planning-with-files v3.24.0 at commit 7056ed2 | This is the audited release selected in the approved plan. |
 | Use gated root planning mode | It adds bounded Stop enforcement to autonomous behavior while keeping the three required files at repository root. |
 | Use base R, ggplot2, and knitr only | The installed packages cover the required analysis without an unnecessary dependency stack. |
+| Keep a separate extension simulation contract | Dependent and non-identical observations must not be misrepresented as iid populations. |
+| Use a neutral three-path creative gallery | Stable, increasing, and decreasing paths expose the mathematics without asserting a real cultural trajectory. |
+| Use local vanilla JavaScript only for the creative interaction | It provides an accessible file-compatible demonstration without adding a package or network dependency. |
 
 ## Errors Encountered
 | Error | Resolution |
