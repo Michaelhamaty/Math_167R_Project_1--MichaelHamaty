@@ -37,6 +37,8 @@
 - Exponential center and SE stabilize far earlier than its right-tail shape. Exact skewness and seed 1631 show that the apparent seed-631 success at $n=300$ is not stable; $n=1000$ is the conservative threshold.
 - Exponential is the second-seed sensitivity case. The small Binomial remains a diagnostic-disagreement example because skewness settles while lattice-sensitive Q-Q RMSE does not.
 - The post-review render confirms that sparse log-axis breaks remove the earlier trajectory label collisions and that added plot margins prevent clipping. The revised synthesis makes Cauchy ineligibility visible rather than leaving it outside the figure.
+- Final regeneration produced byte-identical hashes for all four CSV files and `results/session-info.txt`. The implementation is deterministic under its documented runtime and seed contract.
+- The final read-only remote check matched the pushed review commit, all original file hashes still match, and the unrelated parent repository status hash remains unchanged.
 - Cauchy IQR remains near its theoretical value of 2 while maximum absolute means vary by orders of magnitude. Fixed-window histograms use all simulations in the density denominator and disclose excluded-tail fractions.
 
 ## Technical decisions

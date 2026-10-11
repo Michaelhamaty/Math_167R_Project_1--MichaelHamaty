@@ -3,9 +3,10 @@
 ## Session: 2026-10-10
 
 ### Current status
-- **Phase:** 7 - Verification and handoff
+- **Phase:** 7 - Verification and handoff, complete
 - **Started:** 2026-10-10
-- **Next action:** Commit and push the verified fresh-review revisions, then reconcile the final documentation and remote state.
+- **Completed:** 2026-10-11
+- **Next action:** None required. Optional future designs remain documented but unimplemented.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -38,6 +39,10 @@
 - Reassigned seed 1631 to Exponential, extended its grid to 2000, and revised the conservative threshold to n = 1000.
 - Corrected stale generated and validation values from Exponential 750 to 1000 and removed the obsolete Binomial second-seed claim.
 - Rendered the full site after the fresh-review fixes and visually inspected the synthesis, finite sampling overlays, and Normal, die, Exponential, and Binomial trajectories.
+- Committed and pushed the verified fresh-review revision as `ecca240`.
+- Confirmed that local `HEAD` and `origin/main` both resolved to `ecca240b63fea1e244da2cec00e18c40c7302819` before the documentation handoff commit.
+- Rebuilt compact results and confirmed that every CSV and `session-info.txt` retained its exact SHA-256 hash.
+- Reverified all twelve original supplied files and the unchanged parent-repository status hash.
 
 ### Tests and results
 | Test | Result | Notes |
@@ -55,6 +60,9 @@
 | Internal link validation | Pass | All local links and generated assets resolve across six HTML pages. |
 | Fresh-review revision render | Pass | The six-page clean render completed with the revised Exponential sensitivity result and all new figures. |
 | Fresh-review visual inspection | Pass | The centerpiece, overlays, and trajectory panels are legible and unclipped. |
+| Deterministic result rebuild | Pass | All five committed result-file hashes were byte-identical after regeneration. |
+| Final remote-state check | Pass | The pushed review milestone matched `origin/main`; the documentation handoff is the only remaining commit. |
+| Original and parent preservation | Pass | All twelve source hashes match and the parent status hash remains unchanged. |
 
 ### Errors
 | Error | Attempt | Resolution |
@@ -64,6 +72,7 @@
 | Homebrew Quarto installation required an interactive administrator password | 1 | Switched to the official checksum-verified release archive and a project-local ignored installation. |
 | First Quarto render could not write the default home cache | 1 | The project wrapper now uses a task-specific cache under `${TMPDIR:-/tmp}`. |
 | Final staging could not create `.git/index.lock` inside the protected repository metadata | 1 | Retry the verified Git operations with narrow repository approval. |
+| Final remote verification could not resolve GitHub inside the network-restricted sandbox | 1 | Repeat the read-only remote query with narrow network approval and keep local checks independent. |
 
 ### Files modified
 - `.git/`, `.agents/`, `.codex/`

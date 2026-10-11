@@ -4,7 +4,7 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Commit and push the verified fresh-review revisions, then complete the final documentation and remote-state handoff.
+No required implementation action remains. Future work is limited to the unimplemented designs in `docs/future_extensions.md`.
 
 ## Current Phase
 Phase 7
@@ -60,8 +60,8 @@ Phase 7
 - [x] Render from a clean R session
 - [x] Run all acceptance checks
 - [x] Complete a fresh-agent review and revisions
-- [ ] Reconcile documentation, commits, and remote state
-- **Status:** in_progress
+- [x] Reconcile documentation, commits, and remote state
+- **Status:** complete
 
 ## Decisions Made
 | Decision | Rationale |
@@ -79,3 +79,4 @@ Phase 7
 | One upstream audit test writes to sandbox-blocked `/var/tmp` | Documented as environment-inapplicable; all other selected tests pass with the temp cache override. |
 | Homebrew downloaded Quarto 1.10.19 but its package installer required interactive administrator authentication | Use the official release archive in the ignored project-local `.tools/` directory and verify its published checksum. |
 | The sandbox denied creation of the child repository's `.git/index.lock` during final staging | Retry the verified Git stage, commit, and push with narrowly scoped repository approval. |
+| The sandbox blocked DNS during the final read-only `git ls-remote` check | Repeat only the remote-state query with network approval, then continue local handoff checks separately. |
