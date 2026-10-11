@@ -1,6 +1,6 @@
 "population","clt_eligible","smallest_defensible_n","conclusion","key_caveat"
 "normal",TRUE,1,"Exact Normal","Monte Carlo noise only"
 "die",TRUE,30,"Normal enough at n = 30","Residual lattice"
-"exponential",TRUE,300,"Normal enough at n = 300","Residual right-tail sensitivity"
+"exponential",TRUE,1000,"Normal enough at n = 1000","Residual right-tail sensitivity"
 "binomial",TRUE,200,"Normal enough at n = 200","Residual lattice"
 "cauchy",FALSE,,"No ordinary-CLT threshold","Mean and variance undefined"

@@ -10,6 +10,6 @@ Use seed 631, second seed 1631, and final `B = 10000`. Never store the full stud
 
 Adapt R foundations from `course_docs` first. Cite every other nontrivial foundation nearby and in `references/code_sources.md`. Prefer simple base R functions plus ggplot2 and knitr. R comments must use `#NoSpace`. Authored project prose must contain no em dash characters.
 
-Stop and fix every failed validation before committing. Use non-destructive Git only. Update and re-attest the planning files before each verified milestone commit and push. Run `Rscript scripts/validate_project.R` and `quarto render` for final verification.
+Stop and fix every failed validation before committing. Use non-destructive Git only. Update and re-attest the planning files before each verified milestone commit and push. Rebuild with `Rscript scripts/build_results.R`, render with `scripts/quarto render` when the pinned local runtime is present, and validate with `Rscript scripts/validate_simulation.R`, `Rscript scripts/validate_project.R`, and `python3 scripts/validate_links.py`.
 
 Before final handoff, request a fresh-agent review of every rendered page, graph, and major conclusion. Implement valid first-run fixes and record future-only suggestions without expanding scope.

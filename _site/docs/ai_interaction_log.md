@@ -28,10 +28,10 @@
 
 **Prompt.** Choose the genuinely most borderline finite-variance case for a second seed.
 
-**Initial response.** A mechanical distance-to-band calculation selected the die at its largest grid value.
+**Initial response.** A mechanical distance-to-band calculation selected the die at its largest grid value, and an initial qualitative correction selected the small Binomial.
 
 **Criticism.** That choice measured a lattice artifact, not scientific uncertainty about the transition.
 
-**Improvement.** The small Binomial was selected because its shape, skewness band, and Q-Q lattice disagreement create the closest interpretive boundary at $n=200$.
+**Improvement.** A fresh review compared simulation with exact Exponential skewness, $2/\sqrt{n}$. It showed that the seed-631 estimate at $n=300$ was unusually favorable, so Exponential replaced the Binomial as the sensitivity case.
 
-**Verification.** The seed 1631 run uses the same $B=10000$ at $n=200$, 300, and 500 and is compared with seed 631 using the same diagnostics.
+**Verification.** With seed 1631 and $B=10000$, Exponential skewness was 0.188 at $n=300$ and 0.112 at 500. Both exceed the 0.10 guidance. At $n=1000$, both seeds fall inside the skewness and Q-Q guidance, supporting the revised conservative threshold.

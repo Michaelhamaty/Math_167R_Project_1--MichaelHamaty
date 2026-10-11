@@ -62,7 +62,7 @@ At $n=30$, the simulated center is `r sprintf("%.4f", page_results$simulated_mea
 
 ```{r}
 #| label: fig-die-sampling
-#| fig-cap: "The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. The last shape is useful despite residual spacing."
+#| fig-cap: "The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. Dark curves show theoretical Normal references; the last shape is useful despite residual spacing."
 #| fig-alt: "Three histograms showing six spikes, then increasingly fine symmetric bell shapes."
 plot_sampling_distributions(simulation$means, population, selected_n)
 ```
@@ -83,6 +83,13 @@ plot_qq_comparison(simulation$means, population, selected_n)
 #| fig-cap: "Absolute skewness, excess kurtosis, and Q-Q RMSE over n. The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry."
 #| fig-alt: "Three line charts showing shape diagnostics generally declining with sample size."
 plot_diagnostic_trajectory(page_results, population, bands)
+```
+
+```{r}
+#| label: fig-die-se
+#| fig-cap: "Empirical and theoretical standard errors nearly overlap across n. Precision follows theory before the lattice becomes visually close to Normal."
+#| fig-alt: "Two nearly overlapping standard-error curves declining as die sample size increases."
+plot_se_comparison(page_results, population)
 ```
 
 ## 9. Decision and disagreement

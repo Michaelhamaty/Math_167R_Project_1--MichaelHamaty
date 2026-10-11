@@ -5,7 +5,7 @@
 ### Current status
 - **Phase:** 7 - Verification and handoff
 - **Started:** 2026-10-10
-- **Next action:** Run the clean acceptance suite and dispatch the fresh-agent final review.
+- **Next action:** Commit and push the verified fresh-review revisions, then reconcile the final documentation and remote state.
 
 ### Actions taken
 - Read every supplied course document, with `course_docs/RULES.md` last, and read all of `PROJECT_SPEC.md`.
@@ -28,12 +28,16 @@
 - Completed all five ten-part analysis narratives and rendered every figure.
 - Replaced the misleading first Cauchy histogram with fixed-window bins whose density denominator includes every simulated mean.
 - Verified the Normal calibration page and the die investigation for milestone commits.
-- Verified the Exponential transition at n = 300 with persistence at 500 and 750.
-- Verified the small-Binomial transition at n = 200 and its seed-1631 sensitivity comparison.
+- Initial review placed the Exponential transition at n = 300, but fresh review showed that conclusion was seed-sensitive.
+- Verified the small-Binomial transition at n = 200 with persistence at 300 and 500.
 - Verified the Cauchy stress test with undefined moments, persistent robust spread, and explicitly disclosed plot limits.
 - Completed the landing-page answer, convergence ordering, synthesis table, n = 30 comparison, and second-seed interpretation.
 - Responsive QA exposed unlabeled source row numbers in filtered tables; all tables now suppress them explicitly, and the duplicated landing headline is removed.
 - Inspected the landing page at desktop width and the full site at a 367 by 730 responsive viewport; navigation, headings, alt text, tables, and captions remain accessible.
+- The fresh read-only reviewer identified missing required landing material, finite-case overlays and SE plots, two trajectory-axis defects, README gaps, and the seed-sensitive Exponential threshold.
+- Reassigned seed 1631 to Exponential, extended its grid to 2000, and revised the conservative threshold to n = 1000.
+- Corrected stale generated and validation values from Exponential 750 to 1000 and removed the obsolete Binomial second-seed claim.
+- Rendered the full site after the fresh-review fixes and visually inspected the synthesis, finite sampling overlays, and Normal, die, Exponential, and Binomial trajectories.
 
 ### Tests and results
 | Test | Result | Notes |
@@ -49,6 +53,8 @@
 | Full six-page render | Pass | All five analysis pages executed with `B = 10000` and seed 631. |
 | Authored-source validation | Pass | R parsing, comment style, em dash, scope, and identifier checks passed. |
 | Internal link validation | Pass | All local links and generated assets resolve across six HTML pages. |
+| Fresh-review revision render | Pass | The six-page clean render completed with the revised Exponential sensitivity result and all new figures. |
+| Fresh-review visual inspection | Pass | The centerpiece, overlays, and trajectory panels are legible and unclipped. |
 
 ### Errors
 | Error | Attempt | Resolution |
@@ -57,6 +63,7 @@
 | pytest was not installed in the temporary audit environment | 1 | Used the repository's unittest-compatible test modules. |
 | Homebrew Quarto installation required an interactive administrator password | 1 | Switched to the official checksum-verified release archive and a project-local ignored installation. |
 | First Quarto render could not write the default home cache | 1 | The project wrapper now uses a task-specific cache under `${TMPDIR:-/tmp}`. |
+| Final staging could not create `.git/index.lock` inside the protected repository metadata | 1 | Retry the verified Git operations with narrow repository approval. |
 
 ### Files modified
 - `.git/`, `.agents/`, `.codex/`

@@ -375,7 +375,7 @@ Table&nbsp;1: Die diagnostics around the transition. Center and SE agree early; 
 <img src="die_files/figure-html/fig-die-sampling-1.png" class="img-fluid figure-img" alt="Three histograms showing six spikes, then increasingly fine symmetric bell shapes." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. The last shape is useful despite residual spacing.
+Figure&nbsp;2: The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. Dark curves show theoretical Normal references; the last shape is useful despite residual spacing.
 </figcaption>
 </figure>
 </div>
@@ -418,6 +418,24 @@ Figure&nbsp;3: Q-Q points straighten as n grows, but stair steps remain at n = 3
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Absolute skewness, excess kurtosis, and Q-Q RMSE over n.&nbsp;The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_se_comparison</span>(page_results, population)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-die-se" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two nearly overlapping standard-error curves declining as die sample size increases.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-die-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="die_files/figure-html/fig-die-se-1.png" class="img-fluid figure-img" alt="Two nearly overlapping standard-error curves declining as die sample size increases." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Empirical and theoretical standard errors nearly overlap across n.&nbsp;Precision follows theory before the lattice becomes visually close to Normal.
 </figcaption>
 </figure>
 </div>

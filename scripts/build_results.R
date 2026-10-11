@@ -16,14 +16,14 @@ diagnostics <- apply_guidance_bands(diagnostics, bands)
 decisions <- data.frame(
   population = c("normal", "die", "exponential", "binomial", "cauchy"),
   clt_eligible = c(TRUE, TRUE, TRUE, TRUE, FALSE),
-  smallest_defensible_n = c(1L, 30L, 300L, 200L, NA_integer_),
-  conclusion = c("Exact Normal", "Normal enough at n = 30", "Normal enough at n = 300", "Normal enough at n = 200", "No ordinary-CLT threshold"),
+  smallest_defensible_n = c(1L, 30L, 1000L, 200L, NA_integer_),
+  conclusion = c("Exact Normal", "Normal enough at n = 30", "Normal enough at n = 1000", "Normal enough at n = 200", "No ordinary-CLT threshold"),
   key_caveat = c("Monte Carlo noise only", "Residual lattice", "Residual right-tail sensitivity", "Residual lattice", "Mean and variance undefined"),
   stringsAsFactors = FALSE
 )
 
-second_population <- populations$binomial
-second_n <- c(200L, 300L, 500L)
+second_population <- populations$exponential
+second_n <- c(300L, 500L, 750L, 1000L, 1500L)
 second_seed <- simulate_population(second_population, n_values = second_n, B = B, seed = 1631L)$summary
 
 dir.create("results", showWarnings = FALSE)
@@ -42,4 +42,4 @@ writeLines(c(
 ), "results/session-info.txt")
 
 cat("Wrote deterministic summaries for", nrow(diagnostics), "population and sample-size combinations.\n")
-cat("Second-seed case: binomial at n = 200, 300, and 500\n")
+cat("Second-seed case: Exponential from n = 300 through 1500\n")

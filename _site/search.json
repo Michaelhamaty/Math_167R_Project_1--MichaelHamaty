@@ -46,7 +46,7 @@
     "href": "analyses/normal.html#shape-across-sample-sizes",
     "title": "Standard Normal",
     "section": "6. Shape across sample sizes",
-    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: Sampling distributions at n = 1, 10, and 100. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient."
+    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: Sampling distributions at n = 1, 10, and 100 with exact theoretical Normal overlays in dark gray. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient."
   },
   {
     "objectID": "analyses/normal.html#q-q-evidence",
@@ -60,7 +60,7 @@
     "href": "analyses/normal.html#calibration-bands",
     "title": "Standard Normal",
     "section": "8. Calibration bands",
-    "text": "8. Calibration bands\n\n\nShow R code\nband_table &lt;- bands\nband_table$threshold &lt;- round(band_table$threshold, 4)\nknitr::kable(band_table, col.names = c(\"Metric\", \"Guidance threshold\"), row.names = FALSE)\n\n\n\n\nTable 2: Guidance bands calibrated from the largest Normal fluctuation, subject to practical floors. These bands guide later judgments but do not form a weighted score.\n\n\n\n\n\n\nMetric\nGuidance threshold\n\n\n\n\ncenter_mcse_multiplier\n3.0000\n\n\nrelative_se_error\n0.0300\n\n\nabsolute_skewness\n0.1000\n\n\nabsolute_excess_kurtosis\n0.2000\n\n\nqq_rmse\n0.0149"
+    "text": "8. Calibration bands\n\n\nShow R code\nband_table &lt;- bands\nband_table$threshold &lt;- round(band_table$threshold, 4)\nknitr::kable(band_table, col.names = c(\"Metric\", \"Guidance threshold\"), row.names = FALSE)\n\n\n\n\nTable 2: Guidance bands calibrated from the largest Normal fluctuation, subject to practical floors. These bands guide later judgments but do not form a weighted score.\n\n\n\n\n\n\nMetric\nGuidance threshold\n\n\n\n\ncenter_mcse_multiplier\n3.0000\n\n\nrelative_se_error\n0.0300\n\n\nabsolute_skewness\n0.1000\n\n\nabsolute_excess_kurtosis\n0.2000\n\n\nqq_rmse\n0.0149\n\n\n\n\n\n\n\n\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Normal shape diagnostics fluctuate around their targets rather than following a convergence trend. The red guidance lines quantify ordinary Monte Carlo noise under an exactly Normal law.\n\n\n\n\n\n\n\nShow R code\nplot_se_comparison(page_results, population)\n\n\n\n\n\n\n\n\nFigure 5: Empirical and exact theoretical standard errors agree across the grid. Both contract as one over the square root of n, independently of the already exact shape."
   },
   {
     "objectID": "analyses/normal.html#decision-and-diagnostic-agreement",
@@ -123,7 +123,7 @@
     "href": "analyses/die.html#shape-across-sample-sizes",
     "title": "Six-Sided Die",
     "section": "6. Shape across sample sizes",
-    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. The last shape is useful despite residual spacing."
+    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: The die mean progresses from six isolated outcomes at n = 1 to a bell-shaped lattice at n = 10 and a much finer bell at n = 30. Dark curves show theoretical Normal references; the last shape is useful despite residual spacing."
   },
   {
     "objectID": "analyses/die.html#q-q-evidence",
@@ -137,7 +137,7 @@
     "href": "analyses/die.html#diagnostic-trajectory",
     "title": "Six-Sided Die",
     "section": "8. Diagnostic trajectory",
-    "text": "8. Diagnostic trajectory\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Absolute skewness, excess kurtosis, and Q-Q RMSE over n. The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry."
+    "text": "8. Diagnostic trajectory\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Absolute skewness, excess kurtosis, and Q-Q RMSE over n. The red lines are Normal-calibrated guidance bands; the persistent Q-Q disagreement is a discreteness effect rather than asymmetry.\n\n\n\n\n\n\n\nShow R code\nplot_se_comparison(page_results, population)\n\n\n\n\n\n\n\n\nFigure 5: Empirical and theoretical standard errors nearly overlap across n. Precision follows theory before the lattice becomes visually close to Normal."
   },
   {
     "objectID": "analyses/die.html#decision-and-disagreement",
@@ -186,7 +186,7 @@
     "href": "analyses/binomial.html#simulation-design",
     "title": "Small Binomial",
     "section": "4. Simulation design",
-    "text": "4. Simulation design\nThe grid is dense from \\(n=1\\) to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. Because the transition is borderline, \\(n=200\\), 300, and 500 are repeated with seed 1631."
+    "text": "4. Simulation design\nThe grid is dense from \\(n=1\\) to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. The independent second-seed check is reserved for Exponential, the genuinely most borderline finite-variance case."
   },
   {
     "objectID": "analyses/binomial.html#numerical-evidence",
@@ -200,7 +200,7 @@
     "href": "analyses/binomial.html#shape-across-sample-sizes",
     "title": "Small Binomial",
     "section": "6. Shape across sample sizes",
-    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200."
+    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200. Dark curves are theoretical Normal references."
   },
   {
     "objectID": "analyses/binomial.html#q-q-evidence",
@@ -210,18 +210,18 @@
     "text": "7. Q-Q evidence\n\n\nShow R code\nplot_qq_comparison(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 3: Q-Q curvature and steps both shrink with n. At n = 200, small steps remain even though the overall line is straight enough for a practical approximation."
   },
   {
-    "objectID": "analyses/binomial.html#second-seed-check",
-    "href": "analyses/binomial.html#second-seed-check",
+    "objectID": "analyses/binomial.html#diagnostic-trajectory-and-standard-error",
+    "href": "analyses/binomial.html#diagnostic-trajectory-and-standard-error",
     "title": "Small Binomial",
-    "section": "8. Second-seed check",
-    "text": "8. Second-seed check\n\n\nShow R code\nseed_compare &lt;- merge(\n  page_results[page_results$n %in% c(200, 300, 500), c(\"n\", \"skewness\", \"qq_rmse\")],\n  second_seed[, c(\"n\", \"skewness\", \"qq_rmse\")],\n  by = \"n\",\n  suffixes = c(\"_631\", \"_1631\")\n)\nnames(seed_compare) &lt;- c(\"n\", \"Skewness, seed 631\", \"Q-Q RMSE, seed 631\", \"Skewness, seed 1631\", \"Q-Q RMSE, seed 1631\")\nknitr::kable(seed_compare, digits = 4, row.names = FALSE)\n\n\n\n\nTable 2: Seed 1631 reproduces the same transition region at n = 200, 300, and 500. Individual metrics move, but the substantive conclusion does not.\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nSkewness, seed 631\nQ-Q RMSE, seed 631\nSkewness, seed 1631\nQ-Q RMSE, seed 1631\n\n\n\n\n200\n0.0618\n0.0352\n0.0737\n0.0360\n\n\n300\n0.0567\n0.0282\n0.1099\n0.0322\n\n\n500\n0.0326\n0.0235\n0.0254\n0.0220"
+    "section": "8. Diagnostic trajectory and standard error",
+    "text": "8. Diagnostic trajectory and standard error\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Skewness and excess kurtosis settle faster than Q-Q RMSE. The gap records a fine lattice that remains measurable after the global shape becomes useful.\n\n\n\n\n\n\n\nShow R code\nplot_se_comparison(page_results, population)\n\n\n\n\n\n\n\n\nFigure 5: Empirical and theoretical standard errors nearly overlap across the grid. As in the other skewed case, precision stabilizes before shape."
   },
   {
     "objectID": "analyses/binomial.html#decision-and-disagreement",
     "href": "analyses/binomial.html#decision-and-disagreement",
     "title": "Small Binomial",
     "section": "9. Decision and disagreement",
-    "text": "9. Decision and disagreement\nDecision: \\(n=200\\). The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at \\(n=300\\) and \\(n=500\\) under both seeds. Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations."
+    "text": "9. Decision and disagreement\nDecision: \\(n=200\\). The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at \\(n=300\\) and \\(n=500\\). Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations."
   },
   {
     "objectID": "analyses/binomial.html#limitation-and-surprise",
@@ -238,11 +238,39 @@
     "text": "Five parent populations enter. Their sample means do not all approach the bell curve at the same pace, and one never does.\nThis project uses repeated sampling to ask a practical version of the Central Limit Theorem: how large must the sample be before a Normal approximation is genuinely useful? Each analysis begins with a prediction, checks the theorem, and then compares graphical and numerical evidence."
   },
   {
+    "objectID": "index.html#research-question",
+    "href": "index.html#research-question",
+    "title": "How Fast Does Normal Happen?",
+    "section": "Research question",
+    "text": "Research question\n\nHow does the population distribution affect the sample size required for the sampling distribution of the mean to become approximately Normal?\n\nThe broader question is when an average is trustworthy and when population shape or failed assumptions make it misleading."
+  },
+  {
+    "objectID": "index.html#population-versus-sampling-distribution",
+    "href": "index.html#population-versus-sampling-distribution",
+    "title": "How Fast Does Normal Happen?",
+    "section": "Population versus sampling distribution",
+    "text": "Population versus sampling distribution\nThe population distribution describes individual observations, such as one die roll or one Exponential waiting time. The sampling distribution of the mean describes the averages produced by repeatedly drawing an entire sample of size \\(n\\). This project holds the population fixed within each case, repeats the sampling experiment 10,000 times, and studies the resulting 10,000 averages."
+  },
+  {
+    "objectID": "index.html#the-clt-in-plain-language",
+    "href": "index.html#the-clt-in-plain-language",
+    "title": "How Fast Does Normal Happen?",
+    "section": "The CLT in plain language",
+    "text": "The CLT in plain language\nWhen observations are independent, identically distributed, and have a finite mean and variance, their standardized sample mean approaches a Normal shape as \\(n\\) grows. The theorem does not promise that \\(n=30\\) is always enough, and it does not apply to the Cauchy mean. Symmetry, skewness, discreteness, and tail weight determine how useful the approximation is at finite \\(n\\)."
+  },
+  {
+    "objectID": "index.html#seven-step-experimental-protocol",
+    "href": "index.html#seven-step-experimental-protocol",
+    "title": "How Fast Does Normal Happen?",
+    "section": "Seven-step experimental protocol",
+    "text": "Seven-step experimental protocol\nBefore examining final empirical conclusions, I used the same sequence for all five cases:\n\nEstablish the scientific question.\nBuild and verify a minimal reusable simulation.\nExplore candidate diagnostics.\nExperiment with visual forms.\nDevelop an operational evidence standard from the exploration.\nRerun the complete analysis consistently.\nVerify, interpret, and render the final results."
+  },
+  {
     "objectID": "index.html#answer-first",
     "href": "index.html#answer-first",
     "title": "How Fast Does Normal Happen?",
     "section": "Answer first",
-    "text": "Answer first\nThe parent distribution matters enormously. Standard Normal needs no waiting: \\(n=1\\) is exact. A symmetric die is useful by \\(n=30\\). The skewed small Binomial needs about \\(n=200\\), and Exponential needs about \\(n=300\\). Standard Cauchy never reaches an ordinary-CLT threshold because its sample mean remains Cauchy at every \\(n\\).\n\n\nShow R code\nthresholds &lt;- data.frame(\n  population = factor(c(\"Standard Normal\", \"Six-sided die\", \"Small Binomial\", \"Exponential\"), levels = rev(c(\"Standard Normal\", \"Six-sided die\", \"Small Binomial\", \"Exponential\"))),\n  n = c(1, 30, 200, 300),\n  color = c(\"#0d6973\", \"#3a7697\", \"#8b4f79\", \"#bd5b32\")\n)\nggplot(thresholds, aes(n, population)) +\n  geom_vline(xintercept = 30, color = \"#d8a23c\", linetype = \"22\", linewidth = 0.8) +\n  geom_segment(aes(x = 1, xend = n, yend = population, color = color), linewidth = 1.1, show.legend = FALSE) +\n  geom_point(aes(color = color), size = 4.2, show.legend = FALSE) +\n  geom_text(aes(label = paste0(\"n = \", n)), nudge_y = 0.22, fontface = \"bold\", color = \"#173f47\") +\n  scale_color_identity() +\n  scale_x_log10(breaks = c(1, 10, 30, 100, 300), limits = c(1, 400)) +\n  labs(x = \"Smallest defensible sample size, log scale\", y = NULL) +\n  analysis_theme(base_size = 13)\n\n\n\n\n\n\n\n\nFigure 1: Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy is excluded because no ordinary-CLT threshold exists."
+    "text": "Answer first\nThe parent distribution matters enormously. Standard Normal needs no waiting: \\(n=1\\) is exact. A symmetric die is useful by \\(n=30\\). The skewed small Binomial needs about \\(n=200\\), and a conservative Exponential threshold is \\(n=1000\\) after a second seed rejects the earlier \\(n=300\\) impression. Standard Cauchy never reaches an ordinary-CLT threshold because its sample mean remains Cauchy at every \\(n\\).\n\n\nShow R code\nthresholds &lt;- data.frame(\n  population = factor(c(\"Standard Normal\", \"Six-sided die\", \"Small Binomial\", \"Exponential\"), levels = rev(c(\"Standard Normal\", \"Six-sided die\", \"Small Binomial\", \"Exponential\", \"Standard Cauchy\"))),\n  n = c(1, 30, 200, 1000),\n  color = c(\"#0d6973\", \"#3a7697\", \"#8b4f79\", \"#bd5b32\")\n)\n#ggplot2 adaptation: this annotated layer design follows the official ggplot2 reference.\nggplot(thresholds, aes(n, population)) +\n  geom_vline(xintercept = 30, color = \"#d8a23c\", linetype = \"22\", linewidth = 0.8) +\n  geom_segment(aes(x = 1, xend = n, yend = population, color = color), linewidth = 1.1, show.legend = FALSE) +\n  geom_point(aes(color = color), size = 4.2, show.legend = FALSE) +\n  geom_text(aes(label = paste0(\"n = \", n)), nudge_y = 0.22, fontface = \"bold\", color = \"#173f47\") +\n  annotate(\"point\", x = 8, y = \"Standard Cauchy\", shape = 4, size = 4.2, stroke = 1.2, color = \"#755b38\") +\n  annotate(\"text\", x = 10, y = \"Standard Cauchy\", label = \"No threshold\", hjust = 0, fontface = \"bold\", color = \"#173f47\") +\n  scale_color_identity() +\n  scale_x_log10(breaks = c(1, 10, 30, 100, 300, 1000), limits = c(1, 1300)) +\n  labs(x = \"Smallest defensible sample size, log scale\", y = NULL) +\n  analysis_theme(base_size = 13)\n\n\n\n\n\n\n\n\nFigure 1: Smallest defensible sample sizes for the four finite-variance cases. The n = 30 marker highlights the familiar rule of thumb: it works for the symmetric die, not for the two skewed parents. Cauchy is excluded because no ordinary-CLT threshold exists."
   },
   {
     "objectID": "index.html#the-five-investigations",
@@ -256,7 +284,7 @@
     "href": "index.html#synthesis-table",
     "title": "How Fast Does Normal Happen?",
     "section": "Synthesis table",
-    "text": "Synthesis table\n\n\n\n\n\n\n\n\n\n\nPopulation\nCLT eligible?\nParent challenge\nSmallest defensible n\nMain disagreement\n\n\n\n\nStandard Normal\nYes, exact\nNone after standardization\n1\nSimulation metrics fluctuate around exact theory\n\n\nSix-sided die\nYes\nDiscrete lattice\n30\nQ-Q RMSE detects steps after global shape settles\n\n\nExponential\nYes\nLong right tail\n300\nCenter and SE settle far earlier than shape\n\n\nSmall Binomial\nYes\nZeros, skewness, lattice\n200\nQ-Q steps persist after skewness enters its band\n\n\nStandard Cauchy\nNo\nUndefined mean and variance\nNone\nRobust spread stays constant under averaging\n\n\n\nThe convergence ordering is Normal, die, small Binomial, then Exponential. Cauchy is not merely slower: it is ineligible."
+    "text": "Synthesis table\n\n\nShow R code\nselected &lt;- rbind(\n  diagnostics[diagnostics$population == \"normal\" & diagnostics$n == 1, ],\n  diagnostics[diagnostics$population == \"die\" & diagnostics$n == 30, ],\n  diagnostics[diagnostics$population == \"binomial\" & diagnostics$n == 200, ],\n  diagnostics[diagnostics$population == \"exponential\" & diagnostics$n == 1000, ]\n)\nsynthesis &lt;- data.frame(\n  Population = c(selected$label, \"Cauchy\"),\n  `Relevant CLT conditions` = c(\"Exact Normal\", \"IID, bounded\", \"IID, bounded\", \"IID, finite variance\", \"Mean and variance undefined\"),\n  `Selected n` = c(as.character(selected$n), \"None\"),\n  Skewness = c(sprintf(\"%.3f\", selected$skewness), \"NA\"),\n  `Excess kurtosis` = c(sprintf(\"%.3f\", selected$excess_kurtosis), \"NA\"),\n  `SE agreement` = c(sprintf(\"%.2f%% error\", 100 * selected$relative_se_error), \"NA\"),\n  Stability = c(\"Exact at all n\", \"Persists at 40 and 50\", \"Persists at 300 and 500\", \"Persists at 1500 and 2000\", \"Same Cauchy law at all n\"),\n  Conclusion = c(\"Immediate\", \"Fast, lattice remains\", \"Slow, fine lattice remains\", \"Slowest finite case\", \"Ordinary CLT ineligible\"),\n  check.names = FALSE\n)\nknitr::kable(synthesis, row.names = FALSE)\n\n\n\n\nTable 1: Cross-population decisions from the completed simulation. Shape metrics and SE agreement refer to the selected point; Cauchy entries are unavailable by theory.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPopulation\nRelevant CLT conditions\nSelected n\nSkewness\nExcess kurtosis\nSE agreement\nStability\nConclusion\n\n\n\n\nNormal\nExact Normal\n1\n-0.024\n0.004\n0.42% error\nExact at all n\nImmediate\n\n\nDie\nIID, bounded\n30\n-0.006\n-0.069\n1.07% error\nPersists at 40 and 50\nFast, lattice remains\n\n\nSmall Binomial\nIID, bounded\n200\n0.062\n-0.042\n0.28% error\nPersists at 300 and 500\nSlow, fine lattice remains\n\n\nExponential\nIID, finite variance\n1000\n0.066\n-0.035\n0.89% error\nPersists at 1500 and 2000\nSlowest finite case\n\n\nCauchy\nMean and variance undefined\nNone\nNA\nNA\nNA\nSame Cauchy law at all n\nOrdinary CLT ineligible\n\n\n\n\n\n\n\n\nThe convergence ordering is Normal, die, small Binomial, then Exponential. Cauchy is not merely slower: it is ineligible."
   },
   {
     "objectID": "index.html#what-each-diagnostic-contributed",
@@ -277,7 +305,14 @@
     "href": "index.html#reproducibility-and-limits",
     "title": "How Fast Does Normal Happen?",
     "section": "Reproducibility and limits",
-    "text": "Reproducibility and limits\nAll final results use seed 631 and 10,000 repetitions per sample size. The borderline small-Binomial conclusion was repeated with seed 1631 and remained in the same transition region. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.\nSee the methodology decisions and curated AI interaction log for the full decision trail."
+    "text": "Reproducibility and limits\nAll final results use seed 631 and 10,000 repetitions per sample size. The borderline Exponential conclusion was repeated with seed 1631; that run rejected the first impression at 300 and motivated the conservative 1000 threshold. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.\nSee the methodology decisions and curated AI interaction log for the full decision trail."
+  },
+  {
+    "objectID": "index.html#future-work-preview",
+    "href": "index.html#future-work-preview",
+    "title": "How Fast Does Normal Happen?",
+    "section": "Future work preview",
+    "text": "Future work preview\nThe first run stops at the five required cases. Planned extensions will study dependent machine failures, independent but non-identical Bernoulli observations, and a stylized age-at-death mixture. A separate creative case may explore heritage-language retention under changing probabilities, with respectful non-empirical framing and a complete static fallback. No extension result is implemented here; the designs live in future extensions."
   },
   {
     "objectID": "analyses/cauchy.html",
@@ -389,42 +424,42 @@
     "href": "analyses/exponential.html#simulation-design",
     "title": "Exponential",
     "section": "4. Simulation design",
-    "text": "4. Simulation design\nThe adaptive grid extends from \\(n=1\\) to \\(n=1000\\), with extra points between 75 and 500 where the skewness approaches the practical band. Every point uses 10,000 means and seed 631."
+    "text": "4. Simulation design\nThe adaptive grid extends from \\(n=1\\) to \\(n=2000\\), with extra points from 300 onward where shape diagnostics approach the practical bands. Every point uses 10,000 means and seed 631."
   },
   {
     "objectID": "analyses/exponential.html#numerical-evidence",
     "href": "analyses/exponential.html#numerical-evidence",
     "title": "Exponential",
     "section": "5. Numerical evidence",
-    "text": "5. Numerical evidence\n\n\nShow R code\nshown &lt;- page_results[page_results$n %in% c(100, 150, 200, 300, 500, 750), c(\"n\", \"mean_error\", \"relative_se_error\", \"skewness\", \"excess_kurtosis\", \"qq_rmse\")]\nnames(shown) &lt;- c(\"n\", \"Center error\", \"Relative SE error\", \"Skewness\", \"Excess kurtosis\", \"Q-Q RMSE\")\nknitr::kable(shown, digits = 4, row.names = FALSE)\n\n\n\n\nTable 1: Exponential diagnostics near the transition. Center and SE are accurate before the right-tail shape meets the practical skewness guidance.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nCenter error\nRelative SE error\nSkewness\nExcess kurtosis\nQ-Q RMSE\n\n\n\n\n100\n-5e-04\n0.0039\n0.2330\n0.0933\n0.0492\n\n\n150\n7e-04\n0.0039\n0.1359\n0.0277\n0.0284\n\n\n200\n-3e-04\n0.0088\n0.1179\n-0.0770\n0.0278\n\n\n300\n-2e-04\n0.0023\n0.0961\n-0.0097\n0.0210\n\n\n500\n-3e-04\n0.0112\n0.0859\n-0.0927\n0.0230\n\n\n750\n-3e-04\n0.0061\n0.0926\n-0.0018\n0.0222\n\n\n\n\n\n\n\n\nAt \\(n=300\\), skewness is 0.096 and relative SE error is 0.23%. Q-Q RMSE remains above the exact-Normal noise band, so the graphical tail check still matters."
+    "text": "5. Numerical evidence\n\n\nShow R code\nshown &lt;- page_results[page_results$n %in% c(200, 300, 500, 750, 1000, 1500), c(\"n\", \"mean_error\", \"relative_se_error\", \"skewness\", \"excess_kurtosis\", \"qq_rmse\")]\nnames(shown) &lt;- c(\"n\", \"Center error\", \"Relative SE error\", \"Skewness\", \"Excess kurtosis\", \"Q-Q RMSE\")\nknitr::kable(shown, digits = 4, row.names = FALSE)\n\n\n\n\nTable 1: Exponential diagnostics near the transition. Center and SE are accurate before the right-tail shape meets the practical skewness guidance.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nCenter error\nRelative SE error\nSkewness\nExcess kurtosis\nQ-Q RMSE\n\n\n\n\n200\n-3e-04\n0.0088\n0.1179\n-0.0770\n0.0278\n\n\n300\n-2e-04\n0.0023\n0.0961\n-0.0097\n0.0210\n\n\n500\n-3e-04\n0.0112\n0.0859\n-0.0927\n0.0230\n\n\n750\n-3e-04\n0.0061\n0.0926\n-0.0018\n0.0222\n\n\n1000\n0e+00\n0.0089\n0.0662\n-0.0355\n0.0145\n\n\n1500\n-3e-04\n0.0104\n0.0324\n0.0114\n0.0076\n\n\n\n\n\n\n\n\nAt \\(n=300\\), skewness is 0.096, but the theoretical value \\(2/\\sqrt{300}=0.115\\) still exceeds the 0.10 guidance. A second seed also produces substantially more skew at 300 and 500, so the first run alone would give a premature threshold."
   },
   {
     "objectID": "analyses/exponential.html#shape-across-sample-sizes",
     "href": "analyses/exponential.html#shape-across-sample-sizes",
     "title": "Exponential",
     "section": "6. Shape across sample sizes",
-    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: At n = 30 the right tail is still visible. By n = 300 the sampling distribution is close enough to a symmetric bell for practical use, and n = 750 confirms continued stability."
+    "text": "6. Shape across sample sizes\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: At n = 30 the right tail is visible, and n = 300 remains borderline. By n = 1000 the histogram closely follows its dark theoretical Normal overlay under both theoretical and simulation checks."
   },
   {
     "objectID": "analyses/exponential.html#q-q-evidence",
     "href": "analyses/exponential.html#q-q-evidence",
     "title": "Exponential",
     "section": "7. Q-Q evidence",
-    "text": "7. Q-Q evidence\n\n\nShow R code\nplot_qq_comparison(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 3: Right-tail Q-Q curvature is material at n = 30, modest at n = 300, and smaller at n = 750. The comparison shows why a tail diagnostic delays the conclusion."
+    "text": "7. Q-Q evidence\n\n\nShow R code\nplot_qq_comparison(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 3: Right-tail Q-Q curvature is material at n = 30, still detectable at n = 300, and small at n = 1000. The comparison shows why a tail diagnostic delays the conclusion."
   },
   {
     "objectID": "analyses/exponential.html#diagnostic-trajectory",
     "href": "analyses/exponential.html#diagnostic-trajectory",
     "title": "Exponential",
     "section": "8. Diagnostic trajectory",
-    "text": "8. Diagnostic trajectory\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Shape diagnostics generally decline with n but fluctuate under finite simulation. Skewness enters the practical band at n = 300 and remains modest at the next larger evaluations."
+    "text": "8. Diagnostic trajectory\n\n\nShow R code\nplot_diagnostic_trajectory(page_results, population, bands)\n\n\n\n\n\n\n\n\nFigure 4: Shape diagnostics generally decline with n but fluctuate under finite simulation. The sparse log-axis labels avoid implying a smooth monotone path, and the red lines show the Normal-calibrated guidance.\n\n\n\n\n\n\n\nShow R code\nplot_se_comparison(page_results, population)\n\n\n\n\n\n\n\n\nFigure 5: Empirical and theoretical standard errors agree long before the shape becomes convincingly Normal. Correct precision alone would certify the approximation too early.\n\n\n\n\n\n\n\nShow R code\nseed_compare &lt;- merge(\n  page_results[page_results$n %in% second_seed$n, c(\"n\", \"skewness\", \"qq_rmse\")],\n  second_seed[, c(\"n\", \"skewness\", \"qq_rmse\")],\n  by = \"n\",\n  suffixes = c(\"_631\", \"_1631\")\n)\nnames(seed_compare) &lt;- c(\"n\", \"Skewness, seed 631\", \"Q-Q RMSE, seed 631\", \"Skewness, seed 1631\", \"Q-Q RMSE, seed 1631\")\nknitr::kable(seed_compare, digits = 4, row.names = FALSE)\n\n\n\n\nTable 2: Seed 1631 exposes the instability of n = 300 and 500, while n = 1000 is inside the skewness and Q-Q guidance under both seeds. Larger points confirm the same practical region despite Monte Carlo fluctuation.\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nSkewness, seed 631\nQ-Q RMSE, seed 631\nSkewness, seed 1631\nQ-Q RMSE, seed 1631\n\n\n\n\n300\n0.0961\n0.0210\n0.1879\n0.0403\n\n\n500\n0.0859\n0.0230\n0.1124\n0.0251\n\n\n750\n0.0926\n0.0222\n0.0195\n0.0102\n\n\n1000\n0.0662\n0.0145\n0.0354\n0.0089\n\n\n1500\n0.0324\n0.0076\n0.0449\n0.0177"
   },
   {
     "objectID": "analyses/exponential.html#decision-and-disagreement",
     "href": "analyses/exponential.html#decision-and-disagreement",
     "title": "Exponential",
     "section": "9. Decision and disagreement",
-    "text": "9. Decision and disagreement\nDecision: \\(n=300\\). Center and SE have long since stabilized, skewness reaches the practical 0.10 band, and the remaining tail curvature is not large enough to misrepresent the main distribution. The judgment persists at \\(n=500\\) and \\(n=750\\). Q-Q RMSE remains stricter than the visual decision, which warns that sensitive extreme-tail work may still need more data."
+    "text": "9. Decision and disagreement\nDecision: use \\(n=1000\\) as the conservative threshold. The region from 750 to 1000 is where the practical shape becomes credible, but \\(n=300\\) and 500 are seed-sensitive. At 1000, skewness and Q-Q RMSE are inside the guidance bands for both seeds, the dark Normal overlay and Q-Q line agree closely, and the primary-seed conclusion persists at \\(n=1500\\) and 2000. Q-Q fluctuation at seed 1631 and \\(n=1500\\) remains visible rather than being hidden."
   },
   {
     "objectID": "analyses/exponential.html#limitation-and-surprise",

@@ -14,7 +14,6 @@ library(ggplot2)
 population <- get_population("binomial")
 diagnostics <- read.csv("../results/diagnostics.csv")
 page_results <- diagnostics[diagnostics$population == "binomial", ]
-second_seed <- read.csv("../results/second_seed.csv")
 bands <- read.csv("../results/calibration_bands.csv")
 selected_n <- c(1, 30, 200)
 simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
@@ -45,7 +44,7 @@ Discreteness does not violate the theorem, but it can remain visible in finite s
 
 ## 4. Simulation design
 
-The grid is dense from $n=1$ to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. Because the transition is borderline, $n=200$, 300, and 500 are repeated with seed 1631.
+The grid is dense from $n=1$ to 200, then checks 300 and 500 for stability. Every grid point uses 10,000 means and seed 631. The independent second-seed check is reserved for Exponential, the genuinely most borderline finite-variance case.
 
 ## 5. Numerical evidence
 
@@ -63,7 +62,7 @@ At $n=200$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n 
 
 ```{r}
 #| label: fig-binomial-sampling
-#| fig-cap: "The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200."
+#| fig-cap: "The parent-like sampling distribution at n = 1 gives way to a skewed lattice at n = 30 and a nearly symmetric, fine-grained bell at n = 200. Dark curves are theoretical Normal references."
 #| fig-alt: "Three histograms showing a zero-heavy discrete shape becoming a narrow, nearly symmetric bell."
 plot_sampling_distributions(simulation$means, population, selected_n)
 ```
@@ -77,24 +76,25 @@ plot_sampling_distributions(simulation$means, population, selected_n)
 plot_qq_comparison(simulation$means, population, selected_n)
 ```
 
-## 8. Second-seed check
+## 8. Diagnostic trajectory and standard error
 
 ```{r}
-#| label: tbl-binomial-second-seed
-#| tbl-cap: "Seed 1631 reproduces the same transition region at n = 200, 300, and 500. Individual metrics move, but the substantive conclusion does not."
-seed_compare <- merge(
-  page_results[page_results$n %in% c(200, 300, 500), c("n", "skewness", "qq_rmse")],
-  second_seed[, c("n", "skewness", "qq_rmse")],
-  by = "n",
-  suffixes = c("_631", "_1631")
-)
-names(seed_compare) <- c("n", "Skewness, seed 631", "Q-Q RMSE, seed 631", "Skewness, seed 1631", "Q-Q RMSE, seed 1631")
-knitr::kable(seed_compare, digits = 4, row.names = FALSE)
+#| label: fig-binomial-trajectory
+#| fig-cap: "Skewness and excess kurtosis settle faster than Q-Q RMSE. The gap records a fine lattice that remains measurable after the global shape becomes useful."
+#| fig-alt: "Three diagnostic trajectories declining at different rates across Binomial sample sizes."
+plot_diagnostic_trajectory(page_results, population, bands)
+```
+
+```{r}
+#| label: fig-binomial-se
+#| fig-cap: "Empirical and theoretical standard errors nearly overlap across the grid. As in the other skewed case, precision stabilizes before shape."
+#| fig-alt: "Two nearly overlapping standard-error curves declining with Binomial sample size."
+plot_se_comparison(page_results, population)
 ```
 
 ## 9. Decision and disagreement
 
-**Decision: $n=200$.** The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at $n=300$ and $n=500$ under both seeds. Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations.
+**Decision: $n=200$.** The center, SE, global histogram, and skewness support a practical Normal approximation, and the judgment persists at $n=300$ and $n=500$. Q-Q RMSE remains above the Normal calibration because standardized sample means still occupy a lattice. That disagreement is real and matters most for fine tail or continuity-sensitive calculations.
 
 ## 10. Limitation and surprise
 

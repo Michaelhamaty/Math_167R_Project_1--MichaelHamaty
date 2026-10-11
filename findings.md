@@ -32,10 +32,11 @@
 - Normal calibration produced guidance bands of 0.10 for absolute skewness, 0.20 for absolute excess kurtosis, 0.03 for relative SE error, and 0.01490 for Q-Q RMSE.
 - The calibrated Q-Q RMSE band is deliberately stringent. Even visually modest lattice effects can exceed it, so it must remain guidance rather than an automatic gate.
 - Shapiro-Wilk W is recorded on the first deterministic 5,000 means for method exploration. Its p-value is excluded because large samples make it an overly sensitive decision rule.
-- Visual review fixed the practical thresholds at Normal 1, die 30, Exponential 300, and small Binomial 200. Cauchy has no threshold.
+- Final review fixed the practical thresholds at Normal 1, die 30, conservative Exponential 1000, and small Binomial 200. Cauchy has no threshold.
 - Die Q-Q RMSE remains above the Normal-noise band because of lattice steps even when the global shape is useful.
-- Exponential center and SE stabilize far earlier than its right-tail shape; $n=300$ is the first visually and numerically defensible compromise that persists at 500 and 750.
-- The small Binomial at $n=200$ is the borderline sensitivity case because skewness has settled while lattice-sensitive Q-Q RMSE has not.
+- Exponential center and SE stabilize far earlier than its right-tail shape. Exact skewness and seed 1631 show that the apparent seed-631 success at $n=300$ is not stable; $n=1000$ is the conservative threshold.
+- Exponential is the second-seed sensitivity case. The small Binomial remains a diagnostic-disagreement example because skewness settles while lattice-sensitive Q-Q RMSE does not.
+- The post-review render confirms that sparse log-axis breaks remove the earlier trajectory label collisions and that added plot margins prevent clipping. The revised synthesis makes Cauchy ineligibility visible rather than leaving it outside the figure.
 - Cauchy IQR remains near its theoretical value of 2 while maximum absolute means vary by orders of magnitude. Fixed-window histograms use all simulations in the density denominator and disclose excluded-tail fractions.
 
 ## Technical decisions

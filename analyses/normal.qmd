@@ -62,7 +62,7 @@ At $n=1$, the simulated mean is `r sprintf("%.4f", page_results$simulated_mean[p
 
 ```{r}
 #| label: fig-normal-sampling
-#| fig-cap: "Sampling distributions at n = 1, 10, and 100. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient."
+#| fig-cap: "Sampling distributions at n = 1, 10, and 100 with exact theoretical Normal overlays in dark gray. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient."
 #| fig-alt: "Three symmetric bell-shaped histograms that narrow around zero as sample size increases."
 plot_sampling_distributions(simulation$means, population, selected_n)
 ```
@@ -84,6 +84,20 @@ plot_qq_comparison(simulation$means, population, selected_n)
 band_table <- bands
 band_table$threshold <- round(band_table$threshold, 4)
 knitr::kable(band_table, col.names = c("Metric", "Guidance threshold"), row.names = FALSE)
+```
+
+```{r}
+#| label: fig-normal-trajectory
+#| fig-cap: "Normal shape diagnostics fluctuate around their targets rather than following a convergence trend. The red guidance lines quantify ordinary Monte Carlo noise under an exactly Normal law."
+#| fig-alt: "Three diagnostic trajectories fluctuating at low levels across sample size."
+plot_diagnostic_trajectory(page_results, population, bands)
+```
+
+```{r}
+#| label: fig-normal-se
+#| fig-cap: "Empirical and exact theoretical standard errors agree across the grid. Both contract as one over the square root of n, independently of the already exact shape."
+#| fig-alt: "Two nearly overlapping standard-error curves declining with sample size."
+plot_se_comparison(page_results, population)
 ```
 
 ## 9. Decision and diagnostic agreement

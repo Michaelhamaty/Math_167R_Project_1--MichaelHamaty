@@ -1,3 +1,4 @@
+#ggplot2 adaptation: layers, facets, scales, and themes follow the official package reference.
 analysis_theme <- function(base_size = 12) {
   ggplot2::theme_minimal(base_size = base_size, base_family = "Avenir Next") +
     ggplot2::theme(
@@ -7,7 +8,9 @@ analysis_theme <- function(base_size = 12) {
       panel.grid.major.x = ggplot2::element_blank(),
       strip.text = ggplot2::element_text(face = "bold", color = "#173f47"),
       legend.position = "bottom",
-      plot.caption = ggplot2::element_text(color = "#53666b", hjust = 0)
+      plot.caption = ggplot2::element_text(color = "#53666b", hjust = 0),
+      plot.margin = ggplot2::margin(14, 18, 14, 28),
+      panel.spacing = grid::unit(0.9, "lines")
     )
 }
 
@@ -36,8 +39,15 @@ plot_sampling_distributions <- function(means_data, population, selected_n, x_li
   data <- means_data[means_data$n %in% selected_n, ]
   data$n_label <- factor(paste0("n = ", data$n), levels = paste0("n = ", selected_n))
   if (is.null(x_limits)) {
+    theoretical <- do.call(rbind, lapply(selected_n, function(n) {
+      standard_error <- sqrt(population$variance / n)
+      x <- seq(population$mean - 4.2 * standard_error, population$mean + 4.2 * standard_error, length.out = 300)
+      data.frame(n = n, x = x, density = stats::dnorm(x, population$mean, standard_error))
+    }))
+    theoretical$n_label <- factor(paste0("n = ", theoretical$n), levels = paste0("n = ", selected_n))
     return(ggplot2::ggplot(data, ggplot2::aes(sample_mean)) +
       ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 42, fill = population$color, color = "white", linewidth = 0.25) +
+      ggplot2::geom_line(data = theoretical, ggplot2::aes(x, density), inherit.aes = FALSE, color = "#30373a", linewidth = 0.9) +
       ggplot2::facet_wrap(ggplot2::vars(n_label), scales = "free_y", ncol = min(3, length(selected_n))) +
       ggplot2::labs(x = "Sample mean", y = "Density") + analysis_theme())
   }
@@ -94,7 +104,7 @@ plot_diagnostic_trajectory <- function(summary_data, population, bands) {
     ggplot2::geom_line(color = population$color, linewidth = 0.8) +
     ggplot2::geom_point(color = population$color, size = 1.7) +
     ggplot2::facet_wrap(ggplot2::vars(metric), scales = "free_y", ncol = 1) +
-    ggplot2::scale_x_log10(breaks = summary_data$n) +
+    ggplot2::scale_x_log10(breaks = c(1, 5, 10, 50, 100, 500, 1000, 2000), minor_breaks = NULL) +
     ggplot2::labs(x = "Sample size, log scale", y = NULL) + analysis_theme()
 }
 
@@ -106,7 +116,7 @@ plot_se_comparison <- function(summary_data, population) {
   ggplot2::ggplot(data, ggplot2::aes(n, se, color = type)) +
     ggplot2::geom_line(linewidth = 0.85) +
     ggplot2::geom_point(size = 1.6) +
-    ggplot2::scale_x_log10(breaks = summary_data$n) +
+    ggplot2::scale_x_log10(breaks = c(1, 5, 10, 50, 100, 500, 1000, 2000), minor_breaks = NULL) +
     ggplot2::scale_color_manual(values = c(Empirical = population$color, Theory = "#bd5b32")) +
     ggplot2::labs(x = "Sample size, log scale", y = "Standard error", color = NULL) + analysis_theme()
 }

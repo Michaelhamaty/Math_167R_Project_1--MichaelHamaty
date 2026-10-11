@@ -4,7 +4,7 @@
 Build, verify, commit, and push the complete five-population Central Limit Theorem Monte Carlo Quarto website defined by `PROJECT_SPEC.md`.
 
 ## Next Step
-Run the clean acceptance suite and dispatch the required fresh-agent final review.
+Commit and push the verified fresh-review revisions, then complete the final documentation and remote-state handoff.
 
 ## Current Phase
 Phase 7
@@ -57,9 +57,9 @@ Phase 7
 - **Status:** complete
 
 ### Phase 7: Verification and handoff
-- [ ] Render from a clean R session
-- [ ] Run all acceptance checks
-- [ ] Complete a fresh-agent review and revisions
+- [x] Render from a clean R session
+- [x] Run all acceptance checks
+- [x] Complete a fresh-agent review and revisions
 - [ ] Reconcile documentation, commits, and remote state
 - **Status:** in_progress
 
@@ -78,3 +78,4 @@ Phase 7
 | The audit environment lacked pytest | Ran the upstream unittest modules instead. |
 | One upstream audit test writes to sandbox-blocked `/var/tmp` | Documented as environment-inapplicable; all other selected tests pass with the temp cache override. |
 | Homebrew downloaded Quarto 1.10.19 but its package installer required interactive administrator authentication | Use the official release archive in the ignored project-local `.tools/` directory and verify its published checksum. |
+| The sandbox denied creation of the child repository's `.git/index.lock` during final staging | Retry the verified Git stage, commit, and push with narrowly scoped repository approval. |

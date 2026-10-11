@@ -15,7 +15,8 @@ population <- get_population("exponential")
 diagnostics <- read.csv("../results/diagnostics.csv")
 page_results <- diagnostics[diagnostics$population == "exponential", ]
 bands <- read.csv("../results/calibration_bands.csv")
-selected_n <- c(30, 300, 750)
+second_seed <- read.csv("../results/second_seed.csv")
+selected_n <- c(30, 300, 1000)
 simulation <- simulate_population(population, selected_n, B = 10000L, seed = 631L, keep_means = TRUE)
 ```
 
@@ -40,26 +41,26 @@ The exact sample sum is Gamma, so the remaining standardized skewness shrinks li
 
 ## 4. Simulation design
 
-The adaptive grid extends from $n=1$ to $n=1000$, with extra points between 75 and 500 where the skewness approaches the practical band. Every point uses 10,000 means and seed 631.
+The adaptive grid extends from $n=1$ to $n=2000$, with extra points from 300 onward where shape diagnostics approach the practical bands. Every point uses 10,000 means and seed 631.
 
 ## 5. Numerical evidence
 
 ```{r}
 #| label: tbl-exponential-diagnostics
 #| tbl-cap: "Exponential diagnostics near the transition. Center and SE are accurate before the right-tail shape meets the practical skewness guidance."
-shown <- page_results[page_results$n %in% c(100, 150, 200, 300, 500, 750), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
+shown <- page_results[page_results$n %in% c(200, 300, 500, 750, 1000, 1500), c("n", "mean_error", "relative_se_error", "skewness", "excess_kurtosis", "qq_rmse")]
 names(shown) <- c("n", "Center error", "Relative SE error", "Skewness", "Excess kurtosis", "Q-Q RMSE")
 knitr::kable(shown, digits = 4, row.names = FALSE)
 ```
 
-At $n=300$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n == 300])` and relative SE error is `r sprintf("%.2f%%", 100 * page_results$relative_se_error[page_results$n == 300])`. Q-Q RMSE remains above the exact-Normal noise band, so the graphical tail check still matters.
+At $n=300$, skewness is `r sprintf("%.3f", page_results$skewness[page_results$n == 300])`, but the theoretical value $2/\sqrt{300}=0.115$ still exceeds the 0.10 guidance. A second seed also produces substantially more skew at 300 and 500, so the first run alone would give a premature threshold.
 
 ## 6. Shape across sample sizes
 
 ```{r}
 #| label: fig-exponential-sampling
-#| fig-cap: "At n = 30 the right tail is still visible. By n = 300 the sampling distribution is close enough to a symmetric bell for practical use, and n = 750 confirms continued stability."
-#| fig-alt: "Three histograms centered near one, with right skew diminishing as sample size grows."
+#| fig-cap: "At n = 30 the right tail is visible, and n = 300 remains borderline. By n = 1000 the histogram closely follows its dark theoretical Normal overlay under both theoretical and simulation checks."
+#| fig-alt: "Three histograms centered near one, with right skew diminishing toward a dark Normal curve as sample size grows."
 plot_sampling_distributions(simulation$means, population, selected_n)
 ```
 
@@ -67,7 +68,7 @@ plot_sampling_distributions(simulation$means, population, selected_n)
 
 ```{r}
 #| label: fig-exponential-qq
-#| fig-cap: "Right-tail Q-Q curvature is material at n = 30, modest at n = 300, and smaller at n = 750. The comparison shows why a tail diagnostic delays the conclusion."
+#| fig-cap: "Right-tail Q-Q curvature is material at n = 30, still detectable at n = 300, and small at n = 1000. The comparison shows why a tail diagnostic delays the conclusion."
 #| fig-alt: "Three Q-Q panels with decreasing upward curvature in the right tail."
 plot_qq_comparison(simulation$means, population, selected_n)
 ```
@@ -76,14 +77,34 @@ plot_qq_comparison(simulation$means, population, selected_n)
 
 ```{r}
 #| label: fig-exponential-trajectory
-#| fig-cap: "Shape diagnostics generally decline with n but fluctuate under finite simulation. Skewness enters the practical band at n = 300 and remains modest at the next larger evaluations."
+#| fig-cap: "Shape diagnostics generally decline with n but fluctuate under finite simulation. The sparse log-axis labels avoid implying a smooth monotone path, and the red lines show the Normal-calibrated guidance."
 #| fig-alt: "Three line charts with declining skewness, kurtosis, and Q-Q error over a log sample-size axis."
 plot_diagnostic_trajectory(page_results, population, bands)
 ```
 
+```{r}
+#| label: fig-exponential-se
+#| fig-cap: "Empirical and theoretical standard errors agree long before the shape becomes convincingly Normal. Correct precision alone would certify the approximation too early."
+#| fig-alt: "Two nearly overlapping standard-error curves declining with Exponential sample size."
+plot_se_comparison(page_results, population)
+```
+
+```{r}
+#| label: tbl-exponential-second-seed
+#| tbl-cap: "Seed 1631 exposes the instability of n = 300 and 500, while n = 1000 is inside the skewness and Q-Q guidance under both seeds. Larger points confirm the same practical region despite Monte Carlo fluctuation."
+seed_compare <- merge(
+  page_results[page_results$n %in% second_seed$n, c("n", "skewness", "qq_rmse")],
+  second_seed[, c("n", "skewness", "qq_rmse")],
+  by = "n",
+  suffixes = c("_631", "_1631")
+)
+names(seed_compare) <- c("n", "Skewness, seed 631", "Q-Q RMSE, seed 631", "Skewness, seed 1631", "Q-Q RMSE, seed 1631")
+knitr::kable(seed_compare, digits = 4, row.names = FALSE)
+```
+
 ## 9. Decision and disagreement
 
-**Decision: $n=300$.** Center and SE have long since stabilized, skewness reaches the practical 0.10 band, and the remaining tail curvature is not large enough to misrepresent the main distribution. The judgment persists at $n=500$ and $n=750$. Q-Q RMSE remains stricter than the visual decision, which warns that sensitive extreme-tail work may still need more data.
+**Decision: use $n=1000$ as the conservative threshold.** The region from 750 to 1000 is where the practical shape becomes credible, but $n=300$ and 500 are seed-sensitive. At 1000, skewness and Q-Q RMSE are inside the guidance bands for both seeds, the dark Normal overlay and Q-Q line agree closely, and the primary-seed conclusion persists at $n=1500$ and 2000. Q-Q fluctuation at seed 1631 and $n=1500$ remains visible rather than being hidden.
 
 ## 10. Limitation and surprise
 

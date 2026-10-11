@@ -23,7 +23,7 @@ Shapiro-Wilk W was explored on the first deterministic 5,000 sample means. It is
 
 A threshold is acceptable only when the histogram and Q-Q plot have no material feature that would make a Normal approximation misleading. The judgment must persist at the next two larger evaluated sample sizes. Disagreement is reported directly. In particular, a lattice distribution can remain above the Normal-calibrated Q-Q RMSE even after its overall shape is useful.
 
-The selected thresholds after visual review are $n=1$ for Normal by exact theory, $n=30$ for the die, $n=300$ for Exponential, and $n=200$ for the small Binomial. Cauchy has no ordinary-CLT threshold.
+The selected thresholds after visual review and sensitivity analysis are $n=1$ for Normal by exact theory, $n=30$ for the die, $n=1000$ as a conservative Exponential threshold, and $n=200$ for the small Binomial. Cauchy has no ordinary-CLT threshold.
 
 ## Cauchy contract
 
@@ -31,4 +31,4 @@ The standard Cauchy mean and variance are undefined, so theoretical standard err
 
 ## Borderline sensitivity case
 
-The small Binomial at $n=200$ is the most interpretively borderline finite-variance result. Its skewness enters the practical band, while discreteness keeps Q-Q RMSE above the Normal calibration. It is rerun at $n=200$, 300, and 500 with seed 1631. This choice tests whether the substantive transition survives new Monte Carlo noise.
+Exponential is the genuinely most borderline finite-variance result. Although seed 631 produced skewness 0.096 at $n=300$, the exact sampling skewness is $2/\sqrt{300}=0.115$, above the practical band. Seed 1631 produced skewness 0.188 at 300 and 0.112 at 500. The second run therefore covers $n=300$, 500, 750, 1000, and 1500. Both seeds support $n=1000$ as a conservative threshold, while the remaining Q-Q fluctuation at 1500 is retained as Monte Carlo disagreement.

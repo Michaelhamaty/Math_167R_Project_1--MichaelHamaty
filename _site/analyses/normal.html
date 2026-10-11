@@ -364,7 +364,7 @@ Table&nbsp;1: Normal diagnostics at three scales. Empirical center and SE remain
 <img src="normal_files/figure-html/fig-normal-sampling-1.png" class="img-fluid figure-img" alt="Three symmetric bell-shaped histograms that narrow around zero as sample size increases." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Sampling distributions at n = 1, 10, and 100. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient.
+Figure&nbsp;2: Sampling distributions at n = 1, 10, and 100 with exact theoretical Normal overlays in dark gray. The scale contracts with n, but the bell shape is exact throughout, so n = 1 is already sufficient.
 </figcaption>
 </figure>
 </div>
@@ -441,6 +441,42 @@ Table&nbsp;2: Guidance bands calibrated from the largest Normal fluctuation, sub
 </div>
 </div>
 </figure>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_diagnostic_trajectory</span>(page_results, population, bands)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-normal-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three diagnostic trajectories fluctuating at low levels across sample size.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-normal-trajectory-1.png" class="img-fluid figure-img" alt="Three diagnostic trajectories fluctuating at low levels across sample size." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Normal shape diagnostics fluctuate around their targets rather than following a convergence trend. The red guidance lines quantify ordinary Monte Carlo noise under an exactly Normal law.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_se_comparison</span>(page_results, population)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-normal-se" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two nearly overlapping standard-error curves declining with sample size.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-normal-se-1.png" class="img-fluid figure-img" alt="Two nearly overlapping standard-error curves declining with sample size." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Empirical and exact theoretical standard errors agree across the grid. Both contract as one over the square root of n, independently of the already exact shape.
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
