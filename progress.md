@@ -84,7 +84,7 @@
 ### Current status
 - **Phase:** 15 - Extension verification and handoff
 - **Started:** 2026-10-11
-- **Next action:** Run the clean deterministic build and render suite, then request the context-free extension review.
+- **Next action:** Commit and push the verified review fixes, reconcile the final planning state, and verify local and remote heads.
 
 ### Actions taken
 - Re-read the repository guidance, source hierarchy, planning files, future-extension notes, and all three instructor-provided extension documents.
@@ -101,6 +101,10 @@
 - Completed the Extensions hub, navigation, landing callout, accessible interaction, static fallback, methodology record, code-source record, and future-work boundary.
 - Rebuilt both result families twice and confirmed byte-identical SHA-256 hashes for all twelve compact output files.
 - Completed a clean eleven-page Quarto render, then passed project, extension, interaction, link, and whitespace validation.
+- Received the required context-free extension review. It found no statistical or cultural-framing error, but identified escaped interactive controls, mobile equation overflow, a compressed age histogram comparison, and two provenance gaps.
+- Repaired the interaction with raw HTML and executable DOM initialization tests, split and contained formulas, gave the age panels disclosed local x scales, and added precise theorem and PRNG sources.
+- The reviewer rechecked all four repairs at desktop and 390-pixel width, exercised a creative preset, and reported no remaining required defect.
+- Reconfirmed all twelve original supplied-file hashes. The parent repository acquired unrelated changes during the extension run, but the nested project entry is unchanged and no parent path was modified by this work.
 
 ### Errors
 | Error | Attempt | Resolution |
@@ -112,3 +116,5 @@
 | In-app browser automation rejected the rendered `file://` URL | 1 | Respect the URL policy and substitute deterministic Node assertions plus rendered-HTML accessibility checks. |
 | The Phase 15 verification command addressed `plan-doctor.py`, which is not part of the pinned skill | 1 | Use the documented `scripts/plan-doctor.sh` entry point. |
 | The first Phase 15 hash list used the wrong calibration result filename | 1 | Replace `calibration.csv` with `calibration_bands.csv`; the build and validation stages had already passed. |
+| The first interactive validator accepted escaped controls because it searched only for attribute strings | 1 | Render controls through a raw HTML block and execute initialization against a minimal DOM and canvas contract in Node. |
+| A provenance URL's numeric answer identifier triggered the full-identifier safety scan | 1 | Cite the source repository URL without an identifier-shaped path while retaining exact attribution. |

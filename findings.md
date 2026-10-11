@@ -67,6 +67,10 @@
 - All three creative paths are practically useful by `n = 50`. Increasing and decreasing paths have identical exact moments because they reverse the same probability multiset, while the stable path has slightly larger variance.
 - The local browser policy blocks automated `file://` control, so interaction verification uses deterministic Node assertions and rendered-HTML accessibility checks rather than bypassing that security boundary.
 - The extension documentation now distinguishes implemented work from any future empirical layer, and records the local Canvas and input-event provenance beside the interaction source.
+- Fresh context-free review confirmed the extension statistics and cultural framing but found a real rendering defect: Markdown had escaped the indented interactive controls. Raw HTML fencing and runtime-aware Node validation now make the control contract executable rather than string-only.
+- The review also identified mobile equation overflow, compressed age histograms, and two missing source attributions. Equations are split and horizontally contained, the age panels use disclosed free horizontal scales, and the Lindeberg-Feller and Mulberry32 foundations are now cited.
+- The review verification exercised the repaired interaction at 390 pixels and found no remaining required defect. All extension validators and link checks passed afterward.
+- The unrelated parent repository's global status changed during this long-running phase because of paths outside the nested project. The saved parent status still has the same `math_167R-proj1/` entry, every original project file matches its initial hash, and no command in this phase targeted a parent path.
 
 ## Issues encountered
 

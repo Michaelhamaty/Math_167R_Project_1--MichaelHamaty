@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1c582f2d5798a93d8320c9a4715f5b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -437,24 +437,20 @@ Figure&nbsp;3: Shape diagnostics improve across all three paths. Q-Q RMSE stays 
 <h2 class="anchored" data-anchor-id="interactive-thought-experiment">7. Interactive thought experiment</h2>
 <p>Use the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.</p>
 <div class="heritage-tool" data-seed="631" data-repetitions="3000">
-<div class="heritage-presets" role="group" aria-label="Probability path presets">
-<pre><code>&lt;button type="button" data-preset="stable"&gt;Stable&lt;/button&gt;
-&lt;button type="button" data-preset="increase"&gt;Gradual increase&lt;/button&gt;
-&lt;button type="button" data-preset="decrease"&gt;Gradual decrease&lt;/button&gt;</code></pre>
+  <div class="heritage-presets" role="group" aria-label="Probability path presets">
+    <button type="button" data-preset="stable" aria-pressed="false">Stable</button>
+    <button type="button" data-preset="increase" aria-pressed="true">Gradual increase</button>
+    <button type="button" data-preset="decrease" aria-pressed="false">Gradual decrease</button>
+  </div>
+  <div class="heritage-controls">
+    <label>Start probability <output data-output="start">0.45</output><input data-control="start" type="range" min="0.10" max="0.90" step="0.05" value="0.45"></label>
+    <label>End probability <output data-output="end">0.75</output><input data-control="end" type="range" min="0.10" max="0.90" step="0.05" value="0.75"></label>
+    <label>Sample size <output data-output="n">50</output><input data-control="n" type="range" min="10" max="200" step="10" value="50"></label>
+  </div>
+  <canvas width="900" height="430" role="img" aria-label="Interactive probability path and simulated distribution of the sample average"></canvas>
+  <p class="heritage-summary" aria-live="polite"></p>
 </div>
-<div class="heritage-controls">
-<pre><code>&lt;label&gt;Start probability &lt;output data-output="start"&gt;0.45&lt;/output&gt;&lt;input data-control="start" type="range" min="0.10" max="0.90" step="0.05" value="0.45"&gt;&lt;/label&gt;
-&lt;label&gt;End probability &lt;output data-output="end"&gt;0.75&lt;/output&gt;&lt;input data-control="end" type="range" min="0.10" max="0.90" step="0.05" value="0.75"&gt;&lt;/label&gt;
-&lt;label&gt;Sample size &lt;output data-output="n"&gt;50&lt;/output&gt;&lt;input data-control="n" type="range" min="10" max="200" step="10" value="50"&gt;&lt;/label&gt;</code></pre>
-</div>
-<canvas width="900" height="430" role="img" aria-label="Interactive probability path and simulated distribution of the sample average">
-</canvas>
-<p class="heritage-summary" aria-live="polite">
-</p>
-</div>
-<noscript>
-The interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above.
-</noscript>
+<noscript>The interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above.</noscript>
 <script src="../assets/heritage-interactive.js" defer=""></script>
 </section>
 <section id="decision-and-disagreement" class="level2">

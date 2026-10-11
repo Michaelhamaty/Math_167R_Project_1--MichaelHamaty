@@ -33,8 +33,11 @@ How quickly does an average become approximately Normal when the parent distribu
 For integer support from 0 through 100, the instructor construction uses
 
 $$
-w_E(x)=0.045e^{-x/5}, \qquad
-w_A(x)=0.030\exp\left[-\frac12\left(\frac{x-65}{10}\right)^2\right],
+w_E(x)=0.045e^{-x/5}.
+$$
+
+$$
+w_A(x)=0.030\exp\left[-\frac12\left(\frac{x-65}{10}\right)^2\right].
 $$
 
 then normalizes $w_E(x)+w_A(x)$ to sum to one.
@@ -68,9 +71,9 @@ knitr::kable(shown, digits = 4, row.names = FALSE)
 
 ```{r}
 #| label: fig-age-sampling
-#| fig-cap: "At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays."
-#| fig-alt: "Three histograms progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes."
-plot_sampling_distributions(simulation$means, population, selected_n)
+#| fig-cap: "At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays. Each panel uses its own horizontal scale so the narrowing distributions remain assessable."
+#| fig-alt: "Three histograms on separately labeled horizontal scales, progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes."
+plot_sampling_distributions(simulation$means, population, selected_n, facet_scales = "free")
 ```
 
 ```{r}

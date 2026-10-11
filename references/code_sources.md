@@ -9,8 +9,10 @@
 | [Quarto website documentation](https://quarto.org/docs/websites/) | `_quarto.yml`, QMD pages | The navigation, output directory, code folding, and static resource rules follow the documented website format. |
 | `course_docs/dependent_failure_process.html` | `R/extensions.R`, `extensions/dependent-failures.qmd` | The instructor's conditional Exponential rate is implemented exactly; marginal moments are estimated from a deterministic long chain. |
 | `course_docs/non_identical_basketball_shots.html` | `R/extensions.R`, `extensions/nonidentical-bernoulli.qmd` | The changing Bernoulli-probability example is generalized across the evaluated sample-size grid and analyzed as Poisson-binomial. |
+| [IISc probability lecture notes: Lindeberg-Feller CLT](https://math.iisc.ac.in/~manju/PT2022/Lectures-part2.pdf) | `extensions/nonidentical-bernoulli.qmd`, `extensions/heritage-language.qmd` | The bounded independent-array eligibility argument is stated separately from the ordinary iid CLT. |
 | `course_docs/custom_age_at_death_distribution_monte_carlo.html` | `R/extensions.R`, `extensions/age-mixture.qmd` | The instructor's two component weights and support are normalized into a synthetic discrete population. |
 | [MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and [MDN input event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event) | `assets/heritage-interactive.js` | A local deterministic canvas display responds to labeled native controls without a network or package dependency. |
+| [Mulberry32 JavaScript reference](https://github.com/cprosche/mulberry32) | `assets/heritage-interactive.js` | The small noncryptographic generator is adapted only to make the 3,000-run teaching display repeatable for a selected control state. |
 
 ## Planning and recovery tooling
 

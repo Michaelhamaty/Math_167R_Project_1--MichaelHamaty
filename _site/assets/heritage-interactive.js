@@ -1,4 +1,5 @@
 // Deterministic local interaction adapted from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API and https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event.
+// Mulberry32 adaptation: https://github.com/cprosche/mulberry32. It is noncryptographic and is used only for a deterministic teaching display.
 (() => {
   "use strict";
 
@@ -127,11 +128,15 @@
       increase: [0.45, 0.75],
       decrease: [0.75, 0.45]
     };
-    tool.querySelectorAll("input").forEach((input) => input.addEventListener("input", () => draw(tool)));
+    tool.querySelectorAll("input").forEach((input) => input.addEventListener("input", () => {
+      tool.querySelectorAll("[data-preset]").forEach((button) => button.setAttribute("aria-pressed", "false"));
+      draw(tool);
+    }));
     tool.querySelectorAll("[data-preset]").forEach((button) => button.addEventListener("click", () => {
       const values = presets[button.dataset.preset];
       tool.querySelector('[data-control="start"]').value = values[0];
       tool.querySelector('[data-control="end"]').value = values[1];
+      tool.querySelectorAll("[data-preset]").forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
       draw(tool);
     }));
     draw(tool);

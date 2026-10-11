@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1c582f2d5798a93d8320c9a4715f5b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -274,11 +274,12 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="theory-before-simulation">2. Theory before simulation</h2>
 <p>Each <span class="math inline">\(X_i\)</span> is Bernoulli, but the total is Poisson-binomial rather than ordinary Binomial. For the average,</p>
 <p><span class="math display">\[
-E(\bar X)=\frac{1}{n}\sum_i p_i=0.70,
-\qquad
+E(\bar X)=\frac{1}{n}\sum_i p_i=0.70.
+\]</span></p>
+<p><span class="math display">\[
 SE(\bar X)=\frac{\sqrt{\sum_i p_i(1-p_i)}}{n}.
 \]</span></p>
-<p>The introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance.</p>
+<p>The introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance. This is the finite bounded-variable form of the <a href="https://math.iisc.ac.in/~manju/PT2022/Lectures-part2.pdf">Lindeberg-Feller triangular-array argument</a>.</p>
 </section>
 <section id="prediction" class="level2">
 <h2 class="anchored" data-anchor-id="prediction">3. Prediction</h2>

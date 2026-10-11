@@ -107,8 +107,8 @@ Phase 14
 
 ### Phase 15: Extension verification and handoff
 - [x] Run deterministic builds, clean rendering, source checks, and link checks
-- [ ] Inspect all extension pages at desktop and narrow widths
-- [ ] Complete a fresh-agent review and valid revisions
+- [x] Inspect all extension pages at desktop and narrow widths
+- [x] Complete a fresh-agent review and valid revisions
 - [ ] Reconcile planning files, commits, and remote state
 - **Status:** in_progress
 
@@ -139,3 +139,5 @@ Phase 14
 | Browser automation rejected the local `file://` site under its URL security policy | Do not bypass the policy; validate the deterministic interaction core with Node, inspect rendered accessibility structure, and retain static visual QA. |
 | The first Phase 15 plan-doctor command used a nonexistent Python filename | Run the vendored `plan-doctor.sh` entry point and record the corrected result. |
 | The first deterministic hash command named `calibration.csv` instead of the generated `calibration_bands.csv` | Correct the audit target list; all preceding builders and validators passed. |
+| Fresh review found escaped interactive controls that the original string-only validator missed | Use explicit raw HTML and execute initialization against a minimal DOM and canvas contract in Node. |
+| The first precise PRNG URL looked like a full identifier to the safety scan | Use the source repository URL, which preserves provenance without an identifier-shaped path. |

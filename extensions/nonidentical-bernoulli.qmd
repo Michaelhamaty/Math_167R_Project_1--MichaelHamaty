@@ -32,12 +32,14 @@ What happens when observations remain independent but their success probabilitie
 Each $X_i$ is Bernoulli, but the total is Poisson-binomial rather than ordinary Binomial. For the average,
 
 $$
-E(\bar X)=\frac{1}{n}\sum_i p_i=0.70,
-\qquad
+E(\bar X)=\frac{1}{n}\sum_i p_i=0.70.
+$$
+
+$$
 SE(\bar X)=\frac{\sqrt{\sum_i p_i(1-p_i)}}{n}.
 $$
 
-The introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance.
+The introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance. This is the finite bounded-variable form of the [Lindeberg-Feller triangular-array argument](https://math.iisc.ac.in/~manju/PT2022/Lectures-part2.pdf).
 
 ## 3. Prediction
 

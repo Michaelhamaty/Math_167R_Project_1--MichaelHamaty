@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1c582f2d5798a93d8320c9a4715f5b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -287,8 +287,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="population-construction">2. Population construction</h2>
 <p>For integer support from 0 through 100, the instructor construction uses</p>
 <p><span class="math display">\[
-w_E(x)=0.045e^{-x/5}, \qquad
-w_A(x)=0.030\exp\left[-\frac12\left(\frac{x-65}{10}\right)^2\right],
+w_E(x)=0.045e^{-x/5}.
+\]</span></p>
+<p><span class="math display">\[
+w_A(x)=0.030\exp\left[-\frac12\left(\frac{x-65}{10}\right)^2\right].
 \]</span></p>
 <p>then normalizes <span class="math inline">\(w_E(x)+w_A(x)\)</span> to sum to one.</p>
 <div class="cell">
@@ -415,16 +417,16 @@ Table&nbsp;1: The synthetic mixture reaches small skewness near n = 75. Q-Q RMSE
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sampling_distributions</span>(simulation<span class="sc">$</span>means, population, selected_n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sampling_distributions</span>(simulation<span class="sc">$</span>means, population, selected_n, <span class="at">facet_scales =</span> <span class="st">"free"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-age-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three histograms progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes.">
+<div id="fig-age-sampling" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three histograms on separately labeled horizontal scales, progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-age-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="age-mixture_files/figure-html/fig-age-sampling-1.png" class="img-fluid figure-img" alt="Three histograms progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes." width="672">
+<img src="age-mixture_files/figure-html/fig-age-sampling-1.png" class="img-fluid figure-img" alt="Three histograms on separately labeled horizontal scales, progressing from asymmetric at five observations to nearly bell-shaped at larger sample sizes." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays.
+Figure&nbsp;2: At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays. Each panel uses its own horizontal scale so the narrowing distributions remain assessable.
 </figcaption>
 </figure>
 </div>

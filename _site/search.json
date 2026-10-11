@@ -18,7 +18,7 @@
     "href": "extensions/nonidentical-bernoulli.html#theory-before-simulation",
     "title": "Non-identical Bernoulli Observations",
     "section": "2. Theory before simulation",
-    "text": "2. Theory before simulation\nEach \\(X_i\\) is Bernoulli, but the total is Poisson-binomial rather than ordinary Binomial. For the average,\n\\[\nE(\\bar X)=\\frac{1}{n}\\sum_i p_i=0.70,\n\\qquad\nSE(\\bar X)=\\frac{\\sqrt{\\sum_i p_i(1-p_i)}}{n}.\n\\]\nThe introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance."
+    "text": "2. Theory before simulation\nEach \\(X_i\\) is Bernoulli, but the total is Poisson-binomial rather than ordinary Binomial. For the average,\n\\[\nE(\\bar X)=\\frac{1}{n}\\sum_i p_i=0.70.\n\\]\n\\[\nSE(\\bar X)=\\frac{\\sqrt{\\sum_i p_i(1-p_i)}}{n}.\n\\]\nThe introductory iid CLT does not apply literally. A bounded independent-array CLT can apply because no one observation dominates the growing total variance. This is the finite bounded-variable form of the Lindeberg-Feller triangular-array argument."
   },
   {
     "objectID": "extensions/nonidentical-bernoulli.html#prediction",
@@ -130,7 +130,7 @@
     "href": "extensions/heritage-language.html#interactive-thought-experiment",
     "title": "Creative Case: Heritage-Language Retention",
     "section": "7. Interactive thought experiment",
-    "text": "7. Interactive thought experiment\nUse the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.\n\n\n&lt;button type=\"button\" data-preset=\"stable\"&gt;Stable&lt;/button&gt;\n&lt;button type=\"button\" data-preset=\"increase\"&gt;Gradual increase&lt;/button&gt;\n&lt;button type=\"button\" data-preset=\"decrease\"&gt;Gradual decrease&lt;/button&gt;\n\n\n&lt;label&gt;Start probability &lt;output data-output=\"start\"&gt;0.45&lt;/output&gt;&lt;input data-control=\"start\" type=\"range\" min=\"0.10\" max=\"0.90\" step=\"0.05\" value=\"0.45\"&gt;&lt;/label&gt;\n&lt;label&gt;End probability &lt;output data-output=\"end\"&gt;0.75&lt;/output&gt;&lt;input data-control=\"end\" type=\"range\" min=\"0.10\" max=\"0.90\" step=\"0.05\" value=\"0.75\"&gt;&lt;/label&gt;\n&lt;label&gt;Sample size &lt;output data-output=\"n\"&gt;50&lt;/output&gt;&lt;input data-control=\"n\" type=\"range\" min=\"10\" max=\"200\" step=\"10\" value=\"50\"&gt;&lt;/label&gt;\n\n\n\n\n\n\n\nThe interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above."
+    "text": "7. Interactive thought experiment\nUse the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.\n\n  \n    Stable\n    Gradual increase\n    Gradual decrease\n  \n  \n    Start probability 0.45\n    End probability 0.75\n    Sample size 50\n  \n  \n  \n\nThe interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above."
   },
   {
     "objectID": "extensions/heritage-language.html#decision-and-disagreement",
@@ -172,7 +172,7 @@
     "href": "extensions/age-mixture.html#population-construction",
     "title": "Synthetic Age-at-Death Mixture",
     "section": "2. Population construction",
-    "text": "2. Population construction\nFor integer support from 0 through 100, the instructor construction uses\n\\[\nw_E(x)=0.045e^{-x/5}, \\qquad\nw_A(x)=0.030\\exp\\left[-\\frac12\\left(\\frac{x-65}{10}\\right)^2\\right],\n\\]\nthen normalizes \\(w_E(x)+w_A(x)\\) to sum to one.\n\n\nShow R code\nplot_age_components(population$distribution)\n\n\n\n\n\n\n\n\nFigure 1: The synthetic population combines a rapidly decreasing early component with a broad component centered near 65. The normalized curve is a mathematical construction, not an empirical life table."
+    "text": "2. Population construction\nFor integer support from 0 through 100, the instructor construction uses\n\\[\nw_E(x)=0.045e^{-x/5}.\n\\]\n\\[\nw_A(x)=0.030\\exp\\left[-\\frac12\\left(\\frac{x-65}{10}\\right)^2\\right].\n\\]\nthen normalizes \\(w_E(x)+w_A(x)\\) to sum to one.\n\n\nShow R code\nplot_age_components(population$distribution)\n\n\n\n\n\n\n\n\nFigure 1: The synthetic population combines a rapidly decreasing early component with a broad component centered near 65. The normalized curve is a mathematical construction, not an empirical life table."
   },
   {
     "objectID": "extensions/age-mixture.html#theory-and-prediction",
@@ -200,7 +200,7 @@
     "href": "extensions/age-mixture.html#sampling-distribution-evidence",
     "title": "Synthetic Age-at-Death Mixture",
     "section": "6. Sampling-distribution evidence",
-    "text": "6. Sampling-distribution evidence\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 2: At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays.\n\n\n\n\n\n\n\nShow R code\nplot_qq_comparison(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 3: Q-Q curvature is material at n = 5 and small by n = 75. The remaining endpoint movement is minor compared with the parent population’s irregular shape."
+    "text": "6. Sampling-distribution evidence\n\n\nShow R code\nplot_sampling_distributions(simulation$means, population, selected_n, facet_scales = \"free\")\n\n\n\n\n\n\n\n\nFigure 2: At n = 5 the parent mixture still leaves asymmetry. By n = 75 and 200 the averages closely follow the dark theoretical Normal overlays. Each panel uses its own horizontal scale so the narrowing distributions remain assessable.\n\n\n\n\n\n\n\nShow R code\nplot_qq_comparison(simulation$means, population, selected_n)\n\n\n\n\n\n\n\n\nFigure 3: Q-Q curvature is material at n = 5 and small by n = 75. The remaining endpoint movement is minor compared with the parent population’s irregular shape."
   },
   {
     "objectID": "extensions/age-mixture.html#diagnostic-trajectory-and-se",
@@ -718,7 +718,7 @@
     "href": "extensions/dependent-failures.html#conditional-model",
     "title": "Dependent Machine Failures",
     "section": "2. Conditional model",
-    "text": "2. Conditional model\nThe instructor model is\n\\[\n\\lambda_t=\\exp\\{1.25(X_{t-1}-1)\\}, \\qquad\nX_t\\mid X_{t-1}\\sim \\operatorname{Exponential}(\\lambda_t).\n\\]\nA long previous operating time raises the next rate and shortens the conditional expected time. A short previous time does the reverse.\n\n\nShow R code\nplot_dependent_rate_curve()\n\n\n\n\n\n\n\n\nFigure 1: The conditional expected next operating time falls as the previous operating time rises. The dashed reference marks the baseline value 1, making the compensating mechanism visible."
+    "text": "2. Conditional model\nThe instructor model is\n\\[\n\\lambda_t=\\exp\\{1.25(X_{t-1}-1)\\}.\n\\]\n\\[\nX_t\\mid X_{t-1}\\sim \\operatorname{Exponential}(\\lambda_t).\n\\]\nA long previous operating time raises the next rate and shortens the conditional expected time. A short previous time does the reverse.\n\n\nShow R code\nplot_dependent_rate_curve()\n\n\n\n\n\n\n\n\nFigure 1: The conditional expected next operating time falls as the previous operating time rises. The dashed reference marks the baseline value 1, making the compensating mechanism visible."
   },
   {
     "objectID": "extensions/dependent-failures.html#prediction-before-simulation",

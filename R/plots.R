@@ -35,7 +35,7 @@ plot_parent_population <- function(population, seed = 631L) {
   }
 }
 
-plot_sampling_distributions <- function(means_data, population, selected_n, x_limits = NULL) {
+plot_sampling_distributions <- function(means_data, population, selected_n, x_limits = NULL, facet_scales = "free_y") {
   data <- means_data[means_data$n %in% selected_n, ]
   data$n_label <- factor(paste0("n = ", data$n), levels = paste0("n = ", selected_n))
   if (is.null(x_limits)) {
@@ -48,7 +48,7 @@ plot_sampling_distributions <- function(means_data, population, selected_n, x_li
     return(ggplot2::ggplot(data, ggplot2::aes(sample_mean)) +
       ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 42, fill = population$color, color = "white", linewidth = 0.25) +
       ggplot2::geom_line(data = theoretical, ggplot2::aes(x, density), inherit.aes = FALSE, color = "#30373a", linewidth = 0.9) +
-      ggplot2::facet_wrap(ggplot2::vars(n_label), scales = "free_y", ncol = min(3, length(selected_n))) +
+      ggplot2::facet_wrap(ggplot2::vars(n_label), scales = facet_scales, ncol = min(3, length(selected_n))) +
       ggplot2::labs(x = "Sample mean", y = "Density") + analysis_theme())
   }
   breaks <- seq(x_limits[1], x_limits[2], length.out = 51)

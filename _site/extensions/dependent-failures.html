@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-acfcdb73ef33c793303833f016cf40e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1c582f2d5798a93d8320c9a4715f5b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -274,7 +274,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="conditional-model">2. Conditional model</h2>
 <p>The instructor model is</p>
 <p><span class="math display">\[
-\lambda_t=\exp\{1.25(X_{t-1}-1)\}, \qquad
+\lambda_t=\exp\{1.25(X_{t-1}-1)\}.
+\]</span></p>
+<p><span class="math display">\[
 X_t\mid X_{t-1}\sim \operatorname{Exponential}(\lambda_t).
 \]</span></p>
 <p>A long previous operating time raises the next rate and shortens the conditional expected time. A short previous time does the reverse.</p>

@@ -80,6 +80,13 @@ table {
   background: #fffdf8;
 }
 
+mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.2rem;
+}
+
 .heritage-tool {
   background: #fffdf8;
   border: 1px solid #d7d4c9;
@@ -101,6 +108,11 @@ table {
   color: #fffdf6;
   font: inherit;
   padding: 0.45rem 0.8rem;
+}
+
+.heritage-presets button[aria-pressed="true"] {
+  background: #fffdf8;
+  color: #173f47;
 }
 
 .heritage-controls {

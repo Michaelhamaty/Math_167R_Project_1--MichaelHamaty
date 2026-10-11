@@ -25,6 +25,8 @@ The completed site keeps the original deterministic iid simulation interface and
 - The dependent-process marginal mean and variance are simulation references from a long deterministic chain, not exact theoretical moments. A substantially different process would need its own convergence study.
 - Browser automation could not open the local `file://` site under the managed browser policy. The interactive calculation and rendered accessibility structure were tested with Node, while the complete static gallery was inspected directly.
 - Discrete Bernoulli averages retain visible lattice effects in tail-sensitive Q-Q diagnostics after their central shape is practically useful. That disagreement is a limitation of the approximation, not a failed computation.
+- Fresh extension review found that indented HTML controls had been escaped by the renderer even though a string-only validator passed. The interaction now uses an explicit raw-HTML block, and the Node validator executes initialization against a minimal DOM and canvas contract before checking rendered controls.
+- The same review prompted separately contained display equations, disclosed per-panel age-distribution scales, and exact provenance for the independent-array theorem and deterministic browser generator.
 
 ## Sensitivity and future prerequisites
 

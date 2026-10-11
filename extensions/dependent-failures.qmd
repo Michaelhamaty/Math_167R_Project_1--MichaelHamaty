@@ -31,7 +31,10 @@ What changes when each operating time affects the next failure rate? This proces
 The instructor model is
 
 $$
-\lambda_t=\exp\{1.25(X_{t-1}-1)\}, \qquad
+\lambda_t=\exp\{1.25(X_{t-1}-1)\}.
+$$
+
+$$
 X_t\mid X_{t-1}\sim \operatorname{Exponential}(\lambda_t).
 $$
 

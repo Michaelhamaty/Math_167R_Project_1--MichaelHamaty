@@ -94,11 +94,12 @@ plot_extension_trajectory(page_results, c("Stable", "Gradual increase", "Gradual
 
 Use the presets or change the endpoints and sample size. The tool uses a deterministic local generator, performs 3,000 browser simulations, and requires no network connection. Its purpose is exploration; the static figure above is the reproducible reported result.
 
+```{=html}
 <div class="heritage-tool" data-seed="631" data-repetitions="3000">
   <div class="heritage-presets" role="group" aria-label="Probability path presets">
-    <button type="button" data-preset="stable">Stable</button>
-    <button type="button" data-preset="increase">Gradual increase</button>
-    <button type="button" data-preset="decrease">Gradual decrease</button>
+    <button type="button" data-preset="stable" aria-pressed="false">Stable</button>
+    <button type="button" data-preset="increase" aria-pressed="true">Gradual increase</button>
+    <button type="button" data-preset="decrease" aria-pressed="false">Gradual decrease</button>
   </div>
   <div class="heritage-controls">
     <label>Start probability <output data-output="start">0.45</output><input data-control="start" type="range" min="0.10" max="0.90" step="0.05" value="0.45"></label>
@@ -110,6 +111,7 @@ Use the presets or change the endpoints and sample size. The tool uses a determi
 </div>
 <noscript>The interactive enhancement requires JavaScript. The complete static analysis and fallback figure remain available above.</noscript>
 <script src="../assets/heritage-interactive.js" defer></script>
+```
 
 ## 8. Decision and disagreement
 
