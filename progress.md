@@ -82,11 +82,21 @@
 ## Session: 2026-10-11 extensions
 
 ### Current status
-- **Phase:** 8 - Extension scope and recovery
+- **Phase:** 10 - Dependent machine failures
 - **Started:** 2026-10-11
-- **Next action:** Re-attest the expanded plan, verify hooks, and implement the extension simulation foundation.
+- **Next action:** Build the dependent machine-failure page from the verified extension summaries.
 
 ### Actions taken
 - Re-read the repository guidance, source hierarchy, planning files, future-extension notes, and all three instructor-provided extension documents.
 - Confirmed the approved neutral three-path creative design and the local vanilla JavaScript interaction contract.
 - Preserved the completed Phase 0 through Phase 7 history and added Phase 8 through Phase 15 for the extension run.
+- Implemented separate dependent, changing-probability, synthetic-age, and creative scenario interfaces plus compact deterministic result generation.
+- Ran the first 72-row extension build and used its diagnostics to extend the dependent grid beyond `n = 500`.
+- Completed an 80-row compact extension build after adaptively extending the dependent grid through `n = 2000`.
+- Verified deterministic interfaces, exact age and Bernoulli theory, creative path reversal, positive dependent rates, and the seed-1631 burn-in sensitivity contract.
+
+### Errors
+| Error | Attempt | Resolution |
+|-------|---------|------------|
+| Base `rbind()` rejected extension summaries with case-specific columns | 1 | Use an explicit union-column binder and retain unavailable fields as `NA`. |
+| Creative path reversal used strict byte identity and the validator expected 93 rather than 72 rows | 1 | Use `all.equal()` for floating sequences and correct the explicit row-count contract. |

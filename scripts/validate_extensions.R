@@ -1,0 +1,53 @@
+source("R/diagnostics.R")
+source("R/simulation.R")
+source("R/extensions.R")
+
+stopifnot(isTRUE(all.equal(dependent_rate(1), 1)))
+stopifnot(isTRUE(all.equal(dependent_rate(3), exp(2.5))))
+
+reference_first <- simulate_dependent_reference(retained = 2000L, burn_in = 100L, seed = 631L)
+reference_second <- simulate_dependent_reference(retained = 2000L, burn_in = 100L, seed = 631L)
+stopifnot(identical(reference_first, reference_second))
+stopifnot(all(is.finite(reference_first$values)), all(reference_first$rates > 0))
+
+dependent_first <- simulate_dependent_case(reference_first$values, n_values = c(5, 10), B = 200L, seed = 631L, burn_in = 50L, keep_means = TRUE)
+dependent_second <- simulate_dependent_case(reference_first$values, n_values = c(5, 10), B = 200L, seed = 631L, burn_in = 50L, keep_means = TRUE)
+stopifnot(identical(dependent_first, dependent_second))
+stopifnot(all(is.na(dependent_first$summary$theoretical_mean)))
+stopifnot(all(is.na(dependent_first$summary$theoretical_se)))
+stopifnot(all(table(dependent_first$means$n, dependent_first$means$variant) == 200L))
+
+probabilities <- probability_path(20L, 0.90, 0.50)
+stopifnot(length(probabilities) == 20L, probabilities[1] == 0.90, probabilities[20] == 0.50)
+stopifnot(isTRUE(all.equal(mean(probabilities), 0.70)))
+
+probability_first <- simulate_probability_case("test", "Test", "changing", 0.90, 0.50, c(5, 20), B = 200L, seed = 631L, keep_means = TRUE)
+probability_second <- simulate_probability_case("test", "Test", "changing", 0.90, 0.50, c(5, 20), B = 200L, seed = 631L, keep_means = TRUE)
+stopifnot(identical(probability_first, probability_second))
+stopifnot(all(table(probability_first$means$n) == 200L))
+
+age <- make_age_population()
+stopifnot(identical(age$distribution$age, 0:100))
+stopifnot(isTRUE(all.equal(sum(age$distribution$probability), 1)))
+stopifnot(abs(age$mean - 49.9809755) < 1e-6)
+stopifnot(abs(sqrt(age$variance) - 27.6345157) < 1e-6)
+set.seed(1L)
+stopifnot(length(age$generator(37L)) == 37L)
+
+scenarios <- make_creative_scenarios()
+paths <- lapply(seq_len(nrow(scenarios)), function(index) probability_path(50L, scenarios$start_probability[index], scenarios$end_probability[index]))
+stopifnot(all(vapply(paths, function(path) isTRUE(all.equal(mean(path), 0.60)), logical(1))))
+stopifnot(isTRUE(all.equal(paths[[2]], rev(paths[[3]]))))
+stopifnot(isTRUE(all.equal(sum(paths[[2]] * (1 - paths[[2]])), sum(paths[[3]] * (1 - paths[[3]])))))
+
+diagnostics <- utils::read.csv("results/extension_diagnostics.csv")
+stopifnot(nrow(diagnostics) == 80L)
+stopifnot(all(diagnostics$B == 10000L), all(diagnostics$seed == 631L))
+stopifnot(identical(sort(unique(diagnostics$case_id)), sort(c("dependent_failure", "nonidentical_bernoulli", "age_mixture", "heritage_language"))))
+stopifnot(all(is.na(diagnostics$theoretical_se[diagnostics$case_id == "dependent_failure"])))
+stopifnot(all(diagnostics$framework[diagnostics$case_id == "nonidentical_bernoulli"] == "independent non-identical Bernoulli"))
+
+sensitivity <- utils::read.csv("results/dependent_sensitivity.csv")
+stopifnot(all(sensitivity$seed == 1631L), identical(sort(unique(sensitivity$burn_in)), c(250L, 500L, 1000L)))
+
+cat("Extension validation passed.\n")

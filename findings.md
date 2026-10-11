@@ -54,6 +54,14 @@
 | Compare dependent chains with matched-marginal iid resampling | This isolates dependence without pretending the conditional baseline Exponential is the marginal distribution. |
 | Use equal-mean creative paths | Stable 0.60, increasing 0.45 to 0.75, and decreasing 0.75 to 0.45 separate heterogeneity and ordering from average probability. |
 
+## Extension exploration
+
+- The instructor's dependent process is numerically stable at the specified parameters and has lag-1 autocorrelation near -0.365 after burn-in. Alternating negative dependence makes the empirical effective sample size larger than nominal `n` even though the sample-mean shape remains right-skewed at `n = 500`.
+- The dependent grid requires adaptive extension beyond 500 before any shape transition can be described. The matched-marginal iid comparator will be generated as a streaming cumulative mean to avoid storing a 10,000 by 2,000 matrix.
+- At `n = 2000`, the dependent sample mean still has skewness about 0.103 and Q-Q RMSE about 0.021, both just outside the Normal-calibration guidance. The correct result is no calibration-band threshold through 2000, not a forced pass.
+- The changing Bernoulli path has exact mean 0.70 and a slightly smaller theoretical SE than fixed Bernoulli 0.70. The maximum individual variance share decreases toward zero as `n` grows.
+- The synthetic age mixture reproduces the instructor values, with mean 49.9809755 and SD 27.6345157 after probability normalization.
+
 ## Issues encountered
 
 | Issue | Resolution |

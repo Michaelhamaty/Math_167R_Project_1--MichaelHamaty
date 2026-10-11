@@ -1,0 +1,4 @@
+"variant","start_probability","end_probability"
+"Stable",0.6,0.6
+"Gradual increase",0.45,0.75
+"Gradual decrease",0.75,0.45

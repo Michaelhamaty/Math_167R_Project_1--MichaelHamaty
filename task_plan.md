@@ -4,10 +4,10 @@
 Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-Establish the extension recovery contract, validate the hooks, and implement the separate extension simulation foundation.
+Build the dependent machine-failure page from the verified extension summaries.
 
 ## Current Phase
-Phase 8
+Phase 10
 
 ## Phases
 
@@ -64,22 +64,22 @@ Phase 8
 - **Status:** complete
 
 ### Phase 8: Extension scope and recovery
-- [ ] Authorize the approved extension scope without altering the frozen five-case results
-- [ ] Record the curated planning interaction and extension contracts
-- [ ] Re-attest the plan and verify the hooks
-- **Status:** in_progress
+- [x] Authorize the approved extension scope without altering the frozen five-case results
+- [x] Record the curated planning interaction and extension contracts
+- [x] Re-attest the plan and verify the hooks
+- **Status:** complete
 
 ### Phase 9: Extension simulation foundation
-- [ ] Implement separate dependent and non-identical simulation interfaces
-- [ ] Implement the synthetic age distribution and creative scenarios
-- [ ] Add deterministic extension assertions and compact result generation
-- **Status:** pending
+- [x] Implement separate dependent and non-identical simulation interfaces
+- [x] Implement the synthetic age distribution and creative scenarios
+- [x] Add deterministic extension assertions and compact result generation
+- **Status:** complete
 
 ### Phase 10: Dependent machine failures
 - [ ] Complete the conditional and marginal analysis
 - [ ] Compare dependent and matched-marginal iid behavior
 - [ ] Verify burn-in, seed sensitivity, and effective sample size
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 11: Non-identical Bernoulli
 - [ ] Complete the changing-probability analysis
@@ -132,3 +132,5 @@ Phase 8
 | Homebrew downloaded Quarto 1.10.19 but its package installer required interactive administrator authentication | Use the official release archive in the ignored project-local `.tools/` directory and verify its published checksum. |
 | The sandbox denied creation of the child repository's `.git/index.lock` during final staging | Retry the verified Git stage, commit, and push with narrowly scoped repository approval. |
 | The sandbox blocked DNS during the final read-only `git ls-remote` check | Repeat only the remote-state query with network approval, then continue local handoff checks separately. |
+| The first extension build used base `rbind()` on case-specific summaries with different columns | Bind against the explicit union of columns and fill unavailable quantities with `NA`. |
+| The first creative reversal assertion required byte identity and the expected extension row count was overstated | Compare floating paths with numerical tolerance and assert the actual 72-row contract. |
