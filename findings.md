@@ -8,6 +8,7 @@
 - Authored prose has no em dash characters and authored R comments have no space after `#`.
 - The approved extension phase adds dependent failures, non-identical Bernoulli observations, the synthetic age-at-death mixture, and a neutral heritage-language thought experiment while freezing the verified required results.
 - Static extension results retain seed 631 and `B = 10000`; the dependent sensitivity uses seed 1631 and several burn-ins.
+- The user requested complete removal of the two redundant introductory sections shown in the October 12 screenshots: "Why extend the project?" on the Extensions hub and "Beyond the iid foundation" on the landing page.
 
 ## Environment and repository findings
 

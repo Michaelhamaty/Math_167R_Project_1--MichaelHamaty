@@ -462,13 +462,6 @@
     "text": "Reproducibility and limits\nAll final results use seed 631 and 10,000 repetitions per sample size. The borderline Exponential conclusion was repeated with seed 1631; that run rejected the first impression at 300 and motivated the conservative 1000 threshold. The simulations cannot prove a universal threshold, and tail-sensitive applications may require larger samples than the practical whole-distribution judgments here.\nSee the methodology decisions and curated AI interaction log for the full decision trail."
   },
   {
-    "objectID": "index.html#beyond-the-iid-foundation",
-    "href": "index.html#beyond-the-iid-foundation",
-    "title": "How Fast Does Normal Happen?",
-    "section": "Beyond the iid foundation",
-    "text": "Beyond the iid foundation\nThe completed Extensions section tests assumptions rather than only parent shapes. It studies dependent machine failures, independent non-identical Bernoulli observations, a synthetic age-at-death mixture, and a respectful creative heritage-language thought experiment with a local interactive enhancement and full static fallback.\nThe five required conclusions above remain unchanged. The extension pages use separate statistical contracts so dependent or non-identical observations are never passed through an iid formula merely for consistency."
-  },
-  {
     "objectID": "analyses/binomial.html",
     "href": "analyses/binomial.html",
     "title": "Small Binomial",
@@ -781,21 +774,14 @@
     "href": "extensions/index.html",
     "title": "Extensions: When iid Assumptions Change",
     "section": "",
-    "text": "The required analyses changed parent distributions while mostly preserving iid sampling. These extensions ask what happens when independence or identical distribution changes, and whether the same evidence language still makes sense.\nThe original five-case conclusions remain frozen. The extensions use separate simulation contracts so an ordinary iid formula is never applied merely for visual consistency."
-  },
-  {
-    "objectID": "extensions/index.html#why-extend-the-project",
-    "href": "extensions/index.html#why-extend-the-project",
-    "title": "Extensions: When iid Assumptions Change",
-    "section": "",
-    "text": "The required analyses changed parent distributions while mostly preserving iid sampling. These extensions ask what happens when independence or identical distribution changes, and whether the same evidence language still makes sense.\nThe original five-case conclusions remain frozen. The extensions use separate simulation contracts so an ordinary iid formula is never applied merely for visual consistency."
+    "text": "Dependent machine failures use a conditional Exponential rate determined by the previous operating time.\nNon-identical Bernoulli observations preserve independence while probabilities decline from 0.90 to 0.50.\nSynthetic age-at-death mixture applies the ordinary iid CLT to a bounded two-component construction.\nHeritage-language creative case compares neutral equal-mean probability paths and adds one accessible interactive thought experiment."
   },
   {
     "objectID": "extensions/index.html#four-investigations",
     "href": "extensions/index.html#four-investigations",
     "title": "Extensions: When iid Assumptions Change",
-    "section": "Four investigations",
-    "text": "Four investigations\n\nDependent machine failures use a conditional Exponential rate determined by the previous operating time.\nNon-identical Bernoulli observations preserve independence while probabilities decline from 0.90 to 0.50.\nSynthetic age-at-death mixture applies the ordinary iid CLT to a bounded two-component construction.\nHeritage-language creative case compares neutral equal-mean probability paths and adds one accessible interactive thought experiment."
+    "section": "",
+    "text": "Dependent machine failures use a conditional Exponential rate determined by the previous operating time.\nNon-identical Bernoulli observations preserve independence while probabilities decline from 0.90 to 0.50.\nSynthetic age-at-death mixture applies the ordinary iid CLT to a bounded two-component construction.\nHeritage-language creative case compares neutral equal-mean probability paths and adds one accessible interactive thought experiment."
   },
   {
     "objectID": "extensions/index.html#results-at-a-glance",

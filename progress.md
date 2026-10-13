@@ -1,5 +1,18 @@
 # Progress Log
 
+## Session: 2026-10-12 editorial cleanup
+
+### Current status
+- **Phase:** 16 - Remove redundant extension introductions, complete
+- **Started:** 2026-10-12
+- **Next action:** None required after the verified commit and push.
+
+### Actions taken
+- Recovered the attested root plan and confirmed that the user-selected text comes from `extensions/index.qmd` and `index.qmd`.
+- Preserved the untracked `study-docs/` directory without modification.
+- Removed both complete sections from their authored QMD files and regenerated all eleven pages.
+- Confirmed both headings are absent from authored and rendered HTML, and passed simulation, extension, project, interaction, link, and whitespace validation.
+
 ## Session: 2026-10-10
 
 ### Current status

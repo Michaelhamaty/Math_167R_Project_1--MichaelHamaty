@@ -9,12 +9,6 @@ description: "Three extra-credit investigations and one creative application"
 decisions <- read.csv("../results/extension_decisions.csv")
 ```
 
-## Why extend the project?
-
-The required analyses changed parent distributions while mostly preserving iid sampling. These extensions ask what happens when independence or identical distribution changes, and whether the same evidence language still makes sense.
-
-The original five-case conclusions remain frozen. The extensions use separate simulation contracts so an ordinary iid formula is never applied merely for visual consistency.
-
 ## Four investigations
 
 - [Dependent machine failures](dependent-failures.qmd) use a conditional Exponential rate determined by the previous operating time.

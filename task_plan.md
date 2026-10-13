@@ -4,10 +4,10 @@
 Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-Finalize the interactive integration, extension synthesis, documentation, and complete-site QA.
+None required. The requested editorial sections were removed, rendered, validated, committed, and pushed.
 
 ## Current Phase
-Phase 14
+Phase 16
 
 ## Phases
 
@@ -110,6 +110,12 @@ Phase 14
 - [x] Inspect all extension pages at desktop and narrow widths
 - [x] Complete a fresh-agent review and valid revisions
 - [x] Reconcile planning files, commits, and remote state
+- **Status:** complete
+
+### Phase 16: Remove redundant extension introductions
+- [x] Remove the extension-hub "Why extend the project?" section
+- [x] Remove the landing-page "Beyond the iid foundation" section
+- [x] Rerender, validate, commit, and push the cleanup
 - **Status:** complete
 
 ## Decisions Made
