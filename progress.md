@@ -1,5 +1,25 @@
 # Progress Log
 
+## Session: 2026-10-12 AI interaction log expansion
+
+### Current status
+- **Phase:** 17 - Expand the curated AI interaction record, complete
+- **Started:** 2026-10-12
+- **Next action:** None required after the verified commit and push.
+
+### Actions taken
+- Recovered the repository guidance, source specification, planning files, current interaction log, and Git state.
+- Preserved the untracked `study-docs/` directory without modification.
+- Selected two real user-directed moments for faithful paraphrase rather than inventing academic process records.
+- Added one example about requiring a Git checkpoint and hook-guided recovery before extension work, and one about directing the complete removal of two redundant sections.
+- Rerendered all eleven pages and confirmed the examples appear in both the authored and published interaction log.
+- Passed simulation, extension, project, interaction, link, and whitespace validation.
+
+### Errors
+| Error | Attempt | Resolution |
+|-------|---------|------------|
+| Quarto could not open its Sass cache inside the restricted sandbox | 1 | Repeated the clean render with narrowly approved access to the established temporary cache. |
+
 ## Session: 2026-10-12 editorial cleanup
 
 ### Current status

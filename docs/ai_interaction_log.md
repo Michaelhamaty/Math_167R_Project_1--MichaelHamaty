@@ -49,3 +49,27 @@
 **Improvement.** The three paths share average probability 0.60, allowing the analysis to isolate heterogeneity and order without presenting one direction as a real cultural trajectory.
 
 **Verification.** Assertions verify the dependent rate, positive finite chains, exact Bernoulli center and SE, normalized age probabilities, equal creative-path means, and probability-path reversal. Two clean builds reproduce compact outputs. A fresh reviewer caught escaped interactive controls, narrow-screen equation overflow, an unhelpful shared age-plot scale, and two missing provenance records. The controls were converted to raw HTML, runtime-aware Node checks were added, formulas were split and contained, the age panels received disclosed free x scales, and exact sources were recorded before the final eleven-page render.
+
+## Example 5: controlling the extension handoff
+
+**Prompt.** First, put the current stage into Git. Then get organized and use the files you already made to establish everything that remains. This should be straightforward if you use the hooks.
+
+**Initial response.** Checkpoint the verified foundation before beginning new work, recover from `task_plan.md`, `findings.md`, and `progress.md`, and use the attested plan to separate extension milestones from the completed required analyses.
+
+**Project control.** The instruction fixed the order of operations. Verified work had to be preserved before the scope expanded, and the existing recovery system had to guide the long-running implementation.
+
+**Improvement.** The extension work received its own plan, simulation foundation, analysis milestones, review phase, and final handoff. The five required conclusions stayed frozen while the new pages developed independently.
+
+**Verification.** The Git history preserves separate planning, foundation, analysis, review, and closeout commits. The planning hooks continued to recover the active phase from the three root files throughout the implementation.
+
+## Example 6: making a direct editorial cut
+
+**Prompt.** I want you to remove these two entirely.
+
+**Initial response.** Match the two screenshots to their authored sources and remove the complete sections rather than shortening or rephrasing them.
+
+**Project control.** The instruction was a direct editorial decision. The sections were not candidates for revision, and no replacement copy was needed.
+
+**Improvement.** The Extensions hub no longer includes "Why extend the project?" and the landing page no longer includes "Beyond the iid foundation." The surrounding navigation and extension links remain intact.
+
+**Verification.** A clean eleven-page render confirmed that both headings were absent from the authored and generated pages. All simulation, project, interaction, and link checks passed before the cleanup was committed and pushed.

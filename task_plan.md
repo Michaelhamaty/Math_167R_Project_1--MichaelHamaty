@@ -4,10 +4,10 @@
 Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-None required. The requested editorial sections were removed, rendered, validated, committed, and pushed.
+None required. The two curated interaction examples were added, rendered, validated, committed, and pushed.
 
 ## Current Phase
-Phase 16
+Phase 17
 
 ## Phases
 
@@ -118,6 +118,12 @@ Phase 16
 - [x] Rerender, validate, commit, and push the cleanup
 - **Status:** complete
 
+### Phase 17: Expand the curated AI interaction record
+- [x] Add exactly two authentic, user-directed examples in the user's conversational voice
+- [x] Distinguish direct project control from invented academic process records
+- [x] Rerender, validate, commit, and push the documentation update
+- **Status:** complete
+
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
@@ -147,3 +153,4 @@ Phase 16
 | The first deterministic hash command named `calibration.csv` instead of the generated `calibration_bands.csv` | Correct the audit target list; all preceding builders and validators passed. |
 | Fresh review found escaped interactive controls that the original string-only validator missed | Use explicit raw HTML and execute initialization against a minimal DOM and canvas contract in Node. |
 | The first precise PRNG URL looked like a full identifier to the safety scan | Use the source repository URL, which preserves provenance without an identifier-shaped path. |
+| The first documentation render could not open Quarto's Sass cache inside the restricted sandbox | Rerun the clean render with narrowly approved access to the established temporary cache; all eleven pages then rendered successfully. |

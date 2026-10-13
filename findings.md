@@ -75,6 +75,8 @@
 
 ## Issues encountered
 
+- The requested additional AI-log examples can be grounded in two actual instructions from this project: checkpointing the current stage before extension work and removing two redundant sections entirely. Faithful paraphrases preserve the user's voice and control without fabricating an academic record.
+
 | Issue | Resolution |
 |-------|------------|
 | Home-directory hook caches are unavailable inside the managed sandbox | Set the approved per-hook cache root to `${TMPDIR:-/tmp}`. |
