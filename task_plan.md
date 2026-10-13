@@ -4,10 +4,10 @@
 Preserve the verified five-population foundation and build, verify, commit, and push the three instructor-defined extra-credit analyses plus the stylized heritage-language creative case.
 
 ## Next Step
-None required. The two curated interaction examples were added, rendered, validated, committed, and pushed.
+Confirm the professor-facing GitHub submission path, replace the README with a concise navigation guide, publish the committed site through GitHub Pages, then run final validation and reconcile local and remote Git state.
 
 ## Current Phase
-Phase 17
+Phase 18
 
 ## Phases
 
@@ -124,6 +124,13 @@ Phase 17
 - [x] Rerender, validate, commit, and push the documentation update
 - **Status:** complete
 
+### Phase 18: GitHub submission readiness
+- [ ] Replace the README with a short professor-facing entry point and explicit header-tab instructions
+- [ ] Make the rendered site directly accessible from the GitHub repository link
+- [ ] Verify the public repository, live site, all navigation, and reproduction guidance
+- [ ] Commit and push the final submission-ready state
+- **Status:** in progress
+
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
@@ -154,3 +161,4 @@ Phase 17
 | Fresh review found escaped interactive controls that the original string-only validator missed | Use explicit raw HTML and execute initialization against a minimal DOM and canvas contract in Node. |
 | The first precise PRNG URL looked like a full identifier to the safety scan | Use the source repository URL, which preserves provenance without an identifier-shaped path. |
 | The first documentation render could not open Quarto's Sass cache inside the restricted sandbox | Rerun the clean render with narrowly approved access to the established temporary cache; all eleven pages then rendered successfully. |
+| The GitHub CLI account token is invalid and its first repository query also encountered the restricted network boundary | Use existing Git push credentials for commits and a separately verified GitHub interface for Pages configuration; do not treat the failed CLI query as repository evidence. |

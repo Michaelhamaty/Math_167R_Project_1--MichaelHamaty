@@ -13,6 +13,7 @@
 | `course_docs/custom_age_at_death_distribution_monte_carlo.html` | `R/extensions.R`, `extensions/age-mixture.qmd` | The instructor's two component weights and support are normalized into a synthetic discrete population. |
 | [MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and [MDN input event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event) | `assets/heritage-interactive.js` | A local deterministic canvas display responds to labeled native controls without a network or package dependency. |
 | [Mulberry32 JavaScript reference](https://github.com/cprosche/mulberry32) | `assets/heritage-interactive.js` | The small noncryptographic generator is adapted only to make the 3,000-run teaching display repeatable for a selected control state. |
+| [GitHub Pages custom workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) | `.github/workflows/pages.yml` | The official checkout, Pages configuration, artifact upload, permission, environment, and deployment structure publishes the already verified `_site` directory. |
 
 ## Planning and recovery tooling
 

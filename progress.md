@@ -1,5 +1,27 @@
 # Progress Log
 
+## Session: 2026-10-12 GitHub submission readiness
+
+### Current status
+- **Phase:** 18 - GitHub submission readiness, in progress
+- **Started:** 2026-10-12
+- **Next action:** Create the concise professor-facing README and establish a verified live GitHub Pages entry point.
+
+### Actions taken
+- Recovered the attested plan, findings, progress, Git state, and configured remote.
+- Read the professor's higher-priority student guidance and the original project brief around deliverables, GitHub organization, final summary, reproducibility, and AI-interaction submission.
+- Confirmed the site header contains Synthesis, Normal, Die, Exponential, Small Binomial, Cauchy, and an Extensions menu with five destinations.
+- Preserved the unrelated untracked `study-docs/` directory without modification.
+- Replaced the long developer-oriented README with a short professor-facing guide that preserves the required question, populations, conclusion, reproducibility, source locations, AI record, and future-work references.
+- Added an official GitHub Pages workflow that publishes the already verified `_site` directory on each push to `main`.
+- Completed a clean eleven-page render and passed simulation, extension, project, interaction, link, YAML, and whitespace checks.
+
+### Errors
+| Error | Attempt | Resolution |
+|-------|---------|------------|
+| GitHub CLI authentication is invalid and the initial API request was unavailable | 1 | Do not rely on that request; use Git push credentials and a separately verified GitHub path for Pages configuration. |
+| The pre-deployment web tool could not fetch the repository or proposed Pages URL | 1 | Treat the URLs as unverified until after the deployment workflow is pushed and checked independently. |
+
 ## Session: 2026-10-12 AI interaction log expansion
 
 ### Current status

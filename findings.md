@@ -9,6 +9,8 @@
 - The approved extension phase adds dependent failures, non-identical Bernoulli observations, the synthetic age-at-death mixture, and a neutral heritage-language thought experiment while freezing the verified required results.
 - Static extension results retain seed 631 and `B = 10000`; the dependent sensitivity uses seed 1631 and several burn-ins.
 - The user requested complete removal of the two redundant introductory sections shown in the October 12 screenshots: "Why extend the project?" on the Extensions hub and "Beyond the iid foundation" on the landing page.
+- The professor-facing submission is the GitHub repository link. The guidance requires a coherent repository, a clearly readable final summary in GitHub, separately accessible analyses, reproducibility, and an AI-interaction record in another file.
+- The final README should be short, lead directly to the rendered project, and explicitly ask the professor to click every header tab, including every item under Extensions.
 
 ## Environment and repository findings
 
@@ -54,6 +56,8 @@
 | Keep non-iid cases outside `make_populations()` | Their generators and theoretical comparisons depend on an ordered process, not one iid marginal distribution. |
 | Compare dependent chains with matched-marginal iid resampling | This isolates dependence without pretending the conditional baseline Exponential is the marginal distribution. |
 | Use equal-mean creative paths | Stable 0.60, increasing 0.45 to 0.75, and decreasing 0.75 to 0.45 separate heterogeneity and ordering from average probability. |
+| Publish the committed `_site` directory with GitHub Pages Actions | The professor receives one readable web link, while the repository still preserves all source, results, and reproducibility material. The workflow uses the official Pages artifact and deployment structure. |
+| Make the README a professor-facing entry note | The course requires the GitHub repository to tell a coherent story. A prominent site link and explicit instruction to visit every header destination reduce submission friction. |
 
 ## Extension exploration
 
@@ -76,6 +80,8 @@
 ## Issues encountered
 
 - The requested additional AI-log examples can be grounded in two actual instructions from this project: checkpointing the current stage before extension work and removing two redundant sections entirely. Faithful paraphrases preserve the user's voice and control without fabricating an academic record.
+- The local GitHub CLI reports an invalid stored token, so it cannot currently be used to configure or inspect GitHub Pages. Ordinary Git pushes remain independently authenticated.
+- Direct web-tool checks of the repository and proposed Pages URL were unavailable before deployment, so neither was treated as verification. The final URLs must be checked after the workflow is pushed and Pages is configured.
 
 | Issue | Resolution |
 |-------|------------|
